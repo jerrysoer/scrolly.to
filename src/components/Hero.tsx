@@ -3,11 +3,11 @@ export default function Hero() {
     <section className="relative px-6 pt-32 pb-20 sm:pt-40 sm:pb-28">
       <div className="mx-auto max-w-3xl text-center">
         <h1 className="font-condensed text-5xl font-bold uppercase leading-[1.05] tracking-tight text-text sm:text-7xl">
-          Agencies charge $10K
+          Nobody reads your
           <br />
-          for this.{" "}
+          whitepaper.{" "}
           <span className="relative inline-block">
-            AI does it in minutes.
+            Show them instead.
             <span
               className="absolute bottom-1 left-0 -z-10 h-[0.35em] w-full rounded-sm bg-highlight sm:bottom-2"
               aria-hidden="true"
