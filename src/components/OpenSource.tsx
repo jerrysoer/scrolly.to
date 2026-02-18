@@ -41,7 +41,7 @@ export default function OpenSource() {
         </div>
 
         <a
-          href="https://github.com/scrolly-to"
+          href="https://github.com/jerrysoer/scrolly.to"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-green transition-opacity hover:opacity-80"

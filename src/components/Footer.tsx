@@ -23,7 +23,7 @@ export default function Footer() {
             Open Source
           </a>
           <a
-            href="https://github.com/scrolly-to"
+            href="https://github.com/jerrysoer/scrolly.to"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-text-muted transition-colors hover:text-text"

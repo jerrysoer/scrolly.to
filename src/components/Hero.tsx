@@ -29,7 +29,7 @@ export default function Hero() {
             See examples
           </a>
           <a
-            href="https://github.com/scrolly-to"
+            href="https://github.com/jerrysoer/scrolly.to"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex h-12 items-center rounded-full border border-border-strong px-7 text-base font-medium text-text transition-colors hover:bg-surface"
