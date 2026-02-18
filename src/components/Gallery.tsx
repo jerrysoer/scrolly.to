@@ -1,35 +1,55 @@
 const CARDS = [
   {
-    title: "TCP/IP Protocol Stack",
-    desc: "How data travels from app to wire in four layers.",
-    category: "Networking",
+    title: "Seed2.0 LLM",
+    desc: "How ByteDance's frontier model hits GPT-5 benchmarks at 1/10th the cost.",
+    category: "AI Models",
     gradient: "from-[#dbeafe] to-[#bfdbfe]",
+    url: "https://jerrysoer.github.io/seed2-explainer/",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
-        {["Application", "Transport", "Internet", "Link"].map((label, i) => (
-          <g key={label}>
-            <rect
-              x="20"
-              y={10 + i * 27}
-              width="120"
-              height="22"
-              rx="6"
-              fill={`rgba(30,64,175,${0.15 + i * 0.1})`}
-              stroke="rgba(30,64,175,0.3)"
-              strokeWidth="1"
-            />
-            <text
-              x="80"
-              y={24 + i * 27}
-              textAnchor="middle"
-              fontSize="10"
-              fill="rgba(30,64,175,0.8)"
-              fontFamily="system-ui"
-            >
-              {label}
-            </text>
-          </g>
+        {/* Seed/sprout icon */}
+        <ellipse cx="80" cy="95" rx="30" ry="8" fill="rgba(30,64,175,0.08)" />
+        <path
+          d="M80 90 L80 50"
+          stroke="rgba(30,64,175,0.4)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        {/* Leaves */}
+        <path
+          d="M80 65 Q95 50 105 55 Q95 65 80 65"
+          fill="rgba(34,197,94,0.3)"
+          stroke="rgba(34,197,94,0.5)"
+          strokeWidth="1"
+        />
+        <path
+          d="M80 75 Q65 60 55 65 Q65 75 80 75"
+          fill="rgba(34,197,94,0.25)"
+          stroke="rgba(34,197,94,0.45)"
+          strokeWidth="1"
+        />
+        {/* Benchmark bars rising from top */}
+        {[
+          { x: 30, h: 28, o: 0.15 },
+          { x: 50, h: 35, o: 0.2 },
+          { x: 70, h: 38, o: 0.25 },
+          { x: 90, h: 40, o: 0.3 },
+          { x: 110, h: 32, o: 0.2 },
+        ].map((bar, i) => (
+          <rect
+            key={i}
+            x={bar.x}
+            y={8}
+            width="12"
+            height={bar.h}
+            rx="3"
+            fill={`rgba(30,64,175,${bar.o})`}
+          />
         ))}
+        {/* Cost label */}
+        <text x="80" y="108" textAnchor="middle" fontSize="8" fill="rgba(30,64,175,0.5)" fontFamily="system-ui">
+          1/10th cost
+        </text>
       </svg>
     ),
   },
@@ -159,104 +179,28 @@ const CARDS = [
     ),
   },
   {
-    title: "Kubernetes Cluster",
-    desc: "Nodes, pods, and containers — orchestration at a glance.",
-    category: "DevOps",
-    gradient: "from-[#f1f5f9] to-[#e2e8f0]",
+    title: "Claude Model Lineup",
+    desc: "Haiku, Sonnet, and Opus — benchmarks, pricing, and the right model for you.",
+    category: "AI Models",
+    gradient: "from-[#fff5e6] to-[#fde8d0]",
+    url: "https://jerrysoer.github.io/claude-models-explainer-v2/",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
-        {/* Node 1 */}
-        <rect
-          x="10"
-          y="15"
-          width="65"
-          height="90"
-          rx="8"
-          fill="rgba(71,85,105,0.08)"
-          stroke="rgba(71,85,105,0.25)"
-          strokeWidth="1"
-        />
-        <text
-          x="42"
-          y="30"
-          textAnchor="middle"
-          fontSize="8"
-          fill="rgba(71,85,105,0.6)"
-          fontFamily="system-ui"
-        >
-          Node 1
-        </text>
-        <rect
-          x="18"
-          y="38"
-          width="22"
-          height="16"
-          rx="3"
-          fill="rgba(59,130,246,0.2)"
-          stroke="rgba(59,130,246,0.4)"
-          strokeWidth="1"
-        />
-        <rect
-          x="44"
-          y="38"
-          width="22"
-          height="16"
-          rx="3"
-          fill="rgba(59,130,246,0.2)"
-          stroke="rgba(59,130,246,0.4)"
-          strokeWidth="1"
-        />
-        <rect
-          x="18"
-          y="60"
-          width="22"
-          height="16"
-          rx="3"
-          fill="rgba(59,130,246,0.2)"
-          stroke="rgba(59,130,246,0.4)"
-          strokeWidth="1"
-        />
-        {/* Node 2 */}
-        <rect
-          x="85"
-          y="15"
-          width="65"
-          height="90"
-          rx="8"
-          fill="rgba(71,85,105,0.08)"
-          stroke="rgba(71,85,105,0.25)"
-          strokeWidth="1"
-        />
-        <text
-          x="117"
-          y="30"
-          textAnchor="middle"
-          fontSize="8"
-          fill="rgba(71,85,105,0.6)"
-          fontFamily="system-ui"
-        >
-          Node 2
-        </text>
-        <rect
-          x="93"
-          y="38"
-          width="22"
-          height="16"
-          rx="3"
-          fill="rgba(59,130,246,0.2)"
-          stroke="rgba(59,130,246,0.4)"
-          strokeWidth="1"
-        />
-        <rect
-          x="119"
-          y="38"
-          width="22"
-          height="16"
-          rx="3"
-          fill="rgba(59,130,246,0.2)"
-          stroke="rgba(59,130,246,0.4)"
-          strokeWidth="1"
-        />
+        {/* Haiku node */}
+        <circle cx="40" cy="85" r="14" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.5)" strokeWidth="1.5" />
+        <text x="40" y="89" textAnchor="middle" fontSize="10" fill="rgba(16,185,129,0.9)" fontFamily="system-ui">⚡</text>
+        <text x="40" y="110" textAnchor="middle" fontSize="7" fill="rgba(74,74,74,0.7)" fontFamily="system-ui">Haiku</text>
+        {/* Sonnet node */}
+        <circle cx="80" cy="55" r="18" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.5)" strokeWidth="1.5" />
+        <text x="80" y="59" textAnchor="middle" fontSize="12" fill="rgba(59,130,246,0.9)" fontFamily="system-ui">🧠</text>
+        <text x="80" y="82" textAnchor="middle" fontSize="7" fill="rgba(74,74,74,0.7)" fontFamily="system-ui">Sonnet</text>
+        {/* Opus node */}
+        <circle cx="120" cy="30" r="22" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.5)" strokeWidth="1.5" />
+        <text x="120" y="35" textAnchor="middle" fontSize="14" fill="rgba(139,92,246,0.9)" fontFamily="system-ui">✨</text>
+        <text x="120" y="60" textAnchor="middle" fontSize="7" fill="rgba(74,74,74,0.7)" fontFamily="system-ui">Opus</text>
+        {/* Connection lines */}
+        <line x1="52" y1="78" x2="65" y2="65" stroke="rgba(148,163,184,0.3)" strokeWidth="1.5" />
+        <line x1="95" y1="48" x2="103" y2="42" stroke="rgba(148,163,184,0.3)" strokeWidth="1.5" />
       </svg>
     ),
   },
@@ -381,38 +325,45 @@ export default function Gallery() {
         </p>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {CARDS.map((card) => (
-            <div
-              key={card.title}
-              className="group cursor-default overflow-hidden rounded-2xl border border-border bg-card-bg transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div
-                className={`flex h-40 items-center justify-center bg-gradient-to-br p-6 ${card.gradient}`}
+          {CARDS.map((card) => {
+            const Wrapper = card.url ? "a" : "div";
+            const linkProps = card.url
+              ? { href: card.url, target: "_blank", rel: "noopener noreferrer" }
+              : {};
+            return (
+              <Wrapper
+                key={card.title}
+                {...linkProps}
+                className={`group overflow-hidden rounded-2xl border border-border bg-card-bg transition-all duration-200 hover:-translate-y-1 hover:shadow-lg ${card.url ? "cursor-pointer" : "cursor-default"}`}
               >
-                <div className="h-full w-full">{card.svg}</div>
-              </div>
-              <div className="p-5">
-                <span
-                  className={`inline-block rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider ${
-                    card.darkText
-                      ? "bg-white/20 text-white/80"
-                      : "bg-surface text-text-muted"
-                  }`}
-                  style={
-                    card.darkText
-                      ? { background: "rgba(0,0,0,0.08)" }
-                      : undefined
-                  }
+                <div
+                  className={`flex h-40 items-center justify-center bg-gradient-to-br p-6 ${card.gradient}`}
                 >
-                  {card.category}
-                </span>
-                <h3 className="mt-2 font-condensed text-lg font-semibold uppercase text-text">
-                  {card.title}
-                </h3>
-                <p className="mt-1 text-sm text-text-muted">{card.desc}</p>
-              </div>
-            </div>
-          ))}
+                  <div className="h-full w-full">{card.svg}</div>
+                </div>
+                <div className="p-5">
+                  <span
+                    className={`inline-block rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider ${
+                      card.darkText
+                        ? "bg-white/20 text-white/80"
+                        : "bg-surface text-text-muted"
+                    }`}
+                    style={
+                      card.darkText
+                        ? { background: "rgba(0,0,0,0.08)" }
+                        : undefined
+                    }
+                  >
+                    {card.category}
+                  </span>
+                  <h3 className="mt-2 font-condensed text-lg font-semibold uppercase text-text">
+                    {card.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-text-muted">{card.desc}</p>
+                </div>
+              </Wrapper>
+            );
+          })}
         </div>
       </div>
     </section>
