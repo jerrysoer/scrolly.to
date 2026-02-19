@@ -1,17 +1,36 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ExplainerCard, { ExplainerCardData } from "@/components/ExplainerCard";
+import LearnGrid from "@/components/LearnGrid";
+import { ExplainerCardData } from "@/components/ExplainerCard";
 
 export const metadata: Metadata = {
   title: "Learn — scrolly.to",
   description:
     "Interactive explainers that break down complex topics step by step. Browse published scrolly explainers.",
+  alternates: {
+    canonical: "https://scrolly.to/learn",
+  },
   openGraph: {
     title: "Learn — scrolly.to",
     description:
       "Interactive explainers that break down complex topics step by step.",
     url: "https://scrolly.to/learn",
+    images: [
+      {
+        url: "https://scrolly.to/og-learn.png",
+        width: 1200,
+        height: 630,
+        alt: "scrolly.to Learn — Interactive Explainers",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Learn — scrolly.to",
+    description:
+      "Interactive explainers that break down complex topics step by step.",
+    images: ["https://scrolly.to/og-learn.png"],
   },
 };
 
@@ -136,23 +155,18 @@ const CARDS: ExplainerCardData[] = [
     url: "https://jerrysoer.github.io/going-back-to-the-moon/",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
-        {/* Stars */}
         {[[18,12],[42,28],[130,18],[145,70],[20,90],[95,8],[60,105]].map(([x,y],i)=>(
           <circle key={i} cx={x} cy={y} r="1.2" fill="rgba(255,255,255,0.45)" />
         ))}
-        {/* Moon */}
         <circle cx="100" cy="55" r="30" fill="rgba(226,232,240,0.85)" />
         <circle cx="90" cy="45" r="6" fill="rgba(148,163,184,0.25)" />
         <circle cx="108" cy="62" r="4" fill="rgba(148,163,184,0.2)" />
         <circle cx="95" cy="70" r="3" fill="rgba(148,163,184,0.18)" />
         <circle cx="112" cy="48" r="2.5" fill="rgba(148,163,184,0.15)" />
-        {/* Rocket approaching */}
         <rect x="38" y="48" width="8" height="22" rx="4" fill="rgba(255,255,255,0.85)" />
         <polygon points="42,44 38,52 46,52" fill="rgba(255,255,255,0.9)" />
-        {/* Flame */}
         <ellipse cx="42" cy="73" rx="3" ry="5" fill="rgba(251,146,60,0.6)" />
         <ellipse cx="42" cy="72" rx="1.5" ry="3" fill="rgba(253,224,71,0.7)" />
-        {/* Trajectory arc */}
         <path d="M46 60 Q58 40 70 45" stroke="rgba(255,255,255,0.15)" strokeWidth="1" strokeDasharray="3 3" fill="none" />
       </svg>
     ),
@@ -165,22 +179,17 @@ const CARDS: ExplainerCardData[] = [
     url: "https://jerrysoer.github.io/how-money-works/",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
-        {/* Bill */}
         <rect x="25" y="30" width="50" height="30" rx="4" fill="rgba(22,163,74,0.12)" stroke="rgba(22,163,74,0.4)" strokeWidth="1.5" />
         <text x="50" y="50" textAnchor="middle" fontSize="14" fill="rgba(22,163,74,0.5)" fontFamily="system-ui" fontWeight="bold">$</text>
-        {/* Coins stacked */}
         {[0,1,2].map((i)=>(
           <g key={i}>
             <ellipse cx="115" cy={70 - i * 10} rx="16" ry="5" fill={`rgba(234,179,8,${0.2 + i * 0.1})`} stroke="rgba(202,138,4,0.4)" strokeWidth="1" />
           </g>
         ))}
-        {/* Flow arrows */}
         <path d="M78 45 Q90 35 105 50" stroke="rgba(22,163,74,0.3)" strokeWidth="1.5" fill="none" markerEnd="url(#arrowG)" />
         <path d="M105 75 Q90 90 78 80" stroke="rgba(202,138,4,0.3)" strokeWidth="1.5" fill="none" />
-        {/* Bank icon */}
         <rect x="60" y="75" width="28" height="20" rx="2" fill="rgba(22,163,74,0.08)" stroke="rgba(22,163,74,0.25)" strokeWidth="1" />
         <polygon points="60,75 74,65 88,75" fill="rgba(22,163,74,0.1)" stroke="rgba(22,163,74,0.25)" strokeWidth="1" />
-        {/* Columns */}
         <line x1="67" y1="78" x2="67" y2="92" stroke="rgba(22,163,74,0.2)" strokeWidth="2" />
         <line x1="74" y1="78" x2="74" y2="92" stroke="rgba(22,163,74,0.2)" strokeWidth="2" />
         <line x1="81" y1="78" x2="81" y2="92" stroke="rgba(22,163,74,0.2)" strokeWidth="2" />
@@ -195,33 +204,27 @@ const CARDS: ExplainerCardData[] = [
     url: "https://jerrysoer.github.io/dinosaur-extinction/",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
-        {/* Ground */}
         <path d="M0 95 Q40 88 80 92 Q120 96 160 90 L160 120 L0 120 Z" fill="rgba(120,113,108,0.15)" />
-        {/* Dinosaur silhouette (simple sauropod) */}
         <path d="M25 85 Q28 60 35 55 Q38 53 40 55 L40 60 Q42 58 44 60 L44 65 Q50 62 55 65 L55 75 Q58 72 60 75 L58 85" fill="rgba(120,113,108,0.3)" stroke="rgba(120,113,108,0.4)" strokeWidth="1" />
-        {/* Neck and head */}
         <path d="M35 55 Q30 40 28 35 Q27 32 30 32 Q33 32 34 35 Q35 38 35 55" fill="rgba(120,113,108,0.3)" stroke="rgba(120,113,108,0.4)" strokeWidth="1" />
-        {/* Asteroid */}
         <circle cx="120" cy="25" r="10" fill="rgba(239,68,68,0.4)" />
         <circle cx="120" cy="25" r="6" fill="rgba(239,68,68,0.6)" />
-        {/* Trail */}
         <path d="M130 15 Q140 8 148 5" stroke="rgba(251,146,60,0.4)" strokeWidth="3" strokeLinecap="round" />
         <path d="M128 18 Q138 12 145 10" stroke="rgba(251,146,60,0.25)" strokeWidth="2" strokeLinecap="round" />
-        {/* Impact glow */}
         <ellipse cx="120" cy="25" rx="18" ry="14" fill="rgba(251,146,60,0.1)" />
-        {/* Dust clouds */}
         <circle cx="85" cy="80" r="8" fill="rgba(168,162,158,0.12)" />
         <circle cx="100" cy="75" r="10" fill="rgba(168,162,158,0.1)" />
         <circle cx="110" cy="82" r="7" fill="rgba(168,162,158,0.08)" />
       </svg>
     ),
   },
-  // --- Placeholder ---
+  // --- Placeholder (clickable → waitlist) ---
   {
     title: "What would you like to see?",
     desc: "Suggest a topic and we'll turn it into an interactive explainer.",
     category: "Your idea",
     gradient: "from-[#f1f0ee] to-[#e8e6e2]",
+    url: "https://github.com/jerrysoer/scrolly.to/issues",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         <circle cx="80" cy="56" r="22" stroke="rgba(0,0,0,0.1)" strokeWidth="2" strokeDasharray="6 4" fill="none" />
@@ -231,7 +234,7 @@ const CARDS: ExplainerCardData[] = [
   },
 ];
 
-const LIVE_COUNT = CARDS.filter((c) => c.url).length;
+const LIVE_COUNT = CARDS.filter((c) => c.url && c.category !== "Your idea").length;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -243,7 +246,7 @@ const jsonLd = {
   mainEntity: {
     "@type": "ItemList",
     numberOfItems: LIVE_COUNT,
-    itemListElement: CARDS.filter((c) => c.url).map((card, i) => ({
+    itemListElement: CARDS.filter((c) => c.url && c.category !== "Your idea").map((card, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: card.title,
@@ -267,16 +270,7 @@ export default function LearnPage() {
               Interactive explainers that break down complex topics step by step.
             </p>
 
-            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {CARDS.map((card, i) => (
-                <ExplainerCard
-                  key={`${card.title}-${i}`}
-                  card={card}
-                  index={i}
-                  animate
-                />
-              ))}
-            </div>
+            <LearnGrid cards={CARDS} />
           </div>
         </section>
 
@@ -304,6 +298,18 @@ export default function LearnPage() {
             </p>
           </div>
         </section>
+
+        {/* Scrolly analytics — learn page views */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://scrolly.to/pixel?s=hosted&e=learn-page-view&v=1"
+          width={1}
+          height={1}
+          style={{ position: "absolute", bottom: 0, left: 0, opacity: 0, pointerEvents: "none" }}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
 
         {/* JSON-LD */}
         <script
