@@ -8,7 +8,7 @@ interface LearnGridProps {
 }
 
 export default function LearnGrid({ cards }: LearnGridProps) {
-  const liveCards = cards.filter((c) => c.url);
+  const liveCards = cards.filter((c) => c.url && c.category !== "Your idea");
   const categories = ["All", ...Array.from(new Set(liveCards.map((c) => c.category)))];
   const [active, setActive] = useState("All");
 
