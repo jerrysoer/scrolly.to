@@ -14,6 +14,12 @@ export default function Nav() {
             Gallery
           </a>
           <a
+            href="/learn"
+            className="hidden text-sm text-text-muted transition-colors hover:text-text sm:block"
+          >
+            Learn
+          </a>
+          <a
             href="#open-source"
             className="hidden text-sm text-text-muted transition-colors hover:text-text sm:block"
           >
