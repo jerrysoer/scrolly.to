@@ -218,6 +218,84 @@ const CARDS: ExplainerCardData[] = [
       </svg>
     ),
   },
+  {
+    title: "Dividing Fractions",
+    desc: "Every 5th grader is taught to 'flip and multiply.' Almost none are told why. Here's the visual proof.",
+    category: "Math",
+    gradient: "from-[#eff6ff] to-[#fef3c7]",
+    url: "https://jerrysoer.github.io/dividing-fractions/",
+    svg: (
+      <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
+        <line x1="55" y1="60" x2="105" y2="60" stroke="rgba(59,130,246,0.5)" strokeWidth="3" strokeLinecap="round" />
+        <text x="80" y="48" textAnchor="middle" fontSize="28" fill="rgba(59,130,246,0.45)" fontFamily="system-ui" fontWeight="bold">3</text>
+        <text x="80" y="85" textAnchor="middle" fontSize="28" fill="rgba(245,158,11,0.5)" fontFamily="system-ui" fontWeight="bold">4</text>
+        <text x="130" y="68" textAnchor="middle" fontSize="32" fill="rgba(59,130,246,0.2)" fontFamily="system-ui" fontWeight="bold">÷</text>
+        <circle cx="30" cy="35" r="12" fill="rgba(249,115,22,0.15)" stroke="rgba(249,115,22,0.3)" strokeWidth="1" />
+        <path d="M30 35 L30 23 A12 12 0 0 1 40.4 41 Z" fill="rgba(245,158,11,0.25)" />
+        <circle cx="30" cy="90" r="10" fill="rgba(249,115,22,0.1)" stroke="rgba(249,115,22,0.25)" strokeWidth="1" />
+        <path d="M30 90 L30 80 A10 10 0 0 1 38.7 95 Z" fill="rgba(245,158,11,0.2)" />
+      </svg>
+    ),
+  },
+  {
+    title: "Fall Into a Black Hole",
+    desc: "If you fell into a black hole, you'd be fine. The problem is everyone else's perspective.",
+    category: "Space",
+    gradient: "from-[#020617] to-[#1e293b]",
+    darkText: true,
+    url: "https://jerrysoer.github.io/fall-into-black-hole/",
+    svg: (
+      <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
+        {[[12,15],[140,10],[25,100],[135,95],[70,8],[150,55]].map(([x,y],i)=>(
+          <circle key={i} cx={x} cy={y} r="1" fill="rgba(255,255,255,0.4)" />
+        ))}
+        <circle cx="80" cy="60" r="25" fill="rgba(0,0,0,0.8)" />
+        <ellipse cx="80" cy="60" rx="40" ry="10" fill="none" stroke="rgba(96,165,250,0.3)" strokeWidth="1.5" />
+        <ellipse cx="80" cy="60" rx="35" ry="8" fill="none" stroke="rgba(251,146,60,0.2)" strokeWidth="1" />
+        <circle cx="80" cy="60" r="28" fill="none" stroke="rgba(96,165,250,0.15)" strokeWidth="8" />
+        <circle cx="80" cy="60" r="36" fill="none" stroke="rgba(96,165,250,0.06)" strokeWidth="4" />
+      </svg>
+    ),
+  },
+  {
+    title: "Roller Coaster Physics",
+    desc: "At the top of a loop you're upside down at 60 mph with nothing holding you in but physics.",
+    category: "Physics",
+    gradient: "from-[#fefce8] to-[#fef08a]",
+    url: "https://jerrysoer.github.io/roller-coaster-physics/",
+    svg: (
+      <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
+        <path d="M10 95 L10 25 Q10 15 20 15 Q30 15 30 25 L30 55 Q30 75 45 75 Q55 75 60 60 Q65 45 75 45 Q85 45 85 55 L85 65 Q85 80 100 80 Q110 80 115 70 Q120 60 130 60 Q140 60 140 68 L140 95" stroke="rgba(59,130,246,0.35)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+        <circle cx="15" cy="20" r="4" fill="rgba(245,158,11,0.5)" stroke="rgba(245,158,11,0.7)" strokeWidth="1" />
+        <path d="M60 55 Q67 32 75 32 Q83 32 85 55" stroke="rgba(239,68,68,0.3)" strokeWidth="1.5" fill="none" strokeDasharray="3 2" />
+        <text x="20" y="110" fontSize="7" fill="rgba(59,130,246,0.3)" fontFamily="system-ui">PE</text>
+        <text x="75" y="110" fontSize="7" fill="rgba(245,158,11,0.3)" fontFamily="system-ui">KE</text>
+        <rect x="18" y="103" width="12" height="4" rx="1" fill="rgba(59,130,246,0.15)" />
+        <rect x="73" y="103" width="12" height="4" rx="1" fill="rgba(245,158,11,0.15)" />
+      </svg>
+    ),
+  },
+  {
+    title: "How WiFi Works",
+    desc: "Your router is a radio station. Your phone is a decoder. Here's how cat videos become invisible waves.",
+    category: "Technology",
+    gradient: "from-[#eff6ff] to-[#dbeafe]",
+    url: "https://jerrysoer.github.io/how-wifi-works/",
+    svg: (
+      <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
+        <rect x="70" y="65" width="20" height="25" rx="3" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.3)" strokeWidth="1.5" />
+        <rect x="76" y="58" width="8" height="8" rx="1" fill="rgba(59,130,246,0.2)" />
+        <circle cx="80" cy="75" r="2" fill="rgba(59,130,246,0.35)" />
+        {[22, 30, 38].map((r, i) => (
+          <path key={i} d={`M${80-r} ${55-r*0.3} A${r} ${r} 0 0 1 ${80+r} ${55-r*0.3}`} stroke={`rgba(59,130,246,${0.35 - i * 0.1})`} strokeWidth="2" fill="none" strokeLinecap="round" />
+        ))}
+        <rect x="20" y="80" width="16" height="24" rx="2" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.2)" strokeWidth="1" />
+        <rect x="124" y="78" width="22" height="16" rx="2" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.2)" strokeWidth="1" />
+        <path d="M36 90 Q55 70 70 75" stroke="rgba(59,130,246,0.15)" strokeWidth="1" strokeDasharray="3 3" fill="none" />
+        <path d="M90 75 Q105 70 124 86" stroke="rgba(59,130,246,0.15)" strokeWidth="1" strokeDasharray="3 3" fill="none" />
+      </svg>
+    ),
+  },
   // --- Placeholder (clickable → waitlist) ---
   {
     title: "What would you like to see?",
