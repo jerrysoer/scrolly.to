@@ -1,4 +1,6 @@
-const CARDS = [
+import ExplainerCard, { ExplainerCardData } from "./ExplainerCard";
+
+const CARDS: ExplainerCardData[] = [
   {
     title: "Seed2.0 LLM",
     desc: "How ByteDance's frontier model hits GPT-5 benchmarks at 1/10th the cost.",
@@ -54,29 +56,38 @@ const CARDS = [
     ),
   },
   {
-    title: "Transformer Architecture",
-    desc: "Self-attention: how tokens learn to look at each other.",
-    category: "Machine Learning",
+    title: "Git Worktrees",
+    desc: "Multiple branches, zero stashing — how worktrees let you work in parallel.",
+    category: "Developer Tools",
     gradient: "from-[#ede9fe] to-[#ddd6fe]",
+    url: "https://jerrysoer.github.io/git-worktrees-explainer/",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
-        {[0, 1, 2, 3].map((row) =>
-          [0, 1, 2].map((col) => (
-            <circle
-              key={`${row}-${col}`}
-              cx={40 + col * 40}
-              cy={20 + row * 28}
-              r="6"
-              fill={`rgba(124,58,237,${0.25 + ((row + col) % 3) * 0.15})`}
-            />
-          ))
-        )}
-        <path
-          d="M40 20 Q80 48 120 20 M40 48 Q80 76 120 48 M80 20 Q60 76 40 104 M80 48 Q100 76 120 104"
-          stroke="rgba(124,58,237,0.3)"
-          strokeWidth="1.5"
-          fill="none"
-        />
+        {/* Main trunk */}
+        <line x1="80" y1="15" x2="80" y2="105" stroke="rgba(124,58,237,0.4)" strokeWidth="2.5" strokeLinecap="round" />
+        {/* Branch left */}
+        <path d="M80 40 Q60 40 45 55 L45 90" stroke="rgba(124,58,237,0.3)" strokeWidth="2" strokeLinecap="round" fill="none" />
+        {/* Branch right */}
+        <path d="M80 55 Q100 55 115 65 L115 90" stroke="rgba(124,58,237,0.3)" strokeWidth="2" strokeLinecap="round" fill="none" />
+        {/* Commit dots on main */}
+        {[25, 40, 55, 70, 85, 100].map((y, i) => (
+          <circle key={i} cx={80} cy={y} r="4" fill={`rgba(124,58,237,${0.3 + i * 0.08})`} />
+        ))}
+        {/* Commit dots on left branch */}
+        {[60, 75, 90].map((y, i) => (
+          <circle key={`l${i}`} cx={45} cy={y} r="3.5" fill={`rgba(168,85,247,${0.3 + i * 0.1})`} />
+        ))}
+        {/* Commit dots on right branch */}
+        {[70, 82, 90].map((y, i) => (
+          <circle key={`r${i}`} cx={115} cy={y} r="3.5" fill={`rgba(168,85,247,${0.3 + i * 0.1})`} />
+        ))}
+        {/* Folder icons */}
+        <rect x="32" y="94" width="26" height="16" rx="3" fill="rgba(124,58,237,0.15)" stroke="rgba(124,58,237,0.3)" strokeWidth="1" />
+        <text x="45" y="106" textAnchor="middle" fontSize="7" fill="rgba(124,58,237,0.7)" fontFamily="system-ui">feat</text>
+        <rect x="67" y="94" width="26" height="16" rx="3" fill="rgba(124,58,237,0.15)" stroke="rgba(124,58,237,0.3)" strokeWidth="1" />
+        <text x="80" y="106" textAnchor="middle" fontSize="7" fill="rgba(124,58,237,0.7)" fontFamily="system-ui">main</text>
+        <rect x="102" y="94" width="26" height="16" rx="3" fill="rgba(124,58,237,0.15)" stroke="rgba(124,58,237,0.3)" strokeWidth="1" />
+        <text x="115" y="106" textAnchor="middle" fontSize="7" fill="rgba(124,58,237,0.7)" fontFamily="system-ui">fix</text>
       </svg>
     ),
   },
@@ -188,15 +199,15 @@ const CARDS = [
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         {/* Haiku node */}
         <circle cx="40" cy="85" r="14" fill="rgba(16,185,129,0.12)" stroke="rgba(16,185,129,0.5)" strokeWidth="1.5" />
-        <text x="40" y="89" textAnchor="middle" fontSize="10" fill="rgba(16,185,129,0.9)" fontFamily="system-ui">⚡</text>
+        <text x="40" y="89" textAnchor="middle" fontSize="10" fill="rgba(16,185,129,0.9)" fontFamily="system-ui">&#x26A1;</text>
         <text x="40" y="110" textAnchor="middle" fontSize="7" fill="rgba(74,74,74,0.7)" fontFamily="system-ui">Haiku</text>
         {/* Sonnet node */}
         <circle cx="80" cy="55" r="18" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.5)" strokeWidth="1.5" />
-        <text x="80" y="59" textAnchor="middle" fontSize="12" fill="rgba(59,130,246,0.9)" fontFamily="system-ui">🧠</text>
+        <text x="80" y="59" textAnchor="middle" fontSize="12" fill="rgba(59,130,246,0.9)" fontFamily="system-ui">&#x1F9E0;</text>
         <text x="80" y="82" textAnchor="middle" fontSize="7" fill="rgba(74,74,74,0.7)" fontFamily="system-ui">Sonnet</text>
         {/* Opus node */}
         <circle cx="120" cy="30" r="22" fill="rgba(139,92,246,0.12)" stroke="rgba(139,92,246,0.5)" strokeWidth="1.5" />
-        <text x="120" y="35" textAnchor="middle" fontSize="14" fill="rgba(139,92,246,0.9)" fontFamily="system-ui">✨</text>
+        <text x="120" y="35" textAnchor="middle" fontSize="14" fill="rgba(139,92,246,0.9)" fontFamily="system-ui">&#x2728;</text>
         <text x="120" y="60" textAnchor="middle" fontSize="7" fill="rgba(74,74,74,0.7)" fontFamily="system-ui">Opus</text>
         {/* Connection lines */}
         <line x1="52" y1="78" x2="65" y2="65" stroke="rgba(148,163,184,0.3)" strokeWidth="1.5" />
@@ -325,45 +336,9 @@ export default function Gallery() {
         </p>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {CARDS.map((card) => {
-            const Wrapper = card.url ? "a" : "div";
-            const linkProps = card.url
-              ? { href: card.url, target: "_blank", rel: "noopener noreferrer" }
-              : {};
-            return (
-              <Wrapper
-                key={card.title}
-                {...linkProps}
-                className={`group overflow-hidden rounded-2xl border border-border bg-card-bg transition-all duration-200 hover:-translate-y-1 hover:shadow-lg ${card.url ? "cursor-pointer" : "cursor-default"}`}
-              >
-                <div
-                  className={`flex h-40 items-center justify-center bg-gradient-to-br p-6 ${card.gradient}`}
-                >
-                  <div className="h-full w-full">{card.svg}</div>
-                </div>
-                <div className="p-5">
-                  <span
-                    className={`inline-block rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider ${
-                      card.darkText
-                        ? "bg-white/20 text-white/80"
-                        : "bg-surface text-text-muted"
-                    }`}
-                    style={
-                      card.darkText
-                        ? { background: "rgba(0,0,0,0.08)" }
-                        : undefined
-                    }
-                  >
-                    {card.category}
-                  </span>
-                  <h3 className="mt-2 font-condensed text-lg font-semibold uppercase text-text">
-                    {card.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-text-muted">{card.desc}</p>
-                </div>
-              </Wrapper>
-            );
-          })}
+          {CARDS.map((card) => (
+            <ExplainerCard key={card.title} card={card} />
+          ))}
         </div>
       </div>
     </section>
