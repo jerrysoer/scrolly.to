@@ -21,6 +21,8 @@ export async function GET(req: NextRequest) {
   const source = searchParams.get("s");
   const explainerId = searchParams.get("e");
   const version = searchParams.get("v");
+  const name = searchParams.get("n");
+  const url = searchParams.get("u");
 
   if (explainerId) {
     const referrer = req.headers.get("referer") ?? null;
@@ -32,6 +34,7 @@ export async function GET(req: NextRequest) {
 
     const supabase = getSupabase();
     if (supabase) {
+      // Record the pixel event
       const { error } = await supabase.from("pixel_events").insert({
         explainer_id: explainerId,
         source: source ?? "oss",
@@ -41,6 +44,23 @@ export async function GET(req: NextRequest) {
         ip_address: ip,
       });
       if (error) console.error("[pixel] insert failed:", error.message);
+
+      // Auto-register explainer metadata if name is provided
+      if (name) {
+        const { error: upsertError } = await supabase
+          .from("explainers")
+          .upsert(
+            {
+              id: explainerId,
+              name,
+              url: url ?? null,
+              updated_at: new Date().toISOString(),
+            },
+            { onConflict: "id" }
+          );
+        if (upsertError)
+          console.error("[pixel] explainer upsert failed:", upsertError.message);
+      }
     }
   }
 
