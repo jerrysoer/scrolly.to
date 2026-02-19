@@ -115,6 +115,8 @@ export default function RootLayout({
             data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
           />
         )}
+        {/* Scrolly analytics — landing page views */}
+        <img src="https://scrolly.to/pixel?s=hosted&e=904f5090-c37f-4c62-a645-5711cc54ffff&v=1" width={1} height={1} style={{position:'absolute',bottom:0,left:0,opacity:0,pointerEvents:'none'}} alt="" loading="lazy" decoding="async" />
       </body>
     </html>
   );
