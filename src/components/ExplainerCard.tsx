@@ -21,12 +21,15 @@ export default function ExplainerCard({
   index = 0,
   animate = false,
 }: ExplainerCardProps) {
-  const Wrapper = card.url ? "a" : "div";
-  const linkProps = card.url
+  const isLink = !!card.url;
+  const isExternal = card.url && !card.url.startsWith("#");
+  const Wrapper = isLink ? "a" : "div";
+  const linkProps = isLink
     ? {
         href: card.url,
-        target: "_blank" as const,
-        rel: "noopener noreferrer",
+        ...(isExternal
+          ? { target: "_blank" as const, rel: "noopener noreferrer" }
+          : {}),
       }
     : {};
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import LearnGrid from "@/components/LearnGrid";
+import SuggestionBox from "@/components/SuggestionBox";
 import { ExplainerCardData } from "@/components/ExplainerCard";
 
 export const metadata: Metadata = {
@@ -302,7 +303,7 @@ const CARDS: ExplainerCardData[] = [
     desc: "Suggest a topic and we'll turn it into an interactive explainer.",
     category: "Your idea",
     gradient: "from-[#f1f0ee] to-[#e8e6e2]",
-    url: "https://github.com/jerrysoer/scrolly.to/issues",
+    url: "#suggest",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         <circle cx="80" cy="56" r="22" stroke="rgba(0,0,0,0.1)" strokeWidth="2" strokeDasharray="6 4" fill="none" />
@@ -352,30 +353,8 @@ export default function LearnPage() {
           </div>
         </section>
 
-        {/* Bottom CTA */}
-        <section className="px-6 pb-20">
-          <div className="mx-auto max-w-xl text-center">
-            <p className="text-lg text-text-muted">
-              Have a topic in mind?{" "}
-              <a
-                href="/#waitlist"
-                className="font-medium text-green underline decoration-green/30 underline-offset-4 transition-colors hover:text-text hover:decoration-text/30"
-              >
-                Get on the list
-              </a>{" "}
-              or{" "}
-              <a
-                href="https://github.com/jerrysoer/scrolly.to"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-green underline decoration-green/30 underline-offset-4 transition-colors hover:text-text hover:decoration-text/30"
-              >
-                open an issue on GitHub
-              </a>
-              .
-            </p>
-          </div>
-        </section>
+        {/* Suggestion Box */}
+        <SuggestionBox />
 
         {/* Scrolly analytics — learn page views */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
