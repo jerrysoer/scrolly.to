@@ -360,6 +360,38 @@ const CARDS: ExplainerCardData[] = [
       </svg>
     ),
   },
+  {
+    title: "What Is Gravity?",
+    desc: "From Newton's apple to Einstein's spacetime fabric — why things fall, how orbits work, and what we still don't know.",
+    category: "Physics",
+    gradient: "from-[#020617] to-[#1e293b]",
+    darkText: true,
+    url: "https://jerrysoer.github.io/gravity-explainer",
+    svg: (
+      <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
+        {[[15,12],[42,22],[130,15],[145,72],[22,95],[98,8],[62,108]].map(([x,y],i)=>(
+          <circle key={i} cx={x} cy={y} r="1" fill="rgba(255,255,255,0.35)" />
+        ))}
+        {/* Spacetime grid lines */}
+        {[30,50,70,90].map((y,i)=>(
+          <path key={`h${i}`} d={`M10 ${y} Q80 ${y + (y > 45 && y < 85 ? 12 : 0)} 150 ${y}`} stroke="rgba(96,165,250,0.12)" strokeWidth="0.8" fill="none" />
+        ))}
+        {[30,55,80,105,130].map((x,i)=>(
+          <line key={`v${i}`} x1={x} y1="20" x2={x} y2="100" stroke="rgba(96,165,250,0.08)" strokeWidth="0.8" />
+        ))}
+        {/* Sun mass creating gravity well */}
+        <circle cx="80" cy="55" r="14" fill="rgba(251,191,36,0.5)" />
+        <circle cx="80" cy="55" r="20" fill="rgba(251,191,36,0.1)" />
+        {/* Earth orbiting */}
+        <circle cx="120" cy="42" r="5" fill="rgba(96,165,250,0.6)" />
+        <circle cx="120" cy="42" r="8" fill="rgba(96,165,250,0.12)" />
+        {/* Orbit path hint */}
+        <ellipse cx="80" cy="52" rx="42" ry="18" stroke="rgba(96,165,250,0.15)" strokeWidth="0.8" strokeDasharray="3 3" fill="none" />
+        {/* Question mark — unsolved */}
+        <text x="80" y="108" textAnchor="middle" fontSize="11" fill="rgba(251,191,36,0.4)" fontFamily="system-ui" fontWeight="700">?</text>
+      </svg>
+    ),
+  },
   // --- Placeholder (clickable → waitlist) ---
   {
     title: "What would you like to see?",
