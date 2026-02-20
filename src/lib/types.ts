@@ -73,11 +73,24 @@ export interface RecentEvent {
   created_at: string;
 }
 
+export interface TrendIndicator {
+  value: number; // percentage change
+  label: string; // e.g. "vs prev 30d"
+}
+
 export interface AnalyticsData {
   totalViews: number;
   views7d: number;
   views30d: number;
   activeExplainers: number;
+  uniqueVisitors7d: number;
+  uniqueVisitors30d: number;
+  avgDuration: number;      // seconds
+  avgScrollDepth: number;   // 0–100
+  bounceRate: number;       // 0–100
+  trendViews: TrendIndicator | null;
+  trendUniqueVisitors: TrendIndicator | null;
+  trendAvgDuration: TrendIndicator | null;
   dailyViews: DailyViews[];
   explainers: ExplainerStats[];
   referrers: ReferrerGroup[];

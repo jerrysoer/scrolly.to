@@ -7,6 +7,7 @@ import MetricCard from "@/components/dashboard/analytics/MetricCard";
 import DateRangePicker from "@/components/dashboard/DateRangePicker";
 import ViewsOverTime from "@/components/dashboard/analytics/ViewsOverTime";
 import ScrollFunnel from "@/components/dashboard/ScrollFunnel";
+import SectionHeatmap from "@/components/dashboard/SectionHeatmap";
 import GeoTable from "@/components/dashboard/GeoTable";
 import ReferrerBreakdown from "@/components/dashboard/analytics/ReferrerBreakdown";
 import AnalyticsDeviceBreakdown from "@/components/dashboard/analytics/DeviceBreakdown";
@@ -18,7 +19,8 @@ interface ExplainerData {
   completionRate: number;
   dailyViews: Array<{ day: string; views: number }>;
   scrollFunnel: Record<string, number>;
-  geo: Array<{ country: string; city: string; views: number }>;
+  sectionBreakdown: Record<string, number>;
+  geo: Array<{ country: string; region: string | null; city: string; views: number }>;
   referrers: Array<{ referrer_domain: string; views: number }>;
   devices: {
     browsers: Record<string, number>;
@@ -124,6 +126,7 @@ export default function ExplainerDetail() {
                   data={data.scrollFunnel}
                   total={data.totalViews}
                 />
+                <SectionHeatmap data={data.sectionBreakdown ?? {}} />
                 <GeoTable data={data.geo} />
               </div>
 

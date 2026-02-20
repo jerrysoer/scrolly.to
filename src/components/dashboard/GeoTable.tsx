@@ -1,5 +1,6 @@
 interface GeoRow {
   country: string;
+  region?: string | null;
   city: string;
   views: number;
 }
@@ -38,8 +39,11 @@ export default function GeoTable({ data }: GeoTableProps) {
         {top.map((row, i) => (
           <div key={`${row.country}-${row.city}-${i}`} className="flex items-center gap-3">
             <span className="w-6 text-center text-sm">{countryToFlag(row.country)}</span>
-            <span className="w-28 shrink-0 truncate text-sm text-text">
+            <span className="w-36 shrink-0 truncate text-sm text-text" title={[row.city, row.region].filter(Boolean).join(", ")}>
               {row.city || "Unknown"}
+              {row.region && (
+                <span className="text-text-muted">, {row.region}</span>
+              )}
             </span>
             <div className="relative h-5 flex-1 overflow-hidden rounded-full bg-surface">
               <div

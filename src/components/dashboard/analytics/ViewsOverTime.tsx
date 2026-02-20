@@ -14,9 +14,10 @@ import { formatDate } from "@/lib/format";
 
 interface ViewsOverTimeProps {
   data: DailyViews[];
+  label?: string;
 }
 
-export default function ViewsOverTime({ data }: ViewsOverTimeProps) {
+export default function ViewsOverTime({ data, label }: ViewsOverTimeProps) {
   if (data.length === 0) {
     return (
       <div className="p-8 text-center text-text-muted text-sm">
@@ -28,7 +29,7 @@ export default function ViewsOverTime({ data }: ViewsOverTimeProps) {
   return (
     <div className="p-5 rounded-xl border border-border bg-card-bg">
       <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">
-        Views — Last 30 Days
+        {label ?? "Views — Last 30 Days"}
       </h3>
       <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">

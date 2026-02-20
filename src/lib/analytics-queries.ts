@@ -4,6 +4,7 @@ import { UAParser } from "ua-parser-js";
 import type {
   AnalyticsData,
   DailyViews,
+  TrendIndicator,
   ExplainerStats,
   ReferrerGroup,
   DeviceStats,
@@ -27,23 +28,40 @@ function extractDomain(referrer: string | null): string {
   }
 }
 
-export async function fetchAnalyticsData(): Promise<AnalyticsData | null> {
+function computeTrend(current: number, previous: number): TrendIndicator | null {
+  if (previous === 0 && current === 0) return null;
+  if (previous === 0) return { value: 100, label: "new" };
+  const pct = Math.round(((current - previous) / previous) * 100);
+  return { value: pct, label: "vs prev period" };
+}
+
+export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsData | null> {
   const supabase = getSupabase();
   if (!supabase) return null;
 
+  const since = daysAgo(days);
   const since7d = daysAgo(7);
-  const since30d = daysAgo(30);
+  // Previous period for trend comparison
+  const prevStart = daysAgo(days * 2);
+  const prevEnd = daysAgo(days);
 
   const [
     totalRes,
     res7d,
-    res30d,
-    dailyRes,
+    resPeriod,
+    dailyRpcRes,
+    uniqueCurrent,
+    unique7d,
+    uniquePrev,
     explainerRes,
     allEventsRes,
     recentRes,
+    engagementRes,
+    // Previous period for trends
+    prevViewsRes,
+    prevEngagementRes,
   ] = await Promise.all([
-    // Total views
+    // Total views (all time)
     supabase
       .from("pixel_events")
       .select("*", { count: "exact", head: true }),
@@ -54,18 +72,23 @@ export async function fetchAnalyticsData(): Promise<AnalyticsData | null> {
       .select("*", { count: "exact", head: true })
       .gte("created_at", since7d),
 
-    // 30d views
+    // Current period views
     supabase
       .from("pixel_events")
       .select("*", { count: "exact", head: true })
-      .gte("created_at", since30d),
+      .gte("created_at", since),
 
-    // Daily views (last 30 days) — fetch raw timestamps, group client-side
-    supabase
-      .from("pixel_events")
-      .select("created_at")
-      .gte("created_at", since30d)
-      .order("created_at", { ascending: true }),
+    // Daily views via RPC
+    supabase.rpc("daily_views", { since }),
+
+    // Unique visitors — current period
+    supabase.rpc("count_unique_ips", { since }),
+
+    // Unique visitors — 7d
+    supabase.rpc("count_unique_ips", { since: since7d }),
+
+    // Unique visitors — previous period (for trend)
+    supabase.rpc("count_unique_ips", { since: prevEnd }),
 
     // All explainer IDs with counts — auto-discover
     supabase
@@ -83,6 +106,26 @@ export async function fetchAnalyticsData(): Promise<AnalyticsData | null> {
       .select("id, explainer_id, referrer, user_agent, created_at")
       .order("created_at", { ascending: false })
       .limit(20),
+
+    // Engagement events — current period
+    supabase
+      .from("engagement_events")
+      .select("duration_seconds, max_scroll_depth")
+      .gte("created_at", since),
+
+    // Previous period views (for trend)
+    supabase
+      .from("pixel_events")
+      .select("*", { count: "exact", head: true })
+      .gte("created_at", prevStart)
+      .lt("created_at", prevEnd),
+
+    // Previous period engagement (for trend)
+    supabase
+      .from("engagement_events")
+      .select("duration_seconds, max_scroll_depth")
+      .gte("created_at", prevStart)
+      .lt("created_at", prevEnd),
   ]);
 
   // Fetch explainer names from Supabase
@@ -90,24 +133,72 @@ export async function fetchAnalyticsData(): Promise<AnalyticsData | null> {
 
   const totalViews = totalRes.count ?? 0;
   const views7d = res7d.count ?? 0;
-  const views30d = res30d.count ?? 0;
+  const viewsPeriod = resPeriod.count ?? 0;
 
-  // Daily views grouped by date
+  // Daily views from RPC — map {day, views}[] to DailyViews[]
+  const rpcDaily: Array<{ day: string; views: number }> = dailyRpcRes.data ?? [];
   const dailyMap = new Map<string, number>();
-  for (const row of dailyRes.data ?? []) {
-    const date = row.created_at.slice(0, 10);
-    dailyMap.set(date, (dailyMap.get(date) ?? 0) + 1);
+  for (const row of rpcDaily) {
+    dailyMap.set(row.day, row.views);
   }
   // Fill missing days
   const dailyViews: DailyViews[] = [];
-  for (let i = 29; i >= 0; i--) {
+  for (let i = days - 1; i >= 0; i--) {
     const d = new Date();
     d.setDate(d.getDate() - i);
     const key = d.toISOString().slice(0, 10);
     dailyViews.push({ date: key, views: dailyMap.get(key) ?? 0 });
   }
 
+  // Unique visitors
+  const uniqueVisitors7d = (typeof unique7d.data === "number" ? unique7d.data : 0);
+  const uniqueVisitorsPeriod = (typeof uniqueCurrent.data === "number" ? uniqueCurrent.data : 0);
+  const uniqueVisitorsPrev = (typeof uniquePrev.data === "number" ? uniquePrev.data : 0);
+
+  // Engagement metrics — current period
+  const engagements: Array<{ duration_seconds: number; max_scroll_depth: number }> =
+    engagementRes.data ?? [];
+  let avgDuration = 0;
+  let avgScrollDepth = 0;
+  let bounceRate = 0;
+
+  if (engagements.length > 0) {
+    let totalDuration = 0;
+    let totalDepth = 0;
+    let bounceCount = 0;
+
+    for (const e of engagements) {
+      const dur = e.duration_seconds ?? 0;
+      totalDuration += dur;
+      totalDepth += e.max_scroll_depth ?? 0;
+      if (dur < 10) bounceCount++;
+    }
+
+    avgDuration = Math.round(totalDuration / engagements.length);
+    avgScrollDepth = Math.round(totalDepth / engagements.length);
+    bounceRate = Math.round((bounceCount / engagements.length) * 100);
+  }
+
+  // Engagement metrics — previous period (for trend)
+  const prevEngagements: Array<{ duration_seconds: number; max_scroll_depth: number }> =
+    prevEngagementRes.data ?? [];
+  let prevAvgDuration = 0;
+  if (prevEngagements.length > 0) {
+    let totalDuration = 0;
+    for (const e of prevEngagements) {
+      totalDuration += e.duration_seconds ?? 0;
+    }
+    prevAvgDuration = Math.round(totalDuration / prevEngagements.length);
+  }
+
+  // Trends
+  const prevViews = prevViewsRes.count ?? 0;
+  const trendViews = computeTrend(viewsPeriod, prevViews);
+  const trendUniqueVisitors = computeTrend(uniqueVisitorsPeriod, uniqueVisitorsPrev);
+  const trendAvgDuration = computeTrend(avgDuration, prevAvgDuration);
+
   // Explainer breakdown — auto-discover from data
+  const since30d = daysAgo(30);
   const explainerMap = new Map<string, { total: number; last7d: number; last30d: number }>();
   for (const row of explainerRes.data ?? []) {
     const id = row.explainer_id;
@@ -198,8 +289,16 @@ export async function fetchAnalyticsData(): Promise<AnalyticsData | null> {
   return {
     totalViews,
     views7d,
-    views30d,
+    views30d: viewsPeriod,
     activeExplainers: explainerMap.size,
+    uniqueVisitors7d,
+    uniqueVisitors30d: uniqueVisitorsPeriod,
+    avgDuration,
+    avgScrollDepth,
+    bounceRate,
+    trendViews,
+    trendUniqueVisitors,
+    trendAvgDuration,
     dailyViews,
     explainers,
     referrers,
