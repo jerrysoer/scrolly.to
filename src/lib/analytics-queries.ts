@@ -11,6 +11,7 @@ import type {
   GeoRow,
   HeatmapCell,
   RecentEvent,
+  WaitlistEntry,
 } from "./types";
 
 function daysAgo(n: number): string {
@@ -62,6 +63,11 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
     prevViewsRes,
     prevEngagementRes,
     geoRes,
+    // Waitlist
+    waitlistTotalRes,
+    waitlistPeriodRes,
+    waitlistPrevRes,
+    waitlistRecentRes,
   ] = await Promise.all([
     // Total views (all time)
     supabase
@@ -131,6 +137,31 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
 
     // Global geo distribution
     supabase.rpc("global_geo", { since }),
+
+    // Waitlist — total count
+    supabase
+      .from("waitlist")
+      .select("*", { count: "exact", head: true }),
+
+    // Waitlist — current period
+    supabase
+      .from("waitlist")
+      .select("*", { count: "exact", head: true })
+      .gte("created_at", since),
+
+    // Waitlist — previous period (for trend)
+    supabase
+      .from("waitlist")
+      .select("*", { count: "exact", head: true })
+      .gte("created_at", prevStart)
+      .lt("created_at", prevEnd),
+
+    // Waitlist — recent 5 signups
+    supabase
+      .from("waitlist")
+      .select("email, created_at")
+      .order("created_at", { ascending: false })
+      .limit(5),
   ]);
 
   // Fetch explainer names from Supabase
@@ -305,6 +336,18 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
     };
   });
 
+  // Waitlist
+  const waitlistTotal = waitlistTotalRes.count ?? 0;
+  const waitlistPeriod = waitlistPeriodRes.count ?? 0;
+  const waitlistPrev = waitlistPrevRes.count ?? 0;
+  const waitlistTrend = computeTrend(waitlistPeriod, waitlistPrev);
+  const recentWaitlistSignups: WaitlistEntry[] = (waitlistRecentRes.data ?? []).map(
+    (row: { email: string; created_at: string }) => ({
+      email: row.email,
+      created_at: row.created_at,
+    })
+  );
+
   return {
     totalViews,
     views7d,
@@ -326,5 +369,9 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
     geo,
     heatmap,
     recentEvents,
+    waitlistTotal,
+    waitlist7d: waitlistPeriod,
+    waitlistTrend,
+    recentWaitlistSignups,
   };
 }

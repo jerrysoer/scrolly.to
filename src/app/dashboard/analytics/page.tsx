@@ -7,6 +7,7 @@ import ExplainerTable from "@/components/dashboard/analytics/ExplainerTable";
 import GeoTable from "@/components/dashboard/GeoTable";
 import TimeHeatmap from "@/components/dashboard/analytics/TimeHeatmap";
 import ActivityFeed from "@/components/dashboard/analytics/ActivityFeed";
+import WaitlistCard from "@/components/dashboard/analytics/WaitlistCard";
 import AnalyticsDatePicker from "@/components/dashboard/analytics/AnalyticsDatePicker";
 
 export const revalidate = 300;
@@ -94,6 +95,17 @@ export default async function AnalyticsPage({
           label="Bounce Rate"
           value={0}
           suffix={`${data.bounceRate}%`}
+        />
+      </div>
+
+      {/* Waitlist */}
+      <div className="mb-8">
+        <WaitlistCard
+          total={data.waitlistTotal}
+          periodCount={data.waitlist7d}
+          trend={data.waitlistTrend}
+          recentSignups={data.recentWaitlistSignups}
+          days={days}
         />
       </div>
 

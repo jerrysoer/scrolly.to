@@ -30,6 +30,13 @@ export interface Feed {
   categories: Record<string, CategoryData>;
 }
 
+/* ── Waitlist types ── */
+
+export interface WaitlistEntry {
+  email: string;
+  created_at: string;
+}
+
 /* ── Analytics types ── */
 
 export interface DailyViews {
@@ -106,4 +113,8 @@ export interface AnalyticsData {
   geo: GeoRow[];
   heatmap: HeatmapCell[];
   recentEvents: RecentEvent[];
+  waitlistTotal: number;
+  waitlist7d: number;
+  waitlistTrend: TrendIndicator | null;
+  recentWaitlistSignups: WaitlistEntry[];
 }
