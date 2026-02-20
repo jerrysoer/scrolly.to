@@ -297,6 +297,42 @@ const CARDS: ExplainerCardData[] = [
       </svg>
     ),
   },
+  {
+    title: "Why Do AIs Hallucinate?",
+    desc: "From token prediction to the lawyer who cited six fake cases — why AI confidently states false information.",
+    category: "AI",
+    gradient: "from-[#eef2ff] to-[#e0e7ff]",
+    url: "https://jerrysoer.github.io/why-ai-hallucinate/",
+    svg: (
+      <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
+        {/* Brain outline */}
+        <ellipse cx="60" cy="55" rx="28" ry="24" stroke="rgba(99,102,241,0.3)" strokeWidth="1.5" fill="none" />
+        <path d="M42 45 Q50 35 60 38 Q70 35 78 45" stroke="rgba(99,102,241,0.2)" strokeWidth="1" fill="none" />
+        <path d="M45 60 Q53 52 60 55 Q67 52 75 60" stroke="rgba(99,102,241,0.2)" strokeWidth="1" fill="none" />
+        {/* Neural nodes inside brain */}
+        <circle cx="50" cy="48" r="2.5" fill="rgba(99,102,241,0.4)" />
+        <circle cx="60" cy="42" r="2.5" fill="rgba(99,102,241,0.4)" />
+        <circle cx="70" cy="48" r="2.5" fill="rgba(99,102,241,0.4)" />
+        <circle cx="55" cy="60" r="2.5" fill="rgba(99,102,241,0.4)" />
+        <circle cx="65" cy="60" r="2.5" fill="rgba(99,102,241,0.4)" />
+        <line x1="50" y1="48" x2="60" y2="42" stroke="rgba(99,102,241,0.2)" strokeWidth="0.8" />
+        <line x1="60" y1="42" x2="70" y2="48" stroke="rgba(99,102,241,0.2)" strokeWidth="0.8" />
+        <line x1="55" y1="60" x2="65" y2="60" stroke="rgba(99,102,241,0.2)" strokeWidth="0.8" />
+        {/* Arrow to tokens */}
+        <path d="M88 55 L100 55" stroke="rgba(99,102,241,0.3)" strokeWidth="1.5" strokeDasharray="3 2" />
+        <path d="M98 52 L102 55 L98 58" stroke="rgba(99,102,241,0.3)" strokeWidth="1.5" fill="none" />
+        {/* Token bubbles — mix of green (true) and red (hallucinated) */}
+        <rect x="106" y="32" width="36" height="14" rx="4" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.3)" strokeWidth="0.8" />
+        <text x="124" y="42" textAnchor="middle" fontSize="7" fill="rgba(34,197,94,0.7)" fontFamily="system-ui" fontWeight="500">Paris</text>
+        <rect x="106" y="50" width="36" height="14" rx="4" fill="rgba(239,68,68,0.15)" stroke="rgba(239,68,68,0.3)" strokeWidth="0.8" />
+        <text x="124" y="60" textAnchor="middle" fontSize="6" fill="rgba(239,68,68,0.7)" fontFamily="system-ui" fontWeight="500">Varghese v.</text>
+        <rect x="106" y="68" width="36" height="14" rx="4" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.3)" strokeWidth="0.8" />
+        <text x="124" y="78" textAnchor="middle" fontSize="7" fill="rgba(34,197,94,0.7)" fontFamily="system-ui" fontWeight="500">1969</text>
+        {/* Small "?" on a red token */}
+        <text x="146" y="60" textAnchor="middle" fontSize="8" fill="rgba(239,68,68,0.5)" fontFamily="system-ui" fontWeight="700">?</text>
+      </svg>
+    ),
+  },
   // --- Placeholder (clickable → waitlist) ---
   {
     title: "What would you like to see?",
