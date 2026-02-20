@@ -23,6 +23,7 @@ export async function GET(req: NextRequest) {
   const version = searchParams.get("v");
   const name = searchParams.get("n");
   const url = searchParams.get("u");
+  const sessionId = searchParams.get("sid");
 
   if (explainerId) {
     const referrer = req.headers.get("referer") ?? null;
@@ -31,6 +32,11 @@ export async function GET(req: NextRequest) {
       req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
       req.headers.get("x-real-ip") ??
       null;
+
+    // Vercel geo headers (populated automatically on Vercel, null locally)
+    const country = req.headers.get("x-vercel-ip-country") ?? null;
+    const region = req.headers.get("x-vercel-ip-region") ?? null;
+    const city = req.headers.get("x-vercel-ip-city") ?? null;
 
     const supabase = getSupabase();
     if (supabase) {
@@ -42,6 +48,10 @@ export async function GET(req: NextRequest) {
         referrer,
         user_agent: userAgent,
         ip_address: ip,
+        country,
+        region,
+        city,
+        session_id: sessionId,
       });
       if (error) console.error("[pixel] insert failed:", error.message);
 

@@ -276,13 +276,19 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
     }
   }
 
-  // Geo distribution
-  const geo: GeoRow[] = (geoRes.data ?? []).map((row: { country: string; region: string | null; city: string; views: number }) => ({
-    country: row.country,
-    region: row.region,
-    city: row.city,
-    views: Number(row.views),
-  }));
+  // Geo distribution — decode URL-encoded city/region from Vercel headers
+  const geo: GeoRow[] = (geoRes.data ?? []).map((row: { country: string; region: string | null; city: string; views: number }) => {
+    let city = row.city;
+    let region = row.region;
+    try { city = decodeURIComponent(city); } catch {}
+    try { region = region ? decodeURIComponent(region) : region; } catch {}
+    return {
+      country: row.country,
+      region,
+      city,
+      views: Number(row.views),
+    };
+  });
 
   // Recent events
   const recentEvents: RecentEvent[] = (recentRes.data ?? []).map((row) => {

@@ -10,15 +10,15 @@ export default function AnalyticsDatePicker() {
   const current = parseInt(searchParams.get("days") ?? "30", 10) || 30;
 
   return (
-    <div className="flex gap-2">
+    <div className="flex items-center gap-1 rounded-full border border-border bg-surface/50 p-0.5">
       {OPTIONS.map((days) => (
         <button
           key={days}
           onClick={() => router.push(`/dashboard/analytics?days=${days}`)}
-          className={`rounded-full border px-3.5 py-1 text-xs font-medium transition-all ${
+          className={`relative rounded-full px-3 py-1 text-xs font-medium transition-all duration-200 ${
             current === days
-              ? "border-accent bg-accent text-white"
-              : "border-border bg-card-bg text-text-muted hover:border-border-strong hover:text-text"
+              ? "bg-card-bg text-text shadow-sm"
+              : "text-text-muted hover:text-text"
           }`}
         >
           {days}d

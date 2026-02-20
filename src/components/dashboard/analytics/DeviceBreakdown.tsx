@@ -1,6 +1,5 @@
 "use client";
 
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { DeviceStats } from "@/lib/types";
 
 interface DeviceBreakdownProps {
@@ -8,61 +7,54 @@ interface DeviceBreakdownProps {
   browsers: DeviceStats[];
 }
 
-const COLORS = [
+const PALETTE = [
   "var(--accent)",
   "var(--accent-muted)",
   "var(--text-muted)",
   "var(--border-strong)",
-  "var(--score-text)",
-  "var(--category-pill-text)",
 ];
 
-function DonutChart({ data, title }: { data: DeviceStats[]; title: string }) {
-  if (data.length === 0) {
+function SegmentedBar({ data, title }: { data: DeviceStats[]; title: string }) {
+  const total = data.reduce((sum, d) => sum + d.count, 0);
+  if (!total) {
     return (
-      <div className="p-8 text-center text-text-muted text-sm">
-        No data yet.
-      </div>
+      <div className="text-center text-text-muted text-sm py-4">No data yet.</div>
     );
   }
 
   return (
     <div>
-      <h4 className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-3">
+      <h4 className="text-[10px] font-semibold uppercase tracking-[0.12em] text-text-muted mb-3">
         {title}
       </h4>
-      <div className="h-48">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={data}
-              dataKey="count"
-              nameKey="label"
-              cx="50%"
-              cy="50%"
-              innerRadius={40}
-              outerRadius={70}
-              paddingAngle={2}
-              strokeWidth={0}
-            >
-              {data.map((_, i) => (
-                <Cell key={i} fill={COLORS[i % COLORS.length]} />
-              ))}
-            </Pie>
-            <Tooltip
-              contentStyle={{
-                background: "var(--card-bg)",
-                border: "1px solid var(--border-strong)",
-                borderRadius: "8px",
-                fontSize: "12px",
-                color: "var(--text)",
-              }}
+      {/* Segmented bar */}
+      <div className="flex h-3 rounded-full overflow-hidden gap-0.5">
+        {data.slice(0, 4).map((item, i) => (
+          <div
+            key={item.label}
+            className="h-full rounded-full transition-all duration-500 first:rounded-l-full last:rounded-r-full"
+            style={{
+              width: `${Math.max((item.count / total) * 100, 2)}%`,
+              backgroundColor: PALETTE[i % PALETTE.length],
+              opacity: 0.8,
+            }}
+          />
+        ))}
+      </div>
+      {/* Legend */}
+      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+        {data.slice(0, 4).map((item, i) => (
+          <div key={item.label} className="flex items-center gap-1.5">
+            <span
+              className="inline-block w-2 h-2 rounded-full"
+              style={{ backgroundColor: PALETTE[i % PALETTE.length], opacity: 0.8 }}
             />
-            <Legend
-              wrapperStyle={{ fontSize: "11px", color: "var(--text-secondary)" }}
-            />
-          </PieChart>
-        </ResponsiveContainer>
+            <span className="text-xs text-text-secondary">{item.label}</span>
+            <span className="text-xs text-text-muted tabular-nums font-mono">
+              {Math.round((item.count / total) * 100)}%
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -70,13 +62,13 @@ function DonutChart({ data, title }: { data: DeviceStats[]; title: string }) {
 
 export default function AnalyticsDeviceBreakdown({ devices, browsers }: DeviceBreakdownProps) {
   return (
-    <div className="p-5 rounded-xl border border-border bg-card-bg">
-      <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">
+    <div className="rounded-2xl border border-border bg-card-bg p-6">
+      <h3 className="text-[10px] font-semibold uppercase tracking-[0.12em] text-text-muted mb-5">
         Devices & Browsers
       </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <DonutChart data={devices} title="Device Type" />
-        <DonutChart data={browsers} title="Browser" />
+      <div className="space-y-6">
+        <SegmentedBar data={devices} title="Device Type" />
+        <SegmentedBar data={browsers} title="Browser" />
       </div>
     </div>
   );

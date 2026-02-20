@@ -13,7 +13,7 @@
   --border-strong: rgba(0, 0, 0, 0.22);
 }
 
-@theme inline {
+@theme {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-card-bg: var(--card-bg);
@@ -149,6 +149,7 @@
 
 /* Map dashboard vars to Tailwind color tokens inside dashboard scope */
 [data-scope="dashboard"] {
+  /* Tailwind utility overrides (used by bg-*, text-*, border-* classes) */
   --color-bg: var(--db-bg);
   --color-surface: var(--db-surface);
   --color-card-bg: var(--db-card-bg);
@@ -175,6 +176,9 @@
   --color-kbd-bg: var(--db-kbd-bg);
   --font-display: var(--font-newsreader);
   --font-body: var(--font-inter-tight);
+  /* Direct var() overrides (used by inline styles like fill="var(--accent)") */
+  --accent: var(--db-accent);
+  --accent-muted: var(--db-accent-muted);
 }
 
 /* ── Dashboard animations ── */

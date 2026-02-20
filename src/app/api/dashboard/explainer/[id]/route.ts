@@ -54,7 +54,13 @@ export async function GET(
 
   const explainer = explainerRes.data ?? { id, name: id, url: "" };
   const dailyViews = dailyRes.data ?? [];
-  const geo = geoRes.data ?? [];
+  const geo = (geoRes.data ?? []).map((row: { country: string; region: string | null; city: string; views: number }) => {
+    let city = row.city;
+    let region = row.region;
+    try { city = decodeURIComponent(city); } catch {}
+    try { region = region ? decodeURIComponent(region) : region; } catch {}
+    return { ...row, city, region };
+  });
   const referrers = referrerRes.data ?? [];
   const engagements: Array<{
     duration_seconds: number;

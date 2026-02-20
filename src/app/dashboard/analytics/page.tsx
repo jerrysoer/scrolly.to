@@ -35,9 +35,9 @@ export default async function AnalyticsPage({
 
   if (!data) {
     return (
-      <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center py-20">
-          <p className="text-lg text-text-muted mb-2">No analytics data available</p>
+      <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center py-24">
+          <p className="font-display text-2xl text-text-muted mb-3">No data yet</p>
           <p className="text-sm text-text-muted">
             Check that SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are configured.
           </p>
@@ -47,27 +47,29 @@ export default async function AnalyticsPage({
   }
 
   return (
-    <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-      {/* Header with date picker */}
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="font-display text-xl font-medium tracking-tight text-text">
-          Pixel Analytics
-        </h1>
+    <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+      {/* Header */}
+      <div className="flex items-end justify-between mb-8">
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-text-muted mb-1">
+            Dashboard
+          </p>
+          <h1 className="font-display text-2xl sm:text-3xl font-medium tracking-tight text-text">
+            Analytics
+          </h1>
+        </div>
         <AnalyticsDatePicker />
       </div>
 
-      {/* Views metric cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-        <MetricCard label="Total Views" value={data.totalViews} />
+      {/* Hero metric + supporting metrics */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
+        <MetricCard label="Total Views" value={data.totalViews} featured />
         <MetricCard
           label={`Last ${days} Days`}
           value={data.views30d}
           trend={data.trendViews}
         />
-        <MetricCard
-          label="Unique Visitors (7d)"
-          value={data.uniqueVisitors7d}
-        />
+        <MetricCard label="Unique Visitors (7d)" value={data.uniqueVisitors7d} />
         <MetricCard
           label={`Unique Visitors (${days}d)`}
           value={data.uniqueVisitors30d}
@@ -75,8 +77,8 @@ export default async function AnalyticsPage({
         />
       </div>
 
-      {/* Engagement metric cards */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
+      {/* Engagement row */}
+      <div className="grid grid-cols-3 gap-3 mb-8">
         <MetricCard
           label="Avg Duration"
           value={0}
@@ -95,32 +97,30 @@ export default async function AnalyticsPage({
         />
       </div>
 
-      {/* Views over time */}
-      <div className="mb-6">
+      {/* Views chart — full width hero */}
+      <div className="mb-8">
         <ViewsOverTime data={data.dailyViews} label={`Views — Last ${days} Days`} />
       </div>
 
-      {/* Two-column: referrers + devices */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      {/* Explainer table */}
+      <div className="mb-8">
+        <ExplainerTable data={data.explainers} />
+      </div>
+
+      {/* Two-column: traffic + devices */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
         <ReferrerBreakdown data={data.referrers} />
         <AnalyticsDeviceBreakdown devices={data.devices} browsers={data.browsers} />
       </div>
 
-      {/* Explainer table */}
-      <div className="mb-6">
-        <ExplainerTable data={data.explainers} />
-      </div>
-
       {/* Two-column: geo + heatmap */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
         <GeoTable data={data.geo} />
         <TimeHeatmap data={data.heatmap} />
       </div>
 
-      {/* Activity feed — full width */}
-      <div>
-        <ActivityFeed events={data.recentEvents} />
-      </div>
+      {/* Activity feed */}
+      <ActivityFeed events={data.recentEvents} />
     </div>
   );
 }

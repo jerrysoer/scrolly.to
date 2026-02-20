@@ -32,26 +32,26 @@ export default function ExplainerTable({ data }: ExplainerTableProps) {
   const header = (key: SortKey, label: string, align: string = "text-right") => (
     <button
       onClick={() => handleSort(key)}
-      className={`${align} text-xs font-semibold uppercase tracking-wider text-text-muted hover:text-text-secondary transition-colors cursor-pointer`}
+      className={`${align} text-[10px] font-semibold uppercase tracking-[0.12em] text-text-muted hover:text-text-secondary transition-colors cursor-pointer`}
     >
       {label}
       {sortBy === key && (
-        <span className="ml-1">{sortAsc ? "\u2191" : "\u2193"}</span>
+        <span className="ml-1 text-accent">{sortAsc ? "\u2191" : "\u2193"}</span>
       )}
     </button>
   );
 
   if (data.length === 0) {
     return (
-      <div className="p-8 text-center text-text-muted text-sm">
+      <div className="rounded-2xl border border-border bg-card-bg p-6 text-center text-text-muted text-sm">
         No explainer data yet.
       </div>
     );
   }
 
   return (
-    <div className="p-5 rounded-xl border border-border bg-card-bg overflow-x-auto">
-      <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">
+    <div className="rounded-2xl border border-border bg-card-bg p-6 overflow-x-auto">
+      <h3 className="text-[10px] font-semibold uppercase tracking-[0.12em] text-text-muted mb-5">
         Explainer Breakdown
       </h3>
       <table className="w-full text-sm">
@@ -64,20 +64,35 @@ export default function ExplainerTable({ data }: ExplainerTableProps) {
           </tr>
         </thead>
         <tbody>
-          {sorted.map((row) => (
-            <tr key={row.id} className="border-b border-border last:border-0 hover:bg-card-hover transition-colors">
+          {sorted.map((row, i) => (
+            <tr
+              key={row.id}
+              className="border-b border-border/50 last:border-0 hover:bg-surface/50 transition-colors"
+              style={{ animationDelay: `${i * 30}ms` }}
+            >
               <td className="py-3 text-text-secondary font-medium">
                 {row.url ? (
-                  <a href={row.url} target="_blank" rel="noopener noreferrer" className="underline decoration-border hover:decoration-text-secondary transition-colors">
+                  <a
+                    href={row.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-accent transition-colors"
+                  >
                     {row.name}
                   </a>
                 ) : (
                   row.name
                 )}
               </td>
-              <td className="py-3 text-right font-mono text-text-muted">{formatNumber(row.total)}</td>
-              <td className="py-3 text-right font-mono text-text-muted">{formatNumber(row.last7d)}</td>
-              <td className="py-3 text-right font-mono text-text-muted">{formatNumber(row.last30d)}</td>
+              <td className="py-3 text-right font-mono text-text-muted tabular-nums">
+                {formatNumber(row.total)}
+              </td>
+              <td className="py-3 text-right font-mono text-text-muted tabular-nums">
+                {formatNumber(row.last7d)}
+              </td>
+              <td className="py-3 text-right font-mono text-text-muted tabular-nums">
+                {formatNumber(row.last30d)}
+              </td>
             </tr>
           ))}
         </tbody>
