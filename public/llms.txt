@@ -1,0 +1,39 @@
+# scrolly.to
+
+> AI-powered interactive visual explainers that break down complex topics into scroll-driven, animated single-page apps.
+
+scrolly.to is an open-source Claude Code skill that generates interactive visual explainers. Given any complex topic — an algorithm, a business model, a technical concept — it produces a self-contained, scroll-driven single-page app with animated SVG diagrams, interactive widgets, and editorial typography.
+
+## Key Facts
+
+- Free and open source (MIT license)
+- Works as a Claude Code skill: `/scrolly "Your topic"`
+- Generates a complete Next.js app or standalone HTML file
+- No design skills or coding required
+- Output includes: animated SVG diagrams, interactive sliders/toggles, dark/light theming, responsive layout
+- Deployed explainers are static — host anywhere (GitHub Pages, Vercel, Netlify)
+
+## Example Explainers
+
+- Seed2.0 LLM — How ByteDance's frontier model works: https://jerrysoer.github.io/seed2-explainer/
+- Claude Model Lineup — Haiku, Sonnet, and Opus compared: https://jerrysoer.github.io/claude-models-explainer-v2/
+
+## How It Works
+
+1. Pick a topic (e.g., "How TCP/IP works")
+2. Run `/scrolly "How TCP/IP works"` in Claude Code
+3. The AI generates a complete visual explainer with animations and interactive diagrams
+4. Output is a single self-contained app — deploy anywhere
+
+## Template Types
+
+- how-it-works — Technical process explanation (protocols, infrastructure)
+- business-model — Company/business model breakdown (revenue, flywheel)
+- concept — Abstract concept visualization (network effects, compounding)
+- comparison — Side-by-side comparison (REST vs GraphQL)
+- timeline — Chronological/sequential process (startup scaling)
+
+## Links
+
+- Website: https://scrolly.to
+- GitHub: https://github.com/jerrysoer/scrolly.to

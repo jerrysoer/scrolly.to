@@ -1,0 +1,81 @@
+# scrolly.to — Full Documentation
+
+> AI-powered interactive visual explainers that break down complex topics into scroll-driven, animated single-page apps.
+
+## Overview
+
+scrolly.to is an open-source Claude Code skill that transforms complex technical concepts into beautiful, interactive single-page explainers. Each generated explainer follows the FT Visual Storytelling scrollytelling pattern: a sticky diagram stays fixed while narrative text scrolls alongside it, with the diagram transforming in response to the reader's scroll position.
+
+## Installation
+
+```
+claude skill install scrolly
+```
+
+Then run:
+```
+/scrolly "Your topic here"
+```
+
+## Template Types
+
+The skill auto-detects the best template for your topic, or you can specify one:
+
+- **how-it-works** — Technical process explanation (e.g., how TCP/IP works, how Docker containers work). Linear progression through stages/layers with flow diagrams and step-through simulators.
+- **business-model** — Company/business model breakdown (e.g., how Stripe makes money). Revenue streams, unit economics, flywheel diagrams, revenue calculators.
+- **concept** — Abstract concept visualization (e.g., network effects, product-market fit). Visual metaphors, growth curves, interactive parameter exploration.
+- **comparison** — Side-by-side comparison (e.g., REST vs GraphQL). Split-view diagrams, decision trees, toggle switches between options.
+- **timeline** — Chronological/sequential process (e.g., how a startup scales). Timeline visualizations, milestone markers, era selectors.
+
+## Architecture
+
+- Next.js 15+ with App Router, TypeScript, Tailwind CSS 4
+- Static export for GitHub Pages deployment
+- Recharts for data visualizations, Lucide React for icons
+- All data pre-computed at build time (no backend)
+- Full light/dark theme support
+- Responsive design (mobile-first)
+
+## Design Philosophy
+
+- Editorial, not textbook — headlines are evocative, not descriptive
+- Show, don't tell — every concept has an interactive element
+- Progressive disclosure — start simple, let users dig deeper
+- Layman-first — everyday analogies before technical jargon
+- One idea per scroll step — never overload the reader
+- Warm cream canvas with editorial serif typography (FT-inspired)
+
+## Output
+
+Each generation produces:
+1. A deployable Next.js app (or standalone HTML)
+2. A companion JSON file with structured section data for revisions, exports, and analytics
+
+## Example Explainers
+
+- Seed2.0 LLM — How ByteDance's frontier model works: https://jerrysoer.github.io/seed2-explainer/
+- Claude Model Lineup — Haiku, Sonnet, and Opus compared: https://jerrysoer.github.io/claude-models-explainer-v2/
+
+## Flags
+
+- `--template [type]` — Override auto-detected template (how-it-works, business-model, concept, comparison, timeline)
+- `--no-footer` — Omit Scrolly attribution footer
+- `--no-telemetry` — Omit analytics pixel
+
+## Features
+
+- Scroll-driven animations with sticky-diagram layout
+- Interactive widgets (sliders, toggles, step-through simulators)
+- Animated SVG diagrams with progressive highlighting
+- Jargon glossary with hover/tap tooltips
+- Dark and light mode support
+- SEO/GEO optimized (JSON-LD, OG tags, llms.txt, sitemaps)
+- Analytics pixel for view counting (privacy-friendly, no cookies)
+- Attribution footer linking back to scrolly.to
+- Floating share button and completion card
+
+## Links
+
+- Website: https://scrolly.to
+- GitHub: https://github.com/jerrysoer/scrolly.to
+- License: MIT
