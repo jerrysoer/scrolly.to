@@ -1,0 +1,510 @@
+{
+  "generated_at": "2026-02-19T20:10:40.775157+00:00",
+  "date_label": "Thursday, February 19, 2026",
+  "categories": {
+    "ai_ml": {
+      "label": "AI / ML",
+      "stories": [
+        {
+          "title": "The AI security nightmare is here and it looks suspiciously like lobster",
+          "source": "The Verge - AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/881574/cline-openclaw-prompt-injection-hack",
+          "published": "2026-02-19T18:58:56+00:00",
+          "score": 9,
+          "teaser": "A hacker weaponized an AI coding tool to install malware everywhere\u2014it's just the start.",
+          "summary": "A hacker exploited prompt injection to trick Cline, a popular AI coding assistant, into installing OpenClaw malware across systems. While presented as a stunt, it demonstrates serious vulnerabilities as autonomous AI agents gain computer access. The attack reveals fundamental security challenges in AI-powered development tools.",
+          "key_facts": [
+            "Hacker used prompt injection to compromise Cline AI coding tool",
+            "OpenClaw malware was installed automatically across multiple systems",
+            "Demonstrates security risks as autonomous AI agents access user computers"
+          ],
+          "scrolly_angle": "Animate the step-by-step prompt injection attack showing how malicious input flows through the AI system, triggering cascading installations with interactive code visualization.",
+          "category": "ai_ml",
+          "engagement": [
+            {
+              "platform": "reddit",
+              "points": 1,
+              "comments": 0,
+              "url": "https://www.reddit.com/r/hypeurls/comments/1r98mo3/the_ai_security_nightmare_is_here_and_it_looks/"
+            }
+          ]
+        },
+        {
+          "title": "Project Silica\u2019s advances in glass storage technology",
+          "source": "Microsoft Research",
+          "url": "https://www.microsoft.com/en-us/research/blog/project-silicas-advances-in-glass-storage-technology/",
+          "published": "2026-02-18T16:11:45+00:00",
+          "score": 9,
+          "teaser": "Microsoft stores data in glass that lasts 10,000 years using laser-encoded voxels.",
+          "summary": "Project Silica develops techniques for encoding data in borosilicate glass using lasers. Published in Nature, the technology enables 10,000-year data preservation. New advances lower media costs while simplifying writing and reading systems.",
+          "key_facts": [
+            "Data encoded in borosilicate glass using laser technology",
+            "Published in Nature journal with new encoding techniques",
+            "Enables 10,000-year data preservation with lower costs"
+          ],
+          "scrolly_angle": "Animate the laser encoding process at microscopic level, showing how data voxels are written in 3D glass structure, then zoom out to compare longevity versus traditional storage media.",
+          "category": "ai_ml",
+          "engagement": [
+            {
+              "platform": "hn",
+              "points": 3,
+              "comments": 0,
+              "url": "https://news.ycombinator.com/item?id=47067211"
+            },
+            {
+              "platform": "reddit",
+              "points": 1,
+              "comments": 1,
+              "url": "https://www.reddit.com/r/InterstellarKinetics/comments/1r8e6wb/breaking_microsofts_project_silica_hits_new/"
+            }
+          ]
+        },
+        {
+          "title": "How uncrewed narco subs could transform the Colombian drug trade",
+          "source": "MIT Technology Review - AI",
+          "url": "https://www.technologyreview.com/2026/02/19/1132619/uncrewed-narco-subs-transform-columbian-drug-trade/",
+          "published": "2026-02-19T11:00:00+00:00",
+          "score": 8,
+          "teaser": "How autonomous submarines are revolutionizing cocaine trafficking from Colombia to the US.",
+          "summary": "Colombian military spotted a 40-foot autonomous narco sub in April, marking an evolution in drug trafficking technology. These fiberglass vessels travel almost entirely underwater, carrying multi-ton cocaine loads. The shift from crewed to autonomous operations could transform the billion-dollar cocaine trade.",
+          "key_facts": [
+            "Narco subs are 40-foot fiberglass vessels that sail nearly fully submerged",
+            "Spotted by Colombian military surveillance off Tayrona National Park in April",
+            "Vessels carry multi-ton loads of cocaine from Colombia northward"
+          ],
+          "scrolly_angle": "Animate the underwater journey of a narco sub from Colombian coast to destination, revealing detection methods, evolution from crewed to autonomous, and trafficking volumes.",
+          "category": "ai_ml",
+          "engagement": [
+            {
+              "platform": "reddit",
+              "points": 11,
+              "comments": 5,
+              "url": "https://www.reddit.com/r/Futurology/comments/1r96hrr/how_uncrewed_narco_subs_could_transform_the/"
+            }
+          ]
+        },
+        {
+          "title": "Password managers' promise that they can't see your vaults isn't always true",
+          "source": "Ars Technica - AI",
+          "url": "https://arstechnica.com/security/2026/02/password-managers-promise-that-they-cant-see-your-vaults-isnt-always-true/",
+          "published": "2026-02-17T20:43:01+00:00",
+          "score": 8,
+          "teaser": "How password managers' security promises can fail when servers get compromised.",
+          "summary": "Password managers claim they cannot see user vaults due to encryption, but this promise has important caveats. Server compromises can potentially expose vault data in certain scenarios. The technical reality is more complex than marketing materials suggest.",
+          "key_facts": [
+            "Password managers promise zero-knowledge encryption preventing server access",
+            "Server compromises can mean game over in certain implementation scenarios",
+            "Security claims are more nuanced than marketing suggests"
+          ],
+          "scrolly_angle": "Diagram the encryption architecture step-by-step showing where vulnerabilities exist, animating different compromise scenarios to reveal when zero-knowledge claims break down.",
+          "category": "ai_ml",
+          "engagement": [
+            {
+              "platform": "hn",
+              "points": 37,
+              "comments": 1,
+              "url": "https://news.ycombinator.com/item?id=47053608"
+            },
+            {
+              "platform": "reddit",
+              "points": 178,
+              "comments": 32,
+              "url": "https://www.reddit.com/r/technology/comments/1r7q4zi/password_managers_promise_that_they_cant_see_your/"
+            }
+          ]
+        },
+        {
+          "title": "Media Authenticity Methods in Practice: Capabilities, Limitations, and Directions",
+          "source": "Microsoft Research",
+          "url": "https://www.microsoft.com/en-us/research/blog/media-authenticity-methods-in-practice-capabilities-limitations-and-directions/",
+          "published": "2026-02-19T16:00:51+00:00",
+          "score": 8,
+          "teaser": "Can watermarks and cryptography prove what's real? Microsoft explores authentication limits.",
+          "summary": "Microsoft Research examines media authenticity methods as synthetic content proliferates. The report explores verification capabilities, limitations, and practical paths forward for images, audio, and video. Research addresses trustworthy provenance across media types.",
+          "key_facts": [
+            "Report examines media integrity and authentication methods across formats",
+            "Covers capabilities and limitations of current verification approaches",
+            "Addresses provenance for images, audio, and video content"
+          ],
+          "scrolly_angle": "Scroll through different media types showing how authentication methods work and fail, with interactive examples revealing technical limitations at each stage of the verification pipeline.",
+          "category": "ai_ml",
+          "engagement": []
+        }
+      ]
+    },
+    "creator_economy": {
+      "label": "Creator Economy",
+      "stories": [
+        {
+          "title": "The Internet Era Nobody Asked For",
+          "source": "Colin & Samir",
+          "url": "https://www.youtube.com/watch?v=eG1hPxhfNs0",
+          "published": "2026-02-18T15:01:08+00:00",
+          "score": 8,
+          "teaser": "AI slop and content abundance are forcing creators to choose: scale or scarcity.",
+          "summary": "The internet is entering an era of AI-generated content saturation that nobody requested, forcing creators to navigate \"AI slop\" and content abundance. Case studies from VTubers to digital twins illustrate the landscape. Creators now face two distinct paths: scaling with AI or embracing scarcity and IRL value through an \"offline\" movement.",
+          "key_facts": [
+            "AI-generated content is creating unprecedented content saturation",
+            "Case studies include VTubers, digital twins, and AI replicas",
+            "Creators must choose between scaling with AI or focusing on scarcity/IRL experiences"
+          ],
+          "scrolly_angle": "Interactive decision tree showing the two creator paths with economic models, audience engagement metrics, and content volume visualizations.",
+          "category": "creator_economy",
+          "engagement": []
+        },
+        {
+          "title": "The Three Budget Buckets Running TV in 2026",
+          "source": "The Ankler",
+          "url": "https://theankler.com/p/three-budget-buckets-running-tv-shows-now-pitt-heated-rivalry",
+          "published": "2026-02-18T21:29:24+00:00",
+          "score": 7,
+          "teaser": "Three budget tiers now determine which TV shows get made in 2026.",
+          "summary": "The television industry has undergone a quiet financial reset that has created three distinct budget buckets determining which shows get greenlit and which get canceled. This structural change represents a fundamental shift in how TV production decisions are made. The budget stratification affects both new orders and existing shows facing potential cuts.",
+          "key_facts": [
+            "TV industry now operates on three distinct budget tiers",
+            "Budget levels determine which shows receive orders",
+            "A financial reset has fundamentally changed production decisions"
+          ],
+          "scrolly_angle": "Interactive budget breakdown showing the three tiers with example shows, production costs, and decision flowcharts for greenlight criteria.",
+          "category": "creator_economy",
+          "engagement": []
+        },
+        {
+          "title": "The Three Budget Buckets Running TV in 2026",
+          "source": "The Ankler",
+          "url": "https://theankler.com/p/the-three-budget-buckets-running",
+          "published": "2026-02-18T21:20:39+00:00",
+          "score": 7,
+          "teaser": "Three budget tiers now determine which TV shows get made in 2026.",
+          "summary": "The television industry has undergone a quiet financial reset that has created three distinct budget buckets determining which shows get greenlit and which get canceled. This structural change represents a fundamental shift in how TV production decisions are made. The budget stratification affects both new orders and existing shows facing potential cuts.",
+          "key_facts": [
+            "TV industry now operates on three distinct budget tiers",
+            "Budget levels determine which shows receive orders",
+            "A financial reset has fundamentally changed production decisions"
+          ],
+          "scrolly_angle": "Interactive budget breakdown showing the three tiers with example shows, production costs, and decision flowcharts for greenlight criteria.",
+          "category": "creator_economy",
+          "engagement": []
+        },
+        {
+          "title": "Video Pods Are Eating TV. Apple Wants In",
+          "source": "The Ankler",
+          "url": "https://theankler.com/p/video-pods-are-eating-tv-apple-wants",
+          "published": "2026-02-17T20:10:15+00:00",
+          "score": 7,
+          "teaser": "Video podcasts are becoming $5,000-a-week \"filler\" shows for streamers.",
+          "summary": "Video podcasts are increasingly filling programming slots on streaming services, creating a new category of content priced at around $5,000 per week. Apple is reportedly interested in entering this space as video pods \"eat\" traditional TV. This represents a significant shift in how streaming platforms fill their content libraries.",
+          "key_facts": [
+            "Video podcasts cost streamers approximately $5,000 per week",
+            "Apple is exploring entry into the video podcast space",
+            "Video pods are replacing traditional TV programming"
+          ],
+          "scrolly_angle": "Cost comparison showing video podcast economics versus traditional TV production with viewership ROI and streaming platform adoption rates.",
+          "category": "creator_economy",
+          "engagement": []
+        },
+        {
+          "title": "Crocs\u2019 new sales strategy? A five-part microdrama",
+          "source": "Tubefilter",
+          "url": "https://www.tubefilter.com/2026/02/17/crocs-microdrama-charmed-to-meet-you/",
+          "published": "2026-02-17T22:49:56+00:00",
+          "score": 6,
+          "teaser": "Crocs bets on microdramas to crack the billion-dollar Asian content format.",
+          "summary": "Crocs has launched a five-part microdrama as part of its marketing strategy, tapping into a content format worth tens of billions in Asia. While microdramas represent a $1 billion industry in the West, 2025 may mark their breakthrough year in the U.S. market. The vertical scripted shorts represent a significant cultural and commercial trend crossing from East to West.",
+          "key_facts": [
+            "Microdramas are a tens-of-billions-dollar industry in Asia",
+            "The format is worth approximately $1 billion annually in the West",
+            "Crocs created a five-part microdrama called \"Charmed to Meet You\""
+          ],
+          "scrolly_angle": "Scroll-driven comparison of microdrama market sizes, viewership patterns, and revenue flows between Asian and Western markets with format examples.",
+          "category": "creator_economy",
+          "engagement": []
+        }
+      ]
+    },
+    "business_strategy": {
+      "label": "Business / Strategy",
+      "stories": [
+        {
+          "title": "Could the next big gambling destination be in the Gulf?",
+          "source": "The Economist - Business",
+          "url": "https://www.economist.com/business/2026/02/19/could-the-next-big-gambling-destination-be-in-the-gulf",
+          "published": "2026-02-19T13:47:16+00:00",
+          "score": 8,
+          "teaser": "How the UAE plans to rival Vegas and Macau as the world's next gambling giant",
+          "summary": "The United Arab Emirates is positioning itself to become a major global gambling destination, following the models of Las Vegas and Macau. This represents a significant cultural and economic shift for the Gulf region. The story would explore investment flows, regulatory changes, and the economics of the global gambling industry.",
+          "key_facts": [
+            "UAE is developing gambling infrastructure to compete with Las Vegas and Macau",
+            "This marks a major cultural pivot for the traditionally conservative Gulf region",
+            "Global gambling industry revenue comparisons between existing hubs"
+          ],
+          "scrolly_angle": "Map-based visualization showing gambling revenue flows globally, then zoom into Gulf development plans with investment timelines and projected economic impact charts.",
+          "category": "business_strategy",
+          "engagement": []
+        },
+        {
+          "title": "China\u2019s humanoids are dazzling the world. Who will buy them?",
+          "source": "The Economist - Business",
+          "url": "https://www.economist.com/business/2026/02/18/chinas-humanoids-are-dazzling-the-world-who-will-buy-them",
+          "published": "2026-02-18T18:55:31+00:00",
+          "score": 8,
+          "teaser": "China leads in humanoid robots, but the trillion-dollar question is: who needs them?",
+          "summary": "Chinese companies are producing impressive humanoid robots that are capturing global attention with their capabilities. However, the practical market for these robots remains unclear beyond demonstration purposes. The story examines manufacturing costs, technical capabilities, and potential use cases versus current demand.",
+          "key_facts": [
+            "China has become the leading producer of advanced humanoid robots",
+            "Current applications are primarily demonstrations rather than productive work",
+            "Manufacturing costs vs. potential revenue streams show uncertain business case"
+          ],
+          "scrolly_angle": "3D robot capability matrix showing what humanoids can do vs. what tasks actually need doing, with cost-benefit analysis scrolling through industrial, service, and consumer scenarios.",
+          "category": "business_strategy",
+          "engagement": [
+            {
+              "platform": "hn",
+              "points": 8,
+              "comments": 3,
+              "url": "https://news.ycombinator.com/item?id=47068742"
+            }
+          ]
+        },
+        {
+          "title": "India is in the midst of a data-centre investment boom",
+          "source": "The Economist - Business",
+          "url": "https://www.economist.com/business/2026/02/19/india-is-in-the-midst-of-a-data-centre-investment-boom",
+          "published": "2026-02-19T10:59:27+00:00",
+          "score": 7,
+          "teaser": "India's $10B+ data center boom may be a flash in the pan",
+          "summary": "India is experiencing massive investment in data center infrastructure as companies pour money into the sector. However, analysts suggest these benefits may be short-lived due to various structural factors. The story involves capital flows, energy requirements, and competitive positioning in global cloud infrastructure.",
+          "key_facts": [
+            "India is receiving billions in data center investment commitments",
+            "Data centers require massive energy and cooling infrastructure",
+            "Benefits may be temporary due to automation and regional competition"
+          ],
+          "scrolly_angle": "Animated map showing investment flows into India, then drill down into a data center diagram showing energy/water requirements, followed by timeline projection of job creation vs. automation curves.",
+          "category": "business_strategy",
+          "engagement": []
+        },
+        {
+          "title": "Welcome to the era of anarchic antitrust",
+          "source": "The Economist - Business",
+          "url": "https://www.economist.com/business/2026/02/18/welcome-to-the-era-of-anarchic-antitrust",
+          "published": "2026-02-18T22:15:35+00:00",
+          "score": 7,
+          "teaser": "American antitrust enforcement has fractured into competing, contradictory approaches",
+          "summary": "Competition enforcement in the United States has become chaotic with conflicting approaches from different agencies and courts. This represents a significant shift from decades of relatively consistent antitrust policy. The story tracks enforcement actions, legal precedents, and their impact on business.",
+          "key_facts": [
+            "Multiple US agencies now pursue contradictory antitrust strategies",
+            "This marks a departure from consistent enforcement patterns since the 1980s",
+            "Businesses face uncertain regulatory environment affecting merger and competition decisions"
+          ],
+          "scrolly_angle": "Timeline split-screen showing parallel antitrust cases with contradictory rulings, visualizing the decision tree businesses face and quantifying the regulatory uncertainty index over time.",
+          "category": "business_strategy",
+          "engagement": []
+        },
+        {
+          "title": "Shopify Earnings, Shopify\u2019s AI Advantages",
+          "source": "Stratechery",
+          "url": "https://stratechery.com/2026/shopify-earnings-shopifys-ai-advantages/",
+          "published": "2026-02-18T11:00:00+00:00",
+          "score": 7,
+          "teaser": "Why Shopify's AI integration could make it the platform's biggest winner yet",
+          "summary": "Shopify's recent earnings reveal strong positioning to benefit from artificial intelligence integration. The story critiques investors for misunderstanding Shopify's business model and AI advantages. It includes financial performance data and analysis of AI implementation in e-commerce infrastructure.",
+          "key_facts": [
+            "Shopify's latest earnings show strong financial performance",
+            "The platform has structural advantages for AI implementation in e-commerce",
+            "Investor misunderstanding has created potential market mispricing"
+          ],
+          "scrolly_angle": "Layer-by-layer diagram of Shopify's platform showing where AI integrates at each level, with before/after metrics on merchant productivity, conversion rates, and operational costs.",
+          "category": "business_strategy",
+          "engagement": []
+        }
+      ]
+    },
+    "data_economics": {
+      "label": "Data / Economics",
+      "stories": [
+        {
+          "title": "Did America\u2019s war on poverty fail?",
+          "source": "The Economist - Finance",
+          "url": "https://www.economist.com/finance-and-economics/2026/02/19/did-americas-war-on-poverty-fail",
+          "published": "2026-02-19T10:52:23+00:00",
+          "score": 9,
+          "teaser": "60 years of poverty data reveals surprising truths about America's welfare programs.",
+          "summary": "This story examines whether America's War on Poverty, launched in the 1960s, achieved its goals by analyzing poverty rate trends over six decades. The data shows dramatic reductions in deprivation, but questions remain about how much credit welfare programs deserve versus other economic factors. Rich historical data and cause-effect relationships make this ideal for visualization.",
+          "key_facts": [
+            "America's War on Poverty began in the 1960s",
+            "Poverty rates have fallen dramatically since then",
+            "The decline may not be directly attributable to welfare programs"
+          ],
+          "scrolly_angle": "Scroll through a timeline showing poverty rates, major welfare programs launched, and alternative explanatory factors like economic growth, revealing which correlations hold up.",
+          "category": "data_economics",
+          "engagement": []
+        },
+        {
+          "title": "How big is the prize of reopening Russia?",
+          "source": "The Economist - Finance",
+          "url": "https://www.economist.com/finance-and-economics/2026/02/17/how-big-is-the-prize-of-reopening-russia",
+          "published": "2026-02-17T20:30:52+00:00",
+          "score": 8,
+          "teaser": "Russia dangles $12 trillion in deals\u2014but what's really on the table?",
+          "summary": "The Kremlin is offering the Trump administration access to $12 trillion worth of economic deals as part of potential sanctions relief and normalization. The story breaks down what sectors and assets comprise this enormous figure and assesses the realistic value. The massive numbers and sectoral breakdown provide excellent material for data visualization.",
+          "key_facts": [
+            "Russia is offering $12 trillion in potential deals",
+            "Offers are directed at Trump's administration",
+            "Deals span multiple economic sectors and asset types"
+          ],
+          "scrolly_angle": "Break down the $12 trillion claim sector by sector with animated treemaps and reality-check overlays showing actual vs. claimed values.",
+          "category": "data_economics",
+          "engagement": []
+        },
+        {
+          "title": "Germany projection of the day",
+          "source": "Marginal Revolution",
+          "url": "https://marginalrevolution.com/marginalrevolution/2026/02/germany-projection-of-the-day-2.html?utm_source=rss&utm_medium=rss&utm_campaign=germany-projection-of-the-day-2",
+          "published": "2026-02-18T20:11:53+00:00",
+          "score": 8,
+          "teaser": "Germany's population will shrink 5% by 2050\u2014five times worse than previously thought.",
+          "summary": "The Ifo Institute dramatically revised Germany's population forecast from a 1% decline to nearly 5% by 2050, representing millions fewer people than expected. The story offers strong potential for visualizing demographic projections, comparing old vs. new forecasts, and showing the causes and implications of this accelerated decline. The stark revision provides compelling narrative tension.",
+          "key_facts": [
+            "Germany's 2050 population decline revised from 1% to nearly 5%",
+            "Forecast represents a five-fold worsening from previous projections",
+            "Decline will significantly impact economy within 25 years"
+          ],
+          "scrolly_angle": "Animate population pyramids morphing over time, contrasting old and new projections, with branching impacts on workforce, economy, and social systems.",
+          "category": "data_economics",
+          "engagement": []
+        },
+        {
+          "title": "The link between interest rates and exchange rates : The uncovered interest parity",
+          "source": "FRED Blog",
+          "url": "https://fredblog.stlouisfed.org/2026/02/the-link-between-interest-rates-and-exchange-rates/",
+          "published": "2026-02-19T14:00:00+00:00",
+          "score": 8,
+          "teaser": "Why do currencies and interest rates move together? Uncovered interest parity explained.",
+          "summary": "This FRED Blog post explains the relationship between interest rates and exchange rates through the concept of uncovered interest parity, showing how these economic variables interact in investment decisions. The post includes actual exchange rate and interest rate data that can be visualized. The technical economic mechanism is perfect for step-by-step visual explanation.",
+          "key_facts": [
+            "Uncovered interest parity links interest rates to exchange rates",
+            "The relationship affects international investment decisions",
+            "FRED data tracks both USD exchange rates and interest rate movements"
+          ],
+          "scrolly_angle": "Animate how interest rate changes in one country trigger currency movements through arbitrage opportunities, showing capital flows and exchange rate adjustments in real-time.",
+          "category": "data_economics",
+          "engagement": []
+        },
+        {
+          "title": "Prediction markets are rife with insider betting",
+          "source": "The Economist - Finance",
+          "url": "https://www.economist.com/finance-and-economics/2026/02/19/prediction-markets-are-rife-with-insider-betting",
+          "published": "2026-02-19T10:33:12+00:00",
+          "score": 7,
+          "teaser": "How insider knowledge distorts prediction markets\u2014and why that might be okay.",
+          "summary": "Prediction markets, which allow betting on future events, are increasingly influenced by insider trading. The article explores data on insider betting patterns and argues that regulators shouldn't necessarily crack down on this practice. The mechanics of how insider information flows through these markets offers strong visualization potential.",
+          "key_facts": [
+            "Prediction markets face significant insider betting activity",
+            "Insider information changes market odds and outcomes",
+            "Regulatory tolerance of insider betting is debated"
+          ],
+          "scrolly_angle": "Visualize how insider bets propagate through prediction markets with animated flow diagrams showing odds shifts, trade volumes, and information cascades.",
+          "category": "data_economics",
+          "engagement": []
+        }
+      ]
+    },
+    "dev_tools": {
+      "label": "Dev Tools / Infra",
+      "stories": [
+        {
+          "title": "Reducing Onboarding From 48 Hours to 4: Inside Amazon Key\u2019s Event-Driven Platform",
+          "source": "InfoQ",
+          "url": "https://www.infoq.com/news/2026/02/amazon-key-event-driven-platform/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "published": "2026-02-19T15:00:00+00:00",
+          "score": 9,
+          "teaser": "Amazon Key cut service onboarding from 48 hours to 4 by redesigning their event platform.",
+          "summary": "Amazon Key modernized its event platform using Amazon EventBridge and event-driven architecture. The redesign processes millions of daily events with millisecond latency while maintaining 99.99% reliability. Most impressively, service onboarding time dropped from 48 hours to just 4 hours through automation and improved schema governance.",
+          "key_facts": [
+            "Reduced service onboarding time from 48 hours to 4 hours",
+            "Processes millions of daily events with millisecond latency",
+            "Maintains 99.99% reliability with centralized event-driven architecture"
+          ],
+          "scrolly_angle": "Visualize the architecture transformation with animated event flows showing before/after performance metrics, culminating in the dramatic 48\u21924 hour timeline comparison.",
+          "category": "dev_tools",
+          "engagement": []
+        },
+        {
+          "title": "Uber and OpenAI Retool Rate Limiting Systems",
+          "source": "InfoQ",
+          "url": "https://www.infoq.com/news/2026/02/uber-openai-rate-limiting/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=global",
+          "published": "2026-02-17T23:02:00+00:00",
+          "score": 9,
+          "teaser": "Uber handles 80M requests/second with adaptive rate limiting; OpenAI rebuilt theirs to prevent interruptions.",
+          "summary": "Uber and OpenAI replaced static rate limits with adaptive, infrastructure-level platforms. Uber's Global Rate Limiter uses probabilistic shedding to manage 80 million requests per second. OpenAI's Access Engine implements a credit waterfall system to prevent user service interruptions while maintaining system stability.",
+          "key_facts": [
+            "Uber's system handles 80 million requests per second with probabilistic shedding",
+            "OpenAI's credit waterfall prevents user interruptions",
+            "Both use distributed enforcement and soft controls for stability"
+          ],
+          "scrolly_angle": "Visualize both rate limiting architectures side-by-side with animated request flows, showing how adaptive systems respond to load spikes versus static limits.",
+          "category": "dev_tools",
+          "engagement": []
+        },
+        {
+          "title": "How AI is reshaping developer choice (and Octoverse data proves it)",
+          "source": "GitHub Blog",
+          "url": "https://github.blog/ai-and-ml/generative-ai/how-ai-is-reshaping-developer-choice-and-octoverse-data-proves-it/",
+          "published": "2026-02-19T17:00:00+00:00",
+          "score": 8,
+          "teaser": "AI compatibility is now the #1 factor driving developer tool choices\u2014Octoverse data reveals the shift.",
+          "summary": "GitHub's Octoverse 2025 data shows AI is fundamentally changing how developers select technologies through 'convenience loops.' AI compatibility has become a primary decision criterion, surpassing traditional factors. The research quantifies this behavioral shift across GitHub's massive developer community.",
+          "key_facts": [
+            "Octoverse 2025 reveals AI compatibility is now a standard for technology choice",
+            "Developers are shifting preferences based on AI 'convenience loops'",
+            "GitHub data quantifies how AI is rewiring developer decision-making"
+          ],
+          "scrolly_angle": "Animate the evolution of developer decision criteria over time, showing AI compatibility rising to the top with data-driven charts from Octoverse 2025.",
+          "category": "dev_tools",
+          "engagement": [
+            {
+              "platform": "hn",
+              "points": 1,
+              "comments": 0,
+              "url": "https://news.ycombinator.com/item?id=47078258"
+            }
+          ]
+        },
+        {
+          "title": "6 agentic knowledge base patterns emerging in the wild",
+          "source": "The New Stack",
+          "url": "https://thenewstack.io/agentic-knowledge-base-patterns/",
+          "published": "2026-02-18T13:00:31+00:00",
+          "score": 8,
+          "teaser": "Six distinct patterns are emerging for how AI agents organize and access knowledge bases.",
+          "summary": "This article identifies and categorizes six architectural patterns for agentic knowledge base systems being deployed in production. These patterns represent different approaches to how AI agents structure, retrieve, and utilize information. The taxonomy helps teams choose appropriate architectures for their use cases.",
+          "key_facts": [
+            "Six distinct architectural patterns identified for agentic knowledge bases",
+            "Patterns observed across real-world production deployments",
+            "Each pattern suits different use cases and requirements"
+          ],
+          "scrolly_angle": "Display each of the six patterns as scroll-triggered architecture diagrams with animated data flows, highlighting strengths and tradeoffs of each approach.",
+          "category": "dev_tools",
+          "engagement": []
+        },
+        {
+          "title": "From notebooks to nodes: Architecting production-ready AI infrastructure",
+          "source": "The New Stack",
+          "url": "https://thenewstack.io/production-ai-infrastructure-guide/",
+          "published": "2026-02-17T21:13:08+00:00",
+          "score": 8,
+          "teaser": "Moving AI from experimental notebooks to production requires fundamentally different infrastructure.",
+          "summary": "This guide explores the architectural leap from notebook-based AI experimentation to production-ready infrastructure. It details the technical requirements, scaling challenges, and system design patterns needed for reliable AI deployment. The transition involves distributed systems, monitoring, and operational considerations absent from research environments.",
+          "key_facts": [
+            "Production AI infrastructure differs fundamentally from notebook environments",
+            "Requires distributed systems, monitoring, and operational architecture",
+            "Guide covers technical requirements for scaling from research to production"
+          ],
+          "scrolly_angle": "Animate the transformation from a simple notebook cell to a complex production architecture with nodes, connections, and scaling layers appearing as user scrolls.",
+          "category": "dev_tools",
+          "engagement": []
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,133 @@
+categories:
+  ai_ml:
+    label: "AI / ML"
+    sources:
+      # --- News & Analysis ---
+      - name: "MIT Technology Review - AI"
+        url: "https://www.technologyreview.com/feed/"
+        type: rss
+      - name: "The Verge - AI"
+        url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml"
+        type: rss
+      - name: "Ars Technica - AI"
+        url: "https://feeds.arstechnica.com/arstechnica/technology-lab"
+        type: rss
+      - name: "Import AI Newsletter"
+        url: "https://importai.substack.com/feed"
+        type: rss
+      - name: "r/artificial"
+        url: "https://www.reddit.com/r/artificial/.rss"
+        type: rss
+      - name: "Hacker News"
+        url: "https://hnrss.org/newest?q=AI+OR+LLM+OR+GPT&points=50"
+        type: rss
+      # --- AI Lab Blogs ---
+      - name: "OpenAI"
+        url: "https://openai.com/blog/rss.xml"
+        type: rss
+      - name: "Google DeepMind"
+        url: "https://deepmind.google/blog/rss.xml"
+        type: rss
+      - name: "Google AI Blog"
+        url: "https://blog.google/technology/ai/rss/"
+        type: rss
+      - name: "Meta AI"
+        url: "https://engineering.fb.com/category/ml-applications/feed/"
+        type: rss
+      - name: "Microsoft Research"
+        url: "https://www.microsoft.com/en-us/research/blog/feed/"
+        type: rss
+      - name: "Hugging Face"
+        url: "https://huggingface.co/blog/feed.xml"
+        type: rss
+      - name: "NVIDIA AI"
+        url: "https://developer.nvidia.com/blog/feed/"
+        type: rss
+      - name: "Apple ML Research"
+        url: "https://machinelearning.apple.com/rss.xml"
+        type: rss
+      - name: "Amazon Science"
+        url: "https://www.amazon.science/index.rss"
+        type: rss
+      - name: "Together AI"
+        url: "https://www.together.ai/blog/rss.xml"
+        type: rss
+      - name: "Stability AI"
+        url: "https://stability.ai/news/rss.xml"
+        type: rss
+
+  creator_economy:
+    label: "Creator Economy"
+    sources:
+      - name: "Platformer"
+        url: "https://www.platformer.news/rss/"
+        type: rss
+      - name: "Tubefilter"
+        url: "https://www.tubefilter.com/feed/"
+        type: rss
+      - name: "The Ankler"
+        url: "https://theankler.com/feed"
+        type: rss
+      - name: "Scalable (Kaya & Jasmine)"
+        url: "https://anchor.fm/s/10b0a6a84/podcast/rss"
+        type: rss
+      - name: "Colin & Samir"
+        url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCamLstJyCa-t5gfZegxsFMw"
+        type: rss
+      - name: "Jon Youshaei"
+        url: "https://anchor.fm/s/b990743c/podcast/rss"
+        type: rss
+
+  business_strategy:
+    label: "Business / Strategy"
+    sources:
+      - name: "Harvard Business Review"
+        url: "https://hbr.org/feed"
+        type: rss
+      - name: "The Economist - Business"
+        url: "https://www.economist.com/business/rss.xml"
+        type: rss
+      - name: "Stratechery"
+        url: "https://stratechery.com/feed/"
+        type: rss
+      - name: "Hacker News - Business"
+        url: "https://hnrss.org/newest?q=startup+OR+business+OR+strategy&points=20"
+        type: rss
+
+  data_economics:
+    label: "Data / Economics"
+    sources:
+      - name: "FiveThirtyEight"
+        url: "https://fivethirtyeight.com/feed/"
+        type: rss
+      - name: "Our World in Data"
+        url: "https://ourworldindata.org/atom.xml"
+        type: rss
+      - name: "The Economist - Finance"
+        url: "https://www.economist.com/finance-and-economics/rss.xml"
+        type: rss
+      - name: "Marginal Revolution"
+        url: "https://marginalrevolution.com/feed"
+        type: rss
+      - name: "FRED Blog"
+        url: "https://fredblog.stlouisfed.org/feed/"
+        type: rss
+
+  dev_tools:
+    label: "Dev Tools / Infra"
+    sources:
+      - name: "GitHub Blog"
+        url: "https://github.blog/feed/"
+        type: rss
+      - name: "The New Stack"
+        url: "https://thenewstack.io/feed/"
+        type: rss
+      - name: "InfoQ"
+        url: "https://feed.infoq.com/"
+        type: rss
+      - name: "Changelog"
+        url: "https://changelog.com/feed"
+        type: rss
+      - name: "GitHub Trending"
+        url: "https://github.com/trending"
+        type: scrape
