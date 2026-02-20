@@ -216,108 +216,29 @@ const CARDS: ExplainerCardData[] = [
     ),
   },
   {
-    title: "Spotify Recommendations",
-    desc: "Collaborative filtering: connecting listeners through taste graphs.",
-    category: "Algorithms",
-    gradient: "from-[#064e3b] to-[#065f46]",
-    darkText: true,
+    title: "Airline Credit Card Money",
+    desc: "How loyalty programs became worth more than the airlines themselves.",
+    category: "Business",
+    gradient: "from-[#fef3c7] to-[#fde68a]",
+    url: "https://jerrysoer.github.io/airline-credit-card-money/",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
-        {/* Edges */}
-        <line
-          x1="80"
-          y1="55"
-          x2="40"
-          y2="30"
-          stroke="rgba(52,211,153,0.3)"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="80"
-          y1="55"
-          x2="120"
-          y2="25"
-          stroke="rgba(52,211,153,0.3)"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="80"
-          y1="55"
-          x2="35"
-          y2="80"
-          stroke="rgba(52,211,153,0.3)"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="80"
-          y1="55"
-          x2="125"
-          y2="85"
-          stroke="rgba(52,211,153,0.3)"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="80"
-          y1="55"
-          x2="80"
-          y2="100"
-          stroke="rgba(52,211,153,0.3)"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="40"
-          y1="30"
-          x2="120"
-          y2="25"
-          stroke="rgba(52,211,153,0.15)"
-          strokeWidth="1"
-        />
-        <line
-          x1="35"
-          y1="80"
-          x2="80"
-          y2="100"
-          stroke="rgba(52,211,153,0.15)"
-          strokeWidth="1"
-        />
-        {/* Outer nodes */}
-        {[
-          [40, 30],
-          [120, 25],
-          [35, 80],
-          [125, 85],
-          [80, 100],
-        ].map(([x, y], i) => (
-          <circle
-            key={i}
-            cx={x}
-            cy={y}
-            r="8"
-            fill="rgba(52,211,153,0.2)"
-            stroke="rgba(52,211,153,0.5)"
-            strokeWidth="1"
-          />
-        ))}
-        {/* Center node */}
-        <circle
-          cx="80"
-          cy="55"
-          r="12"
-          fill="rgba(52,211,153,0.4)"
-          stroke="rgba(52,211,153,0.8)"
-          strokeWidth="1.5"
-        />
-        <text
-          x="80"
-          y="58"
-          textAnchor="middle"
-          fontSize="7"
-          fill="rgba(255,255,255,0.9)"
-          fontWeight="bold"
-          fontFamily="system-ui"
-        >
-          YOU
-        </text>
+        {/* Credit card */}
+        <rect x="20" y="35" width="56" height="36" rx="5" fill="rgba(37,99,235,0.12)" stroke="rgba(37,99,235,0.3)" strokeWidth="1.2" />
+        <rect x="26" y="44" width="16" height="10" rx="2" fill="rgba(37,99,235,0.2)" />
+        <line x1="26" y1="60" x2="48" y2="60" stroke="rgba(37,99,235,0.15)" strokeWidth="2" />
+        <line x1="26" y1="64" x2="40" y2="64" stroke="rgba(37,99,235,0.1)" strokeWidth="1.5" />
+        {/* Arrow */}
+        <path d="M82 53 L96 53" stroke="rgba(217,119,6,0.4)" strokeWidth="1.5" strokeDasharray="3 2" />
+        <path d="M94 50 L98 53 L94 56" stroke="rgba(217,119,6,0.4)" strokeWidth="1.5" fill="none" />
+        {/* Dollar sign in circle */}
+        <circle cx="118" cy="53" r="18" fill="rgba(217,119,6,0.1)" stroke="rgba(217,119,6,0.3)" strokeWidth="1.2" />
+        <text x="118" y="59" textAnchor="middle" fontSize="18" fill="rgba(217,119,6,0.5)" fontFamily="system-ui" fontWeight="700">$</text>
+        {/* Small stat: $22B */}
+        <text x="118" y="82" textAnchor="middle" fontSize="9" fill="rgba(37,99,235,0.4)" fontFamily="system-ui" fontWeight="600">$22B</text>
+        {/* Airplane silhouette crossed out */}
+        <path d="M30 90 L50 85 L45 90 L50 95 Z" fill="rgba(0,0,0,0.06)" />
+        <line x1="28" y1="95" x2="52" y2="82" stroke="rgba(220,38,38,0.25)" strokeWidth="1.2" />
       </svg>
     ),
   },

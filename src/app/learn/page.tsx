@@ -333,6 +333,33 @@ const CARDS: ExplainerCardData[] = [
       </svg>
     ),
   },
+  {
+    title: "Airline Credit Card Money",
+    desc: "How airline loyalty programs became worth more than the airlines themselves — and why your miles are an interest-free loan.",
+    category: "Business",
+    gradient: "from-[#fef3c7] to-[#fde68a]",
+    url: "https://jerrysoer.github.io/airline-credit-card-money/",
+    svg: (
+      <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
+        {/* Credit card */}
+        <rect x="20" y="35" width="56" height="36" rx="5" fill="rgba(37,99,235,0.12)" stroke="rgba(37,99,235,0.3)" strokeWidth="1.2" />
+        <rect x="26" y="44" width="16" height="10" rx="2" fill="rgba(37,99,235,0.2)" />
+        <line x1="26" y1="60" x2="48" y2="60" stroke="rgba(37,99,235,0.15)" strokeWidth="2" />
+        <line x1="26" y1="64" x2="40" y2="64" stroke="rgba(37,99,235,0.1)" strokeWidth="1.5" />
+        {/* Arrow */}
+        <path d="M82 53 L96 53" stroke="rgba(217,119,6,0.4)" strokeWidth="1.5" strokeDasharray="3 2" />
+        <path d="M94 50 L98 53 L94 56" stroke="rgba(217,119,6,0.4)" strokeWidth="1.5" fill="none" />
+        {/* Dollar sign in circle */}
+        <circle cx="118" cy="53" r="18" fill="rgba(217,119,6,0.1)" stroke="rgba(217,119,6,0.3)" strokeWidth="1.2" />
+        <text x="118" y="59" textAnchor="middle" fontSize="18" fill="rgba(217,119,6,0.5)" fontFamily="system-ui" fontWeight="700">$</text>
+        {/* Small stat: $22B */}
+        <text x="118" y="82" textAnchor="middle" fontSize="9" fill="rgba(37,99,235,0.4)" fontFamily="system-ui" fontWeight="600">$22B</text>
+        {/* Airplane silhouette crossed out */}
+        <path d="M30 90 L50 85 L45 90 L50 95 Z" fill="rgba(0,0,0,0.06)" />
+        <line x1="28" y1="95" x2="52" y2="82" stroke="rgba(220,38,38,0.25)" strokeWidth="1.2" />
+      </svg>
+    ),
+  },
   // --- Placeholder (clickable → waitlist) ---
   {
     title: "What would you like to see?",
