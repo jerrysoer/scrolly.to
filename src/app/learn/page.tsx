@@ -392,6 +392,36 @@ const CARDS: ExplainerCardData[] = [
       </svg>
     ),
   },
+  {
+    title: "How Tariffs Actually Work",
+    desc: "Who really pays tariffs, how IEEPA became a trade weapon, and what the Supreme Court's 6-3 ruling just changed.",
+    category: "Economics",
+    gradient: "from-[#0f1117] to-[#1e293b]",
+    darkText: true,
+    url: "/how-tariffs-actually-work",
+    svg: (
+      <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
+        {/* Simplified world map outlines */}
+        <path d="M25,45 L35,35 L50,32 L60,40 L58,52 L50,60 L42,55 L30,58 Z" fill="rgba(96,165,250,0.08)" stroke="rgba(96,165,250,0.25)" strokeWidth="0.8" />
+        <path d="M85,30 L95,25 L110,28 L118,38 L115,48 L105,52 L92,48 L85,40 Z" fill="rgba(96,165,250,0.06)" stroke="rgba(96,165,250,0.2)" strokeWidth="0.8" />
+        <path d="M70,55 L80,52 L88,58 L85,70 L78,75 L70,70 Z" fill="rgba(96,165,250,0.05)" stroke="rgba(96,165,250,0.15)" strokeWidth="0.8" />
+        {/* US target dot */}
+        <circle cx="45" cy="45" r="3" fill="rgba(239,68,68,0.5)" />
+        <circle cx="45" cy="45" r="7" fill="none" stroke="rgba(239,68,68,0.2)" strokeWidth="0.8" />
+        {/* Trade flow lines */}
+        <line x1="105" y1="38" x2="48" y2="45" stroke="rgba(96,165,250,0.2)" strokeWidth="0.8" strokeDasharray="4 3" />
+        <line x1="78" y1="60" x2="47" y2="46" stroke="rgba(96,165,250,0.15)" strokeWidth="0.8" strokeDasharray="4 3" />
+        {/* Gavel / scales icon */}
+        <line x1="120" y1="75" x2="145" y2="75" stroke="rgba(226,232,240,0.4)" strokeWidth="1.5" />
+        <line x1="132" y1="60" x2="132" y2="75" stroke="rgba(226,232,240,0.4)" strokeWidth="1.5" />
+        <path d="M122 65 L132 58 L142 65" stroke="rgba(226,232,240,0.3)" strokeWidth="1.2" fill="none" />
+        <circle cx="122" cy="67" r="4" fill="rgba(96,165,250,0.15)" stroke="rgba(96,165,250,0.3)" strokeWidth="0.8" />
+        <circle cx="142" cy="67" r="4" fill="rgba(239,68,68,0.15)" stroke="rgba(239,68,68,0.3)" strokeWidth="0.8" />
+        {/* 6-3 vote label */}
+        <text x="132" y="92" textAnchor="middle" fontSize="10" fill="rgba(226,232,240,0.45)" fontFamily="system-ui" fontWeight="700">6–3</text>
+      </svg>
+    ),
+  },
   // --- Placeholder (clickable → waitlist) ---
   {
     title: "What would you like to see?",
