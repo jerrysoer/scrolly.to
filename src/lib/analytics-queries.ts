@@ -8,6 +8,7 @@ import type {
   ExplainerStats,
   ReferrerGroup,
   DeviceStats,
+  GeoRow,
   HeatmapCell,
   RecentEvent,
 } from "./types";
@@ -60,6 +61,7 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
     // Previous period for trends
     prevViewsRes,
     prevEngagementRes,
+    geoRes,
   ] = await Promise.all([
     // Total views (all time)
     supabase
@@ -126,6 +128,9 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
       .select("duration_seconds, max_scroll_depth")
       .gte("created_at", prevStart)
       .lt("created_at", prevEnd),
+
+    // Global geo distribution
+    supabase.rpc("global_geo", { since }),
   ]);
 
   // Fetch explainer names from Supabase
@@ -271,6 +276,14 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
     }
   }
 
+  // Geo distribution
+  const geo: GeoRow[] = (geoRes.data ?? []).map((row: { country: string; region: string | null; city: string; views: number }) => ({
+    country: row.country,
+    region: row.region,
+    city: row.city,
+    views: Number(row.views),
+  }));
+
   // Recent events
   const recentEvents: RecentEvent[] = (recentRes.data ?? []).map((row) => {
     const ua = new UAParser(row.user_agent ?? "");
@@ -304,6 +317,7 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
     referrers,
     devices,
     browsers,
+    geo,
     heatmap,
     recentEvents,
   };

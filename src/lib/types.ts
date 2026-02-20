@@ -56,6 +56,13 @@ export interface DeviceStats {
   count: number;
 }
 
+export interface GeoRow {
+  country: string;
+  region: string | null;
+  city: string;
+  views: number;
+}
+
 export interface HeatmapCell {
   day: number;   // 0=Sun … 6=Sat
   hour: number;  // 0–23
@@ -96,6 +103,7 @@ export interface AnalyticsData {
   referrers: ReferrerGroup[];
   devices: DeviceStats[];
   browsers: DeviceStats[];
+  geo: GeoRow[];
   heatmap: HeatmapCell[];
   recentEvents: RecentEvent[];
 }

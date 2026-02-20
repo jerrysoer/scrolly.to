@@ -4,6 +4,7 @@ import ViewsOverTime from "@/components/dashboard/analytics/ViewsOverTime";
 import ReferrerBreakdown from "@/components/dashboard/analytics/ReferrerBreakdown";
 import AnalyticsDeviceBreakdown from "@/components/dashboard/analytics/DeviceBreakdown";
 import ExplainerTable from "@/components/dashboard/analytics/ExplainerTable";
+import GeoTable from "@/components/dashboard/GeoTable";
 import TimeHeatmap from "@/components/dashboard/analytics/TimeHeatmap";
 import ActivityFeed from "@/components/dashboard/analytics/ActivityFeed";
 import AnalyticsDatePicker from "@/components/dashboard/analytics/AnalyticsDatePicker";
@@ -110,9 +111,14 @@ export default async function AnalyticsPage({
         <ExplainerTable data={data.explainers} />
       </div>
 
-      {/* Two-column: heatmap + activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* Two-column: geo + heatmap */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <GeoTable data={data.geo} />
         <TimeHeatmap data={data.heatmap} />
+      </div>
+
+      {/* Activity feed — full width */}
+      <div>
         <ActivityFeed events={data.recentEvents} />
       </div>
     </div>
