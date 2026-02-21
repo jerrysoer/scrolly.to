@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 export interface NavSection {
   id: string;
   label: string;
+  shortLabel?: string;
 }
 
 interface SectionNavProps {
