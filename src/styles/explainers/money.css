@@ -1,0 +1,269 @@
+/* ===================================================================
+   How Money Works Explainer styles
+   (scoped to data-scope="explainer-money")
+   Light-first: light theme is default, dark under [data-theme="dark"]
+   =================================================================== */
+
+/* ── Light theme (default) ── */
+[data-scope="explainer-money"] {
+  --bg-primary: #FAFAF8;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #F5F5F0;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #8A8A82;
+  --border: #D8D4C8;
+  --money-green: #22c55e;
+  --inflation-red: #ef4444;
+  --accent-blue: #3b82f6;
+  --gold: #f59e0b;
+
+  /* Shared component tokens */
+  --accent-blue: #22c55e;
+  --accent-red: #ef4444;
+  --accent-amber: #f59e0b;
+  --accent-green: #22c55e;
+
+  /* Map to Tailwind tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-money-green: var(--money-green);
+  --color-inflation-red: var(--inflation-red);
+  --color-accent-blue: var(--accent-blue);
+  --color-gold: var(--gold);
+  --color-accent-red: var(--accent-red);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-green: var(--accent-green);
+}
+
+/* ── Dark theme override ── */
+[data-scope="explainer-money"][data-theme="dark"] {
+  --bg-primary: #0f1117;
+  --bg-card: #1a1d27;
+  --bg-secondary: #141720;
+  --text-primary: #E8E8E3;
+  --text-secondary: #A8A8A0;
+  --text-tertiary: #6A6A62;
+  --border: #2a2e3a;
+  --money-green: #4ade80;
+  --inflation-red: #f87171;
+  --accent-blue: #60a5fa;
+  --gold: #fbbf24;
+
+  /* Shared component tokens (dark) */
+  --accent-blue: #4ade80;
+  --accent-red: #f87171;
+  --accent-amber: #fbbf24;
+  --accent-green: #4ade80;
+}
+
+/* ── Reading Progress Bar ── */
+[data-scope="explainer-money"] .progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--money-green), var(--accent-blue), var(--gold));
+  z-index: 9998;
+  transition: width 0.1s linear;
+}
+
+/* ── Section alternating backgrounds ── */
+[data-scope="explainer-money"] .section-tinted {
+  background-color: var(--bg-secondary);
+}
+
+/* ── Wave section divider ── */
+[data-scope="explainer-money"] .section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border) 15%,
+    var(--money-green) 50%,
+    var(--border) 85%,
+    transparent 100%
+  );
+  opacity: 0.4;
+}
+
+/* ── Pull quote — money-green accent ── */
+[data-scope="explainer-money"] .pull-quote {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--money-green);
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+[data-scope="explainer-money"] .pull-quote::before {
+  content: "\201C";
+  position: absolute;
+  left: -0.2rem;
+  top: -0.6rem;
+  font-size: 3rem;
+  color: var(--money-green);
+  opacity: 0.3;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+/* ── Oversized stat number ── */
+[data-scope="explainer-money"] .stat-hero {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--money-green), var(--accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Accordion animation ── */
+[data-scope="explainer-money"] .accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease-out;
+}
+[data-scope="explainer-money"] .accordion-content.open {
+  grid-template-rows: 1fr;
+}
+[data-scope="explainer-money"] .accordion-content > div {
+  overflow: hidden;
+}
+
+/* ── Selection color ── */
+[data-scope="explainer-money"] ::selection {
+  background-color: var(--money-green);
+  color: white;
+}
+
+/* ── Scrollbar styling ── */
+[data-scope="explainer-money"] ::-webkit-scrollbar { width: 6px; }
+[data-scope="explainer-money"] ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+[data-scope="explainer-money"] ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+[data-scope="explainer-money"] ::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+
+/* ── Range input styling ── */
+[data-scope="explainer-money"] input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-secondary);
+  outline: none;
+}
+
+[data-scope="explainer-money"] input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--money-green);
+  cursor: pointer;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+[data-scope="explainer-money"] input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--money-green);
+  cursor: pointer;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Scrollbar-none utility ── */
+[data-scope="explainer-money"] .scrollbar-none::-webkit-scrollbar { display: none; }
+[data-scope="explainer-money"] .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Mobile bottom nav ── */
+[data-scope="explainer-money"] .mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--bg-card) 85%, transparent);
+  border-top: 1px solid var(--border);
+}
+
+/* ── Focus visible ── */
+[data-scope="explainer-money"] :focus-visible {
+  outline: 2px solid var(--money-green);
+  outline-offset: 2px;
+}
+
+/* ── Staggered reveal children ── */
+[data-scope="explainer-money"] .stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+[data-scope="explainer-money"] .stagger-children.visible > *:nth-child(1) { transition-delay: 0s; }
+[data-scope="explainer-money"] .stagger-children.visible > *:nth-child(2) { transition-delay: 0.1s; }
+[data-scope="explainer-money"] .stagger-children.visible > *:nth-child(3) { transition-delay: 0.15s; }
+[data-scope="explainer-money"] .stagger-children.visible > *:nth-child(4) { transition-delay: 0.2s; }
+[data-scope="explainer-money"] .stagger-children.visible > *:nth-child(5) { transition-delay: 0.25s; }
+[data-scope="explainer-money"] .stagger-children.visible > *:nth-child(6) { transition-delay: 0.3s; }
+[data-scope="explainer-money"] .stagger-children.visible > *:nth-child(7) { transition-delay: 0.35s; }
+[data-scope="explainer-money"] .stagger-children.visible > *:nth-child(8) { transition-delay: 0.4s; }
+[data-scope="explainer-money"] .stagger-children.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Keyframes ── */
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rise-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0deg) scale(0); opacity: 0; }
+  15% { opacity: 1; transform: translateY(0) rotate(45deg) scale(1); }
+  100% { transform: translateY(130px) rotate(720deg) scale(0.3); opacity: 0; }
+}
+
+@keyframes currency-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.06; }
+  25% { transform: translateY(-12px) rotate(5deg); opacity: 0.09; }
+  50% { transform: translateY(-6px) rotate(-3deg); opacity: 0.07; }
+  75% { transform: translateY(-16px) rotate(4deg); opacity: 0.08; }
+}

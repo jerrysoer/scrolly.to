@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function POST() {
@@ -29,6 +30,9 @@ export async function POST() {
       { status: res.status }
     );
   }
+
+  // Bust the ISR cache so the next page load refetches from GitHub
+  revalidatePath("/dashboard");
 
   // 204 No Content = success
   return NextResponse.json({ status: "triggered" });

@@ -251,6 +251,171 @@ export const explainers: Record<string, ExplainerConfig> = {
     component: () =>
       import("@/components/explainers/moon/ExplainerApp"),
   },
+
+  "how-money-works": {
+    slug: "how-money-works",
+    section: "learn",
+    title: "How Money Actually Works",
+    description:
+      "An interactive explainer on money — from barter to banks to Bitcoin, and why 97% of dollars are just numbers in a computer. Built with Scrolly.",
+    ogDescription:
+      "Most people have no idea where money comes from. Banks don't lend savings — they create money from nothing. Here's how it actually works.",
+    keywords: [
+      "how money works",
+      "fractional reserve banking",
+      "money creation",
+      "fiat currency",
+      "gold standard",
+      "Federal Reserve",
+      "inflation",
+      "Bitcoin",
+      "interactive explainer",
+    ],
+    category: "Economics",
+    scopeName: "explainer-money",
+    themeKey: "money-theme",
+    defaultTheme: "light",
+    datePublished: "2026-01-20",
+    fonts: "education",
+    faqs: [
+      {
+        question: "Where does money come from?",
+        answer:
+          "Most money is created by commercial banks when they issue loans. The bank doesn't transfer existing money — it types new numbers into the borrower's account, creating money that didn't exist before. About 97% of money in circulation is digital, created this way.",
+      },
+      {
+        question: "Is the US dollar backed by gold?",
+        answer:
+          "No. The US dollar hasn't been backed by gold since August 15, 1971, when President Nixon ended the gold standard (the 'Nixon Shock'). Today's dollar is fiat money — its value comes from trust in the US government, not from any physical commodity.",
+      },
+      {
+        question: "What causes inflation?",
+        answer:
+          "Inflation occurs when the money supply grows faster than the economy's output. When more money chases the same amount of goods, prices rise and each dollar buys less. Central banks like the Federal Reserve try to control this through interest rates.",
+      },
+      {
+        question: "How is Bitcoin different from regular money?",
+        answer:
+          "Bitcoin's supply is fixed at 21 million coins and controlled by math (cryptographic algorithms), not by any government or bank. Regular money (fiat) can be created in unlimited quantities by banks and governments. Bitcoin requires trust in mathematics; dollars require trust in institutions.",
+      },
+      {
+        question: "What does the Federal Reserve actually do?",
+        answer:
+          "The Federal Reserve sets interest rates that influence how much it costs to borrow money. Low rates make borrowing cheap (stimulating spending and growth), while high rates make borrowing expensive (cooling the economy and fighting inflation). It's like a thermostat for the economy.",
+      },
+    ],
+    component: () =>
+      import("@/components/explainers/money/ExplainerApp"),
+  },
+
+  "dinosaur-extinction": {
+    slug: "dinosaur-extinction",
+    section: "learn",
+    title: "How Dinosaurs Went Extinct",
+    description:
+      "An interactive explainer on the Chicxulub asteroid impact — the first 24 hours, nuclear winter, and why some species survived while dinosaurs didn't. Built with Scrolly.",
+    ogDescription:
+      "66 million years ago, a rock the size of San Francisco hit Earth at 45,000 mph. Here's what happened in the first 24 hours — and the 10 million years after.",
+    keywords: [
+      "dinosaur extinction",
+      "Chicxulub asteroid",
+      "mass extinction",
+      "K-Pg boundary",
+      "nuclear winter",
+      "asteroid impact",
+      "dinosaurs",
+      "interactive explainer",
+    ],
+    category: "Science",
+    scopeName: "explainer-dino",
+    themeKey: "dino-theme",
+    defaultTheme: "light",
+    datePublished: "2026-01-25",
+    fonts: "education",
+    faqs: [
+      {
+        question: "What actually killed the dinosaurs?",
+        answer:
+          "The asteroid impact itself killed everything within about 1,500 miles. But the real killer was what came next: the impact vaporized sulfur-rich rock, launching trillions of tons of aerosols into the stratosphere. This blocked sunlight for nearly two years, collapsing photosynthesis and the entire food chain from the bottom up.",
+      },
+      {
+        question: "How do we know the Chicxulub crater caused the extinction?",
+        answer:
+          "A thin layer of iridium (rare on Earth but common in asteroids) marks the exact boundary between Cretaceous and Paleogene rock worldwide. The Chicxulub crater was discovered in 1978 beneath the Yucatan Peninsula and precisely matches the timing. Impact debris has been found on every continent, including Antarctica.",
+      },
+      {
+        question: "Could a similar asteroid hit Earth today?",
+        answer:
+          "Yes, but we'd likely see it coming. NASA's Planetary Defense Coordination Office tracks near-Earth objects. The DART mission in 2022 successfully demonstrated asteroid deflection technology. No known asteroid poses a significant threat for the next 100+ years.",
+      },
+      {
+        question: "Were all dinosaurs wiped out?",
+        answer:
+          "No. One group survived: the ancestors of modern birds. All roughly 10,000 living bird species are technically dinosaurs, classified within Dinosauria. A chicken is more closely related to T-Rex than T-Rex is to Stegosaurus, which lived 80 million years earlier.",
+      },
+      {
+        question: "How long did it take for life to fully recover?",
+        answer:
+          "The nuclear winter lasted about 18-24 months, but full ecosystem recovery took roughly 10 million years. In the aftermath, mammals rapidly diversified into the ecological niches left empty by dinosaurs, eventually giving rise to whales, bats, primates, and eventually humans.",
+      },
+    ],
+    component: () =>
+      import("@/components/explainers/dino/ExplainerApp"),
+  },
+
+  "dividing-fractions": {
+    slug: "dividing-fractions",
+    section: "learn",
+    title: "Dividing Fractions",
+    description:
+      "An interactive explainer on dividing fractions — why 'flip and multiply' works, with pizza slices, visual proofs, and practice problems. Built with Scrolly.",
+    ogDescription:
+      "Every 5th grader is taught to 'flip and multiply.' Almost none are told why it works. Here's the visual proof.",
+    keywords: [
+      "dividing fractions",
+      "flip and multiply",
+      "reciprocal",
+      "fraction division",
+      "math explainer",
+      "visual math",
+      "interactive explainer",
+    ],
+    category: "Math",
+    scopeName: "explainer-fractions",
+    themeKey: "fractions-theme",
+    defaultTheme: "light",
+    datePublished: "2026-01-10",
+    fonts: "education",
+    faqs: [
+      {
+        question: "Why do we flip and multiply when dividing fractions?",
+        answer:
+          "Dividing by a fraction asks 'how many groups of this size fit inside that amount?' Multiplying by the reciprocal gives the same answer because the reciprocal inverts the grouping. It's a mathematical shortcut, not a trick — it's the same question rephrased.",
+      },
+      {
+        question: "What is a reciprocal?",
+        answer:
+          "A reciprocal is a fraction flipped upside down. The reciprocal of 3/4 is 4/3. The reciprocal of 2 (which is 2/1) is 1/2. Any number multiplied by its reciprocal equals 1.",
+      },
+      {
+        question: "Why does dividing by a fraction give a bigger number?",
+        answer:
+          "When you divide by a number less than 1, you're asking how many small pieces fit inside. More small pieces fit than whole ones, so the answer is larger. For example, 6 divided by 1/2 = 12, because twelve halves fit inside 6 wholes.",
+      },
+      {
+        question: "Does flip and multiply work for all fractions?",
+        answer:
+          "Yes. It works for proper fractions (like 3/4), improper fractions (like 7/3), mixed numbers (convert to improper first), and whole numbers (write as n/1). The rule is universal because it's based on the mathematical definition of division.",
+      },
+      {
+        question: "How is dividing fractions used in real life?",
+        answer:
+          "Dividing fractions appears in cooking (how many 1/3 cup servings in 2 cups?), construction (how many 3/4 inch tiles fit in 6 inches?), time management (how many 1/2 hour meetings fit in 3 hours?), and anywhere you need to figure out how many parts fit into a whole.",
+      },
+    ],
+    component: () =>
+      import("@/components/explainers/fractions/ExplainerApp"),
+  },
 };
 
 // ── Helpers ──

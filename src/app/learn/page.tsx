@@ -177,7 +177,7 @@ const CARDS: ExplainerCardData[] = [
     desc: "From barter to banks to bytes — the surprisingly weird system behind every dollar.",
     category: "Economics",
     gradient: "from-[#ecfdf5] to-[#d1fae5]",
-    url: "https://jerrysoer.github.io/how-money-works/",
+    url: "/learn/how-money-works",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         <rect x="25" y="30" width="50" height="30" rx="4" fill="rgba(22,163,74,0.12)" stroke="rgba(22,163,74,0.4)" strokeWidth="1.5" />
@@ -202,7 +202,7 @@ const CARDS: ExplainerCardData[] = [
     desc: "Asteroid impact, nuclear winter, and the chain reaction that ended an era.",
     category: "Science",
     gradient: "from-[#fef3c7] to-[#fde68a]",
-    url: "https://jerrysoer.github.io/dinosaur-extinction/",
+    url: "/learn/dinosaur-extinction",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         <path d="M0 95 Q40 88 80 92 Q120 96 160 90 L160 120 L0 120 Z" fill="rgba(120,113,108,0.15)" />
@@ -224,7 +224,7 @@ const CARDS: ExplainerCardData[] = [
     desc: "Every 5th grader is taught to 'flip and multiply.' Almost none are told why. Here's the visual proof.",
     category: "Math",
     gradient: "from-[#eff6ff] to-[#fef3c7]",
-    url: "https://jerrysoer.github.io/dividing-fractions/",
+    url: "/learn/dividing-fractions",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         <line x1="55" y1="60" x2="105" y2="60" stroke="rgba(59,130,246,0.5)" strokeWidth="3" strokeLinecap="round" />

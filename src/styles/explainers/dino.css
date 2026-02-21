@@ -1,0 +1,218 @@
+/* ===================================================================
+   Dinosaur Extinction Explainer styles
+   (scoped to data-scope="explainer-dino")
+   Dark-first: dark theme is default, light under absence of [data-theme="dark"]
+   =================================================================== */
+
+/* ── Light theme (default) ── */
+[data-scope="explainer-dino"] {
+  --bg-primary: #FAFAF5;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #F5F0EB;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #8A8A82;
+  --border: #E0DED8;
+  --firestorm: #f59e0b;
+  --firestorm-hot: #ef4444;
+  --winter-blue: #94a3b8;
+  --winter-cold: #64748b;
+  --extinction-dark: #1e1b18;
+  --life-green: #22c55e;
+  --correct-green: #4CAF50;
+
+  /* Shared component tokens */
+  --accent-blue: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-amber: #f59e0b;
+  --accent-green: #22c55e;
+
+  /* Map to Tailwind tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-firestorm: var(--firestorm);
+  --color-firestorm-hot: var(--firestorm-hot);
+  --color-winter-blue: var(--winter-blue);
+  --color-winter-cold: var(--winter-cold);
+  --color-extinction-dark: var(--extinction-dark);
+  --color-life-green: var(--life-green);
+  --color-correct-green: var(--correct-green);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-red: var(--accent-red);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-green: var(--accent-green);
+}
+
+/* ── Dark theme override ── */
+[data-scope="explainer-dino"][data-theme="dark"] {
+  --bg-primary: #0f1014;
+  --bg-card: #1a1c22;
+  --bg-secondary: #141618;
+  --text-primary: #E8E8E3;
+  --text-secondary: #A8A8A0;
+  --text-tertiary: #6A6A62;
+  --border: #2a2c30;
+  --firestorm: #fbbf24;
+  --firestorm-hot: #f87171;
+  --winter-blue: #a8b8cc;
+  --winter-cold: #7a8a9e;
+  --extinction-dark: #2a2520;
+  --life-green: #4ade80;
+  --correct-green: #66BB6A;
+  --accent-blue: #fbbf24;
+  --accent-red: #f87171;
+  --accent-amber: #fbbf24;
+  --accent-green: #4ade80;
+}
+
+/* ── Reading Progress Bar ── */
+[data-scope="explainer-dino"] .progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--firestorm), var(--firestorm-hot), var(--winter-blue));
+  z-index: 9998;
+  transition: width 0.1s linear;
+}
+
+/* ── Section alternating backgrounds ── */
+[data-scope="explainer-dino"] .section-tinted {
+  background-color: var(--bg-secondary);
+}
+
+/* ── Section divider ── */
+[data-scope="explainer-dino"] .section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border) 15%,
+    var(--firestorm) 50%,
+    var(--border) 85%,
+    transparent 100%
+  );
+  opacity: 0.4;
+}
+
+/* ── Pull quote — firestorm accent ── */
+[data-scope="explainer-dino"] .pull-quote {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--firestorm);
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+[data-scope="explainer-dino"] .pull-quote::before {
+  content: "\201C";
+  position: absolute;
+  left: -0.2rem;
+  top: -0.6rem;
+  font-size: 3rem;
+  color: var(--firestorm);
+  opacity: 0.3;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+/* ── Oversized stat number — firestorm gradient ── */
+[data-scope="explainer-dino"] .stat-hero {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--firestorm), var(--firestorm-hot));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Selection color ── */
+[data-scope="explainer-dino"] ::selection {
+  background-color: var(--firestorm);
+  color: white;
+}
+
+/* ── Scrollbar styling ── */
+[data-scope="explainer-dino"] ::-webkit-scrollbar { width: 6px; }
+[data-scope="explainer-dino"] ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+[data-scope="explainer-dino"] ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+[data-scope="explainer-dino"] ::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+
+/* ── Range input styling ── */
+[data-scope="explainer-dino"] input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-secondary);
+  outline: none;
+}
+
+[data-scope="explainer-dino"] input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--firestorm);
+  cursor: pointer;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+[data-scope="explainer-dino"] input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--firestorm);
+  cursor: pointer;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Scrollbar-none utility ── */
+[data-scope="explainer-dino"] .scrollbar-none::-webkit-scrollbar { display: none; }
+[data-scope="explainer-dino"] .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Focus visible ── */
+[data-scope="explainer-dino"] :focus-visible {
+  outline: 2px solid var(--firestorm);
+  outline-offset: 2px;
+}
+
+/* ── Keyframes ── */
+
+@keyframes meteor {
+  0% { transform: translate(100px, -100px) rotate(-45deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translate(-400px, 400px) rotate(-45deg); opacity: 0; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+@keyframes ember-float {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  50% { transform: translateY(-30px) scale(0.8); opacity: 0.4; }
+  100% { transform: translateY(-60px) scale(0.4); opacity: 0; }
+}
+
+@keyframes dust-drift {
+  0% { transform: translateX(0) translateY(0); opacity: 0; }
+  20% { opacity: 0.3; }
+  100% { transform: translateX(40px) translateY(-20px); opacity: 0; }
+}
