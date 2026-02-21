@@ -22,7 +22,7 @@ export default function ExplainerCard({
   animate = false,
 }: ExplainerCardProps) {
   const isLink = !!card.url;
-  const isExternal = card.url && !card.url.startsWith("#");
+  const isExternal = card.url?.startsWith("http");
   const Wrapper = isLink ? "a" : "div";
   const linkProps = isLink
     ? {
