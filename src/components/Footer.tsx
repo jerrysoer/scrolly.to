@@ -11,7 +11,7 @@ export default function Footer() {
           </a>
           <span className="text-border-strong">/</span>
           <a
-            href="#gallery"
+            href="/explore"
             className="text-sm text-text-muted transition-colors hover:text-text"
           >
             Explore

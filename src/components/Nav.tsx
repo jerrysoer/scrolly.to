@@ -8,7 +8,7 @@ export default function Nav() {
 
         <div className="flex items-center gap-6">
           <a
-            href="#gallery"
+            href="/explore"
             className="hidden text-sm text-text-muted transition-colors hover:text-text sm:block"
           >
             Explore
