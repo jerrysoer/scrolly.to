@@ -1,0 +1,233 @@
+/* ===================================================================
+   Tortoise & Hare Explainer styles
+   (scoped to data-scope="explainer-tortoise-hare")
+   Light-first: light theme is default, dark under [data-theme="dark"]
+   =================================================================== */
+
+/* -- Light theme (default) -- */
+[data-scope="explainer-tortoise-hare"] {
+  --bg-primary: #FAFAF8;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #F0EFEC;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #8A8A82;
+  --border: #E0DED8;
+  --forward-blue: #4A90D9;
+  --backward-orange: #E8734A;
+  --accent-purple: #7C5CBF;
+  --correct-green: #4CAF50;
+  --accent-amber: #F5A623;
+
+  /* Shared component tokens */
+  --accent-blue: #4A90D9;
+  --accent-red: #E8734A;
+  --accent-green: #4CAF50;
+
+  /* Map to Tailwind tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-forward-blue: var(--forward-blue);
+  --color-backward-orange: var(--backward-orange);
+  --color-accent-purple: var(--accent-purple);
+  --color-correct-green: var(--correct-green);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-red: var(--accent-red);
+  --color-accent-green: var(--accent-green);
+}
+
+/* -- Dark theme override -- */
+[data-scope="explainer-tortoise-hare"][data-theme="dark"] {
+  --bg-primary: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --bg-secondary: #252525;
+  --text-primary: #E8E8E3;
+  --text-secondary: #A8A8A0;
+  --text-tertiary: #6A6A62;
+  --border: #333330;
+  --forward-blue: #5B9FE8;
+  --backward-orange: #FF8A5C;
+  --accent-purple: #9B7FD4;
+  --correct-green: #66BB6A;
+  --accent-amber: #FFB84D;
+  --accent-blue: #5B9FE8;
+  --accent-red: #FF8A5C;
+  --accent-green: #66BB6A;
+}
+
+/* -- Reading Progress Bar -- */
+[data-scope="explainer-tortoise-hare"] .progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--correct-green), var(--accent-purple));
+  z-index: 9998;
+  transition: width 0.1s linear;
+}
+
+/* -- Section alternating backgrounds -- */
+[data-scope="explainer-tortoise-hare"] .section-tinted {
+  background-color: var(--bg-secondary);
+}
+
+/* -- Section divider -- */
+[data-scope="explainer-tortoise-hare"] .section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border) 15%,
+    var(--accent-purple) 50%,
+    var(--border) 85%,
+    transparent 100%
+  );
+  opacity: 0.4;
+}
+
+/* -- Selection color -- */
+[data-scope="explainer-tortoise-hare"] ::selection {
+  background: var(--accent-purple);
+  color: #fff;
+}
+
+/* -- Scrollbar -- */
+[data-scope="explainer-tortoise-hare"] ::-webkit-scrollbar { width: 8px; }
+[data-scope="explainer-tortoise-hare"] ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+[data-scope="explainer-tortoise-hare"] ::-webkit-scrollbar-thumb { background: var(--text-tertiary); border-radius: 4px; }
+[data-scope="explainer-tortoise-hare"] ::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+/* -- Range input styling -- */
+[data-scope="explainer-tortoise-hare"] input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: var(--bg-secondary);
+  border-radius: 3px;
+  outline: none;
+}
+
+[data-scope="explainer-tortoise-hare"] input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-purple);
+  cursor: pointer;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+[data-scope="explainer-tortoise-hare"] input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-purple);
+  cursor: pointer;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* -- Focus visible -- */
+[data-scope="explainer-tortoise-hare"] :focus-visible {
+  outline: 2px solid var(--accent-purple);
+  outline-offset: 2px;
+}
+
+/* -- Card flip -- */
+[data-scope="explainer-tortoise-hare"] .th-card-flip {
+  perspective: 1000px;
+}
+
+[data-scope="explainer-tortoise-hare"] .th-card-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+[data-scope="explainer-tortoise-hare"] .th-card-flip.flipped .th-card-flip-inner {
+  transform: rotateY(180deg);
+}
+
+[data-scope="explainer-tortoise-hare"] .th-card-front,
+[data-scope="explainer-tortoise-hare"] .th-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+[data-scope="explainer-tortoise-hare"] .th-card-back {
+  transform: rotateY(180deg);
+}
+
+/* -- Keyframes (prefixed to avoid conflicts) -- */
+@keyframes th-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes th-rise-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes th-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px 8px rgba(76, 175, 80, 0.15);
+  }
+}
+
+@keyframes th-slide-track {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes th-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+[data-scope="explainer-tortoise-hare"] .th-animate-fade-in {
+  animation: th-fade-in 0.6s ease-out both;
+}
+
+[data-scope="explainer-tortoise-hare"] .th-animate-rise-up {
+  animation: th-rise-up 0.8s ease-out both;
+}
+
+[data-scope="explainer-tortoise-hare"] .th-animate-pulse-glow {
+  animation: th-pulse-glow 2s ease-in-out infinite;
+}
+
+[data-scope="explainer-tortoise-hare"] .th-animate-slide-track {
+  animation: th-slide-track 30s linear infinite;
+}
+
+[data-scope="explainer-tortoise-hare"] .th-animate-float {
+  animation: th-float 3s ease-in-out infinite;
+}
+
+/* -- Smooth scroll -- */
+[data-scope="explainer-tortoise-hare"] {
+  scroll-behavior: smooth;
+}

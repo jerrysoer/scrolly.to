@@ -1,0 +1,144 @@
+/* ===================================================================
+   Git Worktrees Explainer styles (scoped to data-scope="explainer-worktrees")
+   =================================================================== */
+
+/* -- Light theme (warm cream default) -- */
+[data-scope="explainer-worktrees"] {
+  --bg-primary: #FFF5E6;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #FDE8D0;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #8A8A82;
+  --border: #E0DED8;
+  --git-blue: #4A90D9;
+  --forward-blue: #4A90D9;
+  --backward-orange: #E8734A;
+  --accent-purple: #7C5CBF;
+  --correct-green: #4CAF50;
+  --accent-amber: #F5A623;
+
+  /* Shared component tokens */
+  --accent-blue: #4A90D9;
+  --accent-red: #E8734A;
+  --accent-green: #4CAF50;
+
+  /* Map to Tailwind tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-git-blue: var(--git-blue);
+  --color-forward-blue: var(--forward-blue);
+  --color-backward-orange: var(--backward-orange);
+  --color-accent-purple: var(--accent-purple);
+  --color-correct-green: var(--correct-green);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-red: var(--accent-red);
+  --color-accent-green: var(--accent-green);
+
+  /* Font tokens */
+  --font-heading: "Source Serif 4", var(--font-fraunces), Georgia, serif;
+  --font-body: "Source Sans 3", var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* -- Dark theme override -- */
+[data-scope="explainer-worktrees"][data-theme="dark"] {
+  --bg-primary: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --bg-secondary: #252525;
+  --text-primary: #E8E8E3;
+  --text-secondary: #A8A8A0;
+  --text-tertiary: #6A6A62;
+  --border: #333330;
+  --git-blue: #5B9FE8;
+  --forward-blue: #5B9FE8;
+  --backward-orange: #FF8A5C;
+  --accent-purple: #9B7FD4;
+  --correct-green: #66BB6A;
+  --accent-amber: #FFB84D;
+
+  --accent-blue: #5B9FE8;
+  --accent-red: #FF8A5C;
+  --accent-green: #66BB6A;
+}
+
+/* -- Typography -- */
+[data-scope="explainer-worktrees"] h1,
+[data-scope="explainer-worktrees"] h2,
+[data-scope="explainer-worktrees"] h3,
+[data-scope="explainer-worktrees"] h4,
+[data-scope="explainer-worktrees"] h5,
+[data-scope="explainer-worktrees"] h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+/* -- Selection -- */
+[data-scope="explainer-worktrees"] ::selection {
+  background: color-mix(in srgb, var(--git-blue) 25%, transparent);
+  color: var(--text-primary);
+}
+
+/* -- Terminal background -- */
+[data-scope="explainer-worktrees"] .terminal-bg {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  font-family: var(--font-mono);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* -- Inline code -- */
+[data-scope="explainer-worktrees"] code:not(pre code) {
+  background: color-mix(in srgb, var(--git-blue) 10%, transparent);
+  color: var(--git-blue);
+  border-radius: 0.25rem;
+  padding: 0.1em 0.35em;
+  font-size: 0.875em;
+}
+
+/* -- Animations -- */
+@keyframes worktrees-fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-scope="explainer-worktrees"] .animate-fade-in-up {
+  animation: worktrees-fadeInUp 0.6s ease forwards;
+}
+
+/* -- Focus visible -- */
+[data-scope="explainer-worktrees"] :focus-visible {
+  outline: 2px solid var(--git-blue);
+  outline-offset: 2px;
+}
+
+/* -- Responsive grids -- */
+@media (max-width: 767px) {
+  [data-scope="explainer-worktrees"] .under-hood-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 640px) {
+  [data-scope="explainer-worktrees"] .workflow-grid {
+    grid-template-columns: 1fr !important;
+  }
+  [data-scope="explainer-worktrees"] .workflow-grid > div:first-child {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border);
+  }
+}

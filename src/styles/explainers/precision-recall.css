@@ -1,0 +1,255 @@
+/* ===================================================================
+   Precision & Recall Explainer styles
+   (scoped to data-scope="explainer-precision-recall")
+   Light-first: light default, dark under [data-theme="dark"]
+   =================================================================== */
+
+/* ── Light theme (default) ── */
+[data-scope="explainer-precision-recall"] {
+  --bg-primary: #faf6f1;
+  --bg-card: #ffffff;
+  --bg-secondary: #f0ece4;
+  --text-primary: #1a1a1a;
+  --text-secondary: #57534e;
+  --text-tertiary: #8b7355;
+  --border: #d4c4b0;
+  --pr-green: #2d6a4f;
+  --pr-terracotta: #c26e4a;
+  --pr-brown: #8b7355;
+
+  /* Shared component tokens */
+  --accent-blue: #2d6a4f;
+  --accent-red: #c26e4a;
+  --accent-amber: #8b7355;
+  --accent-green: #2d6a4f;
+
+  /* Map to Tailwind tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-red: var(--accent-red);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-green: var(--accent-green);
+
+  font-family: 'DM Sans', var(--font-inter), system-ui, sans-serif;
+}
+
+/* ── Dark theme override ── */
+[data-scope="explainer-precision-recall"][data-theme="dark"] {
+  --bg-primary: #12110f;
+  --bg-card: #1c1a17;
+  --bg-secondary: #211f1b;
+  --text-primary: #e8e4de;
+  --text-secondary: #a8a29e;
+  --text-tertiary: #78716c;
+  --border: #2e2a25;
+  --pr-green: #4ade80;
+  --pr-terracotta: #e8845c;
+  --pr-brown: #a89070;
+  --accent-blue: #4ade80;
+  --accent-red: #e8845c;
+  --accent-amber: #a89070;
+  --accent-green: #4ade80;
+}
+
+/* ── Reading Progress Bar ── */
+[data-scope="explainer-precision-recall"] .progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--pr-green), var(--pr-terracotta));
+  z-index: 9998;
+  transition: width 0.1s linear;
+}
+
+/* ── Section alternating backgrounds ── */
+[data-scope="explainer-precision-recall"] .section-tinted {
+  background-color: var(--bg-card);
+}
+
+/* ── Typography: Display & Body ── */
+[data-scope="explainer-precision-recall"] .pr-display {
+  font-family: 'Newsreader', var(--font-fraunces), Georgia, serif;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+[data-scope="explainer-precision-recall"] .pr-body {
+  font-family: 'DM Sans', var(--font-inter), system-ui, sans-serif;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ── Story card ── */
+[data-scope="explainer-precision-recall"] .story-card {
+  background: linear-gradient(180deg, var(--bg-card) 0%, color-mix(in srgb, var(--bg-card) 95%, var(--bg-primary)) 100%);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+/* ── Verdict callout ── */
+[data-scope="explainer-precision-recall"] .verdict-callout {
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  border-left: 4px solid;
+}
+
+[data-scope="explainer-precision-recall"] .verdict-callout.recall {
+  border-left-color: var(--pr-green);
+  background: color-mix(in srgb, var(--pr-green) 5%, var(--bg-primary));
+}
+
+[data-scope="explainer-precision-recall"] .verdict-callout.precision {
+  border-left-color: var(--pr-terracotta);
+  background: color-mix(in srgb, var(--pr-terracotta) 5%, var(--bg-primary));
+}
+
+[data-scope="explainer-precision-recall"] .verdict-callout.balanced {
+  border-left-color: var(--border);
+  background: color-mix(in srgb, var(--pr-brown) 5%, var(--bg-primary));
+}
+
+/* ── Range input styling ── */
+[data-scope="explainer-precision-recall"] input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: transparent;
+  cursor: pointer;
+}
+
+[data-scope="explainer-precision-recall"] input[type="range"]::-webkit-slider-track {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--bg-secondary);
+}
+
+[data-scope="explainer-precision-recall"] input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  margin-top: -10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+[data-scope="explainer-precision-recall"] input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+[data-scope="explainer-precision-recall"] input[type="range"]::-moz-range-track {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--bg-secondary);
+}
+
+[data-scope="explainer-precision-recall"] input[type="range"]::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Confusion matrix ── */
+[data-scope="explainer-precision-recall"] .matrix-box {
+  border-radius: 0.375rem;
+  border: 1px solid;
+}
+
+[data-scope="explainer-precision-recall"] .matrix-box.tp {
+  background: color-mix(in srgb, var(--pr-green) 10%, transparent);
+  border-color: var(--pr-green);
+}
+
+[data-scope="explainer-precision-recall"] .matrix-box.fn {
+  background: color-mix(in srgb, var(--pr-terracotta) 10%, transparent);
+  border-color: var(--pr-terracotta);
+}
+
+[data-scope="explainer-precision-recall"] .matrix-box.fp {
+  background: color-mix(in srgb, var(--pr-terracotta) 10%, transparent);
+  border-color: var(--pr-terracotta);
+}
+
+[data-scope="explainer-precision-recall"] .matrix-box.tn {
+  background: color-mix(in srgb, var(--pr-brown) 5%, transparent);
+  border-color: var(--pr-brown);
+}
+
+/* ── Quiz option button ── */
+[data-scope="explainer-precision-recall"] .quiz-option {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 2px solid var(--border);
+  text-align: left;
+  transition: all 0.2s ease;
+  background: var(--bg-card);
+  cursor: pointer;
+}
+
+[data-scope="explainer-precision-recall"] .quiz-option:hover {
+  border-color: var(--text-tertiary);
+}
+
+[data-scope="explainer-precision-recall"] .quiz-option.selected {
+  border-color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+[data-scope="explainer-precision-recall"] .quiz-option.correct {
+  border-color: var(--pr-green);
+  background: color-mix(in srgb, var(--pr-green) 5%, var(--bg-card));
+}
+
+[data-scope="explainer-precision-recall"] .quiz-option.incorrect {
+  border-color: var(--pr-terracotta);
+  background: color-mix(in srgb, var(--pr-terracotta) 5%, var(--bg-card));
+}
+
+[data-scope="explainer-precision-recall"] .quiz-option:disabled {
+  cursor: default;
+}
+
+/* ── Formula card ── */
+[data-scope="explainer-precision-recall"] .formula-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Selection color ── */
+[data-scope="explainer-precision-recall"] ::selection {
+  background-color: var(--pr-green);
+  color: white;
+}
+
+/* ── Scrollbar styling ── */
+[data-scope="explainer-precision-recall"] ::-webkit-scrollbar { width: 6px; }
+[data-scope="explainer-precision-recall"] ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+[data-scope="explainer-precision-recall"] ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+[data-scope="explainer-precision-recall"] ::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+
+/* ── Scrollbar-none utility ── */
+[data-scope="explainer-precision-recall"] .scrollbar-none::-webkit-scrollbar { display: none; }
+[data-scope="explainer-precision-recall"] .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Focus visible ── */
+[data-scope="explainer-precision-recall"] :focus-visible {
+  outline: 2px solid var(--pr-green);
+  outline-offset: 2px;
+}

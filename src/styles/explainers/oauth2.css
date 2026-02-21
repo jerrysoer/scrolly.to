@@ -1,0 +1,257 @@
+/* ═══════════════════════════════════════════════════════════════════
+   OAuth 2.0 Explainer — scoped styles
+   Scope: [data-scope="explainer-oauth2"]
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Light mode (warm cream default) ── */
+[data-scope="explainer-oauth2"] {
+  --accent-primary: #4A90D9;
+  --accent-secondary: #E8734A;
+  --accent-tertiary: #7C5CBF;
+  --accent-success: #4CAF50;
+  --accent-amber: #F5A623;
+  --accent-danger: #E85D5D;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] [data-scope="explainer-oauth2"] {
+  --accent-primary: #5B9FE8;
+  --accent-secondary: #FF8A5C;
+  --accent-tertiary: #9B7FD4;
+  --accent-success: #66BB6A;
+  --accent-amber: #FFB84D;
+  --accent-danger: #F87171;
+}
+
+/* ── Code blocks ── */
+[data-scope="explainer-oauth2"] pre {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+}
+
+[data-scope="explainer-oauth2"] code:not(pre code) {
+  background: color-mix(in srgb, var(--accent-primary) 10%, transparent);
+  color: var(--accent-primary);
+  border-radius: 0.25rem;
+  padding: 0.1em 0.35em;
+  font-size: 0.875em;
+}
+
+/* ── Terminal background ── */
+[data-scope="explainer-oauth2"] .terminal-bg {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  font-family: var(--font-mono, "JetBrains Mono", ui-monospace, monospace);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* ── Section number divider ── */
+[data-scope="explainer-oauth2"] .section-number-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+[data-scope="explainer-oauth2"] .section-number-divider::before,
+[data-scope="explainer-oauth2"] .section-number-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+[data-scope="explainer-oauth2"] .section-number-divider .number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  background: var(--bg-card);
+}
+
+/* ── Lift hover cards ── */
+[data-scope="explainer-oauth2"] .card-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+[data-scope="explainer-oauth2"] .card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Section alternating backgrounds ── */
+[data-scope="explainer-oauth2"] .section-tinted {
+  background-color: var(--bg-secondary);
+}
+
+/* ── Accordion animation ── */
+[data-scope="explainer-oauth2"] .accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease-out;
+}
+[data-scope="explainer-oauth2"] .accordion-content.open {
+  grid-template-rows: 1fr;
+}
+[data-scope="explainer-oauth2"] .accordion-content > div {
+  overflow: hidden;
+}
+
+/* ── Shareable quote card ── */
+[data-scope="explainer-oauth2"] .shareable-quote {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+/* ── Skip to content ── */
+[data-scope="explainer-oauth2"] .skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  padding: 0.75rem 1.5rem;
+  background: var(--accent-primary);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0 0 0.5rem 0.5rem;
+  transition: top 0.2s ease;
+}
+[data-scope="explainer-oauth2"] .skip-to-content:focus {
+  top: 0;
+}
+
+/* ── Button ripple ── */
+[data-scope="explainer-oauth2"] .btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+[data-scope="explainer-oauth2"] .btn-ripple .ripple-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  width: 20px;
+  height: 20px;
+  transform: scale(0);
+  animation: oauth2-ripple 0.6s ease-out;
+  pointer-events: none;
+}
+
+/* ── Cursor glow on dark panels ── */
+[data-scope="explainer-oauth2"] .cursor-glow-panel {
+  position: relative;
+}
+[data-scope="explainer-oauth2"] .cursor-glow-panel::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+[data-scope="explainer-oauth2"] .cursor-glow-panel:hover::before {
+  opacity: 1;
+}
+
+/* ── Tab underline animation ── */
+[data-scope="explainer-oauth2"] .tab-underline {
+  position: relative;
+}
+[data-scope="explainer-oauth2"] .tab-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-primary);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+[data-scope="explainer-oauth2"] .tab-underline.active::after {
+  transform: scaleX(1);
+}
+
+/* ── Keyframes ── */
+@keyframes oauth2-ripple {
+  0% { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+@keyframes loading-ring {
+  0% { stroke-dashoffset: 283; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes loading-fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes intercept-flash {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes attack-blocked {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes hash-gear-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes actor-pulse {
+  0%, 100% { r: 42; opacity: 0.3; }
+  50% { r: 48; opacity: 0.5; }
+}
+
+@keyframes travel-packet {
+  0% { offset-distance: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+@keyframes cascade-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+}
+
+@keyframes draw-arrow {
+  from { stroke-dashoffset: 200; }
+  to { stroke-dashoffset: 0; }
+}
+
+[data-scope="explainer-oauth2"] .arrow-draw {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+[data-scope="explainer-oauth2"] .arrow-draw.active {
+  animation: draw-arrow 0.8s ease-out forwards;
+}

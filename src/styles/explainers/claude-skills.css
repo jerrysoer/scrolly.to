@@ -1,0 +1,121 @@
+/* Scoped styles for claude-skills explainer */
+[data-scope="explainer-claude-skills"] {
+  --accent-indigo: #4F46E5;
+  --accent-violet: #7C3AED;
+  --accent-cyan: #0891B2;
+  --accent-emerald: #059669;
+  --accent-amber: #D97706;
+  --accent-rose: #E11D48;
+  --accent-slate: #475569;
+}
+
+[data-theme="dark"] [data-scope="explainer-claude-skills"] {
+  --accent-indigo: #818CF8;
+  --accent-violet: #A78BFA;
+  --accent-cyan: #22D3EE;
+  --accent-emerald: #34D399;
+  --accent-amber: #FBBF24;
+  --accent-rose: #FB7185;
+  --accent-slate: #94A3B8;
+}
+
+/* Animations */
+[data-scope="explainer-claude-skills"] .animate-fadeIn {
+  animation: cs-fadeIn 0.5s ease-out forwards;
+}
+
+[data-scope="explainer-claude-skills"] .animate-slideInLeft {
+  animation: cs-slideInLeft 0.5s ease-out forwards;
+}
+
+[data-scope="explainer-claude-skills"] .animate-pulse-glow {
+  animation: cs-pulse-glow 2s ease-in-out infinite;
+}
+
+[data-scope="explainer-claude-skills"] .animate-bounce-down {
+  animation: cs-bounce-down 1.5s ease-in-out infinite;
+}
+
+@keyframes cs-fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cs-slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes cs-pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes cs-bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* Code block highlighting */
+[data-scope="explainer-claude-skills"] .code-line {
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+[data-scope="explainer-claude-skills"] .code-line.highlighted {
+  background-color: rgba(99, 102, 241, 0.12);
+}
+
+[data-scope="explainer-claude-skills"] .code-line.dimmed {
+  opacity: 0.35;
+}
+
+/* "Why should I care" callout */
+[data-scope="explainer-claude-skills"] .why-care {
+  font-style: italic;
+  padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+  color: var(--text-secondary);
+  margin-top: 16px;
+  font-family: var(--font-heading);
+  font-size: 1.05em;
+  line-height: 1.7;
+}
+
+/* Jargon term tooltip */
+[data-scope="explainer-claude-skills"] .jargon-term {
+  border-bottom: 1px dashed var(--accent-indigo);
+  cursor: help;
+  transition: border-color 0.2s;
+}
+
+[data-scope="explainer-claude-skills"] .jargon-term:hover {
+  border-bottom-color: var(--accent-violet);
+}
+
+/* Selection */
+[data-scope="explainer-claude-skills"] ::selection {
+  background: rgba(79, 70, 229, 0.15);
+  color: var(--text-primary);
+}
+
+/* Card refinements */
+[data-scope="explainer-claude-skills"] .card-elevated {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+[data-scope="explainer-claude-skills"] .card-elevated:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+
+/* Section divider */
+[data-scope="explainer-claude-skills"] .section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  margin: 0 auto;
+  max-width: 80%;
+}

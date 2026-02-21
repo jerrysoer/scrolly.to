@@ -1,0 +1,191 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Black Hole Explainer styles (scoped to data-scope="explainer-blackhole")
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Light theme (default) ── */
+[data-scope="explainer-blackhole"] {
+  --bg-primary: #f1f5f9;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+  --border: #cbd5e1;
+  --space-blue: #3b82f6;
+  --amber: #f59e0b;
+  --deep-space: #0f172a;
+  --event-horizon: #1e293b;
+  --redshift: #ef4444;
+  --success-green: #22c55e;
+
+  /* Shared component tokens */
+  --accent-blue: #3b82f6;
+  --accent-red: #ef4444;
+  --accent-amber: #f59e0b;
+  --accent-green: #22c55e;
+
+  /* Map to Tailwind tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-space-blue: var(--space-blue);
+  --color-amber: var(--amber);
+  --color-deep-space: var(--deep-space);
+  --color-event-horizon: var(--event-horizon);
+  --color-redshift: var(--redshift);
+  --color-success-green: var(--success-green);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-red: var(--accent-red);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-green: var(--accent-green);
+}
+
+/* ── Dark theme override ── */
+[data-scope="explainer-blackhole"][data-theme="dark"] {
+  --bg-primary: #020617;
+  --bg-card: #0f172a;
+  --bg-secondary: #0a0f1e;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --border: #1e293b;
+  --space-blue: #60a5fa;
+  --amber: #fbbf24;
+  --deep-space: #020617;
+  --event-horizon: #0f172a;
+  --redshift: #f87171;
+  --success-green: #4ade80;
+  --accent-blue: #60a5fa;
+  --accent-red: #f87171;
+  --accent-amber: #fbbf24;
+  --accent-green: #4ade80;
+}
+
+/* ── Keyframes (unique to this explainer) ── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rise-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scroll-reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+@keyframes gravitational-lens {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.02) rotate(1deg); }
+  50% { transform: scale(0.98) rotate(-1deg); }
+  75% { transform: scale(1.01) rotate(0.5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes accretion-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes redshift-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* ── Reading Progress Bar ── */
+[data-scope="explainer-blackhole"] .progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--space-blue), var(--redshift));
+  z-index: 9998;
+  transition: width 0.1s linear;
+}
+
+/* ── Selection ── */
+[data-scope="explainer-blackhole"] ::selection {
+  background-color: var(--space-blue);
+  color: white;
+}
+
+/* ── Section alternating backgrounds ── */
+[data-scope="explainer-blackhole"] .section-tinted {
+  background-color: var(--bg-secondary);
+}
+
+/* ── Section divider ── */
+[data-scope="explainer-blackhole"] .section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border) 15%,
+    var(--space-blue) 50%,
+    var(--border) 85%,
+    transparent 100%
+  );
+  opacity: 0.4;
+}
+
+/* ── Pull quote ── */
+[data-scope="explainer-blackhole"] .pull-quote {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--space-blue);
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+[data-scope="explainer-blackhole"] .pull-quote::before {
+  content: "\201C";
+  position: absolute;
+  left: -0.2rem;
+  top: -0.6rem;
+  font-size: 3rem;
+  color: var(--space-blue);
+  opacity: 0.3;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+/* ── Oversized stat number ── */
+[data-scope="explainer-blackhole"] .stat-hero {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--space-blue), var(--amber));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Scrollbar-none utility ── */
+[data-scope="explainer-blackhole"] .scrollbar-none::-webkit-scrollbar { display: none; }
+[data-scope="explainer-blackhole"] .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }

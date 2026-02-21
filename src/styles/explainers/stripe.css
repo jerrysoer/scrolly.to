@@ -1,0 +1,184 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Stripe Payments Explainer styles (scoped to data-scope="explainer-stripe")
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Dark theme (default) ── */
+[data-scope="explainer-stripe"] {
+  --bg-primary: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --bg-secondary: #252525;
+  --text-primary: #E8E8E3;
+  --text-secondary: #A8A8A0;
+  --text-tertiary: #6A6A62;
+  --border: #333330;
+  --forward-blue: #5B9FE8;
+  --backward-orange: #FF8A5C;
+  --accent-purple: #9B7FD4;
+  --correct-green: #66BB6A;
+  --accent-amber: #FFB84D;
+  --stripe-purple: #7B73FF;
+  --sc-accent-primary: var(--stripe-purple);
+
+  /* Map to Tailwind tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-forward-blue: var(--forward-blue);
+  --color-backward-orange: var(--backward-orange);
+  --color-accent-purple: var(--accent-purple);
+  --color-correct-green: var(--correct-green);
+  --color-accent-amber: var(--accent-amber);
+  --color-stripe-purple: var(--stripe-purple);
+
+  --font-heading: "Newsreader", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* ── Light theme override ── */
+[data-scope="explainer-stripe"][data-theme="light"] {
+  --bg-primary: #FAFAF8;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #F0EFEC;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #8A8A82;
+  --border: #E0DED8;
+  --forward-blue: #4A90D9;
+  --backward-orange: #E8734A;
+  --accent-purple: #7C5CBF;
+  --correct-green: #4CAF50;
+  --accent-amber: #F5A623;
+  --stripe-purple: #635BFF;
+}
+
+/* ── Section heading styles ── */
+[data-scope="explainer-stripe"] .stripe-section-number {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--stripe-purple);
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
+
+[data-scope="explainer-stripe"] .stripe-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.875rem, 4vw, 3rem);
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+[data-scope="explainer-stripe"] .stripe-section-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 42rem;
+}
+
+/* ── Animations ── */
+@keyframes stripeFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes stripeFadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes stripeShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+[data-scope="explainer-stripe"] .animate-fade-in {
+  animation: stripeFadeIn 0.5s ease-out forwards;
+}
+
+[data-scope="explainer-stripe"] .animate-fade-in-up {
+  animation: stripeFadeInUp 0.6s ease-out forwards;
+}
+
+[data-scope="explainer-stripe"] .animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 25%,
+    rgba(99, 91, 255, 0.15) 50%,
+    transparent 75%
+  );
+  background-size: 200% 100%;
+  animation: stripeShimmer 2s ease-in-out infinite;
+}
+
+/* ── Section dividers ── */
+[data-scope="explainer-stripe"] .stripe-divider {
+  height: 1px;
+  width: 100%;
+  background-color: var(--border);
+}
+
+/* ── Code block styling ── */
+[data-scope="explainer-stripe"] .key {
+  color: #89b4fa;
+}
+
+[data-scope="explainer-stripe"] .string {
+  color: #a6e3a1;
+}
+
+[data-scope="explainer-stripe"] .number {
+  color: #fab387;
+}
+
+[data-scope="explainer-stripe"] .boolean {
+  color: #f38ba8;
+}
+
+[data-scope="explainer-stripe"] .null {
+  color: #6c7086;
+}
+
+/* ── Scrollbar styling ── */
+[data-scope="explainer-stripe"] ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+[data-scope="explainer-stripe"] ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+[data-scope="explainer-stripe"] ::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+[data-scope="explainer-stripe"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ── Selection ── */
+[data-scope="explainer-stripe"] ::selection {
+  background: rgba(99, 91, 255, 0.3);
+  color: var(--text-primary);
+}
+
+/* ── Reading Progress Bar ── */
+[data-scope="explainer-stripe"] .progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--stripe-purple), var(--forward-blue));
+  z-index: 9998;
+  transition: width 0.1s linear;
+}

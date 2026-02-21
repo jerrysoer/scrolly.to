@@ -416,6 +416,611 @@ export const explainers: Record<string, ExplainerConfig> = {
     component: () =>
       import("@/components/explainers/fractions/ExplainerApp"),
   },
+
+  // ── Batch 3: /learn (link swap) ──
+
+  "fall-into-black-hole": {
+    slug: "fall-into-black-hole",
+    section: "learn",
+    title: "Fall Into a Black Hole",
+    description:
+      "If you fell into a black hole, you'd be fine. The problem is everyone else's perspective. An interactive journey past the event horizon. Built with Scrolly.",
+    ogDescription:
+      "If you fell into a black hole, you'd be fine. The problem is everyone else's perspective.",
+    keywords: [
+      "black hole",
+      "event horizon",
+      "spaghettification",
+      "time dilation",
+      "Hawking radiation",
+      "singularity",
+      "interactive explainer",
+      "scrollytelling",
+    ],
+    category: "Space",
+    scopeName: "explainer-blackhole",
+    themeKey: "blackhole-theme",
+    defaultTheme: "dark",
+    datePublished: "2025-12-15",
+    fonts: "education",
+    faqs: [
+      {
+        question: "What happens when you cross the event horizon?",
+        answer:
+          "From your perspective, nothing special — you wouldn't even notice. But from an outside observer's perspective, you'd appear to freeze at the event horizon, slowly redshifting until you fade from view.",
+      },
+      {
+        question: "What is spaghettification?",
+        answer:
+          "Spaghettification is the stretching of objects into long thin shapes in a very strong gravitational field. The gravity at your feet is significantly stronger than at your head, pulling you apart like spaghetti.",
+      },
+      {
+        question: "What is Hawking radiation?",
+        answer:
+          "Hawking radiation is thermal radiation predicted to be emitted by black holes due to quantum effects near the event horizon. It causes black holes to slowly evaporate over immense timescales.",
+      },
+    ],
+    component: () =>
+      import("@/components/explainers/blackhole/ExplainerApp"),
+  },
+
+  "roller-coaster-physics": {
+    slug: "roller-coaster-physics",
+    section: "learn",
+    title: "Roller Coaster Physics",
+    description:
+      "At the top of a loop you're upside down at 60 mph with nothing holding you in but physics. Here's exactly why that's enough. Built with Scrolly.",
+    ogDescription:
+      "At the top of a loop you're upside down at 60 mph with nothing holding you in but physics. Here's exactly why that's enough.",
+    keywords: [
+      "roller coaster physics",
+      "centripetal force",
+      "potential energy",
+      "kinetic energy",
+      "g-force",
+      "loop physics",
+      "interactive explainer",
+      "scrollytelling",
+    ],
+    category: "Physics",
+    scopeName: "explainer-coaster",
+    themeKey: "coaster-theme",
+    defaultTheme: "dark",
+    datePublished: "2025-12-20",
+    fonts: "education",
+    faqs: [
+      {
+        question: "Why don't you fall out at the top of a loop?",
+        answer:
+          "At the top of a loop, centripetal acceleration pushes you toward the center of the loop (downward). As long as the coaster moves fast enough, this inward force exceeds gravity, keeping you pressed into your seat.",
+      },
+      {
+        question: "What is a g-force?",
+        answer:
+          "A g-force is a measurement of acceleration relative to gravity. 1g is normal gravity. At 2g you feel twice your weight. Roller coasters typically reach 3-6g in tight turns and loops.",
+      },
+    ],
+    component: () =>
+      import("@/components/explainers/coaster/ExplainerApp"),
+  },
+
+  "how-wifi-works": {
+    slug: "how-wifi-works",
+    section: "learn",
+    title: "How WiFi Works",
+    description:
+      "WiFi is just invisible radio waves passing through your walls at the speed of light. Here's how your router actually turns cat videos into waves — and back again. Built with Scrolly.",
+    ogDescription:
+      "Your router is a radio station. Your phone is a decoder. Here's how cat videos become invisible waves.",
+    keywords: [
+      "WiFi",
+      "wireless networking",
+      "radio waves",
+      "2.4 GHz",
+      "5 GHz",
+      "router",
+      "electromagnetic spectrum",
+      "interactive explainer",
+      "scrollytelling",
+    ],
+    category: "Technology",
+    scopeName: "explainer-wifi",
+    themeKey: "wifi-theme",
+    defaultTheme: "dark",
+    datePublished: "2025-12-10",
+    fonts: "education",
+    faqs: [
+      {
+        question: "What is the difference between 2.4 GHz and 5 GHz WiFi?",
+        answer:
+          "2.4 GHz has longer range and better wall penetration but slower speeds and more interference. 5 GHz is faster with less interference but shorter range and weaker wall penetration.",
+      },
+      {
+        question: "How does a WiFi router actually work?",
+        answer:
+          "A router converts digital data into radio waves using modulation. It encodes 1s and 0s as changes in the wave's amplitude, frequency, or phase. Your device's antenna picks up these waves and decodes them back into data.",
+      },
+    ],
+    component: () =>
+      import("@/components/explainers/wifi/ExplainerApp"),
+  },
+
+  "why-ai-hallucinate": {
+    slug: "why-ai-hallucinate",
+    section: "learn",
+    title: "Why Do AIs Hallucinate?",
+    description:
+      "An interactive exploration of why AI language models confidently state false information — from token prediction mechanics to the 2023 lawyer case that shocked the legal world. Built with Scrolly.",
+    ogDescription:
+      "From token prediction to the lawyer who cited six fake cases — why AI confidently states false information.",
+    keywords: [
+      "AI hallucination",
+      "LLM",
+      "language model",
+      "ChatGPT",
+      "hallucination",
+      "artificial intelligence",
+      "interactive explainer",
+    ],
+    category: "AI",
+    scopeName: "explainer-hallucinate",
+    themeKey: "hallucinate-theme",
+    defaultTheme: "light",
+    datePublished: "2025-11-15",
+    fonts: "education",
+    faqs: [
+      {
+        question: "Why do AI models hallucinate?",
+        answer:
+          "AI language models predict the most likely next token based on patterns in training data. They don't 'know' facts — they generate plausible-sounding text. When the training data is sparse or ambiguous, the model fills gaps with confident-sounding but incorrect information.",
+      },
+      {
+        question: "Can AI hallucinations be eliminated?",
+        answer:
+          "Not entirely with current architectures. Techniques like retrieval-augmented generation (RAG), chain-of-thought prompting, and human feedback help reduce hallucinations, but the fundamental prediction mechanism means some degree of confabulation is inherent.",
+      },
+    ],
+    component: () =>
+      import("@/components/explainers/hallucinate/ExplainerApp"),
+  },
+
+  "airline-credit-card-money": {
+    slug: "airline-credit-card-money",
+    section: "learn",
+    title: "Airline Credit Card Money",
+    description:
+      "An interactive exploration of how airline loyalty programs became worth more than the airlines themselves — and why your miles are really an interest-free loan. Built with Scrolly.",
+    ogDescription:
+      "How airline loyalty programs became worth more than the airlines themselves — and why your miles are an interest-free loan.",
+    keywords: [
+      "airline loyalty programs",
+      "MileagePlus valuation",
+      "credit card miles",
+      "airline revenue",
+      "interactive explainer",
+      "scrollytelling",
+      "frequent flyer miles",
+    ],
+    category: "Business",
+    scopeName: "explainer-airline",
+    themeKey: "airline-theme",
+    defaultTheme: "dark",
+    datePublished: "2025-11-20",
+    fonts: "dispatch",
+    faqs: [
+      {
+        question: "Are airline loyalty programs worth more than the airlines?",
+        answer:
+          "Yes. United's MileagePlus program was valued at $22 billion — more than the airline itself. Delta's SkyMiles and American's AAdvantage show similar valuations. The loyalty programs are the real business; flying planes is almost a loss leader.",
+      },
+      {
+        question: "Why are miles essentially an interest-free loan?",
+        answer:
+          "When you earn miles, the airline books future liability. You gave them money (via credit card spend) and they gave you a promise of future travel. Until you redeem, they hold your money interest-free — often for years.",
+      },
+    ],
+    component: () =>
+      import("@/components/explainers/airline/ExplainerApp"),
+  },
+
+  "gravity-explainer": {
+    slug: "gravity-explainer",
+    section: "learn",
+    title: "What Is Gravity?",
+    description:
+      "An interactive exploration of gravity — from Newton's apple to Einstein's spacetime fabric. Why things fall, how orbits work, and what we still don't know. Built with Scrolly.",
+    ogDescription:
+      "From Newton's apple to Einstein's spacetime fabric — why things fall, how orbits work, and what we still don't know.",
+    keywords: [
+      "gravity",
+      "general relativity",
+      "spacetime",
+      "Newton",
+      "Einstein",
+      "orbits",
+      "gravitational waves",
+      "interactive explainer",
+    ],
+    category: "Physics",
+    scopeName: "explainer-gravity",
+    themeKey: "gravity-theme",
+    defaultTheme: "light",
+    datePublished: "2025-11-10",
+    fonts: "education",
+    faqs: [
+      {
+        question: "What causes gravity?",
+        answer:
+          "According to Einstein's general relativity, massive objects bend spacetime around them. What we perceive as gravity is actually objects following the curved geometry of spacetime. The Earth doesn't 'pull' you — the space around it is curved, and you follow that curve.",
+      },
+      {
+        question: "Why is there no quantum theory of gravity?",
+        answer:
+          "Gravity is incredibly weak compared to the other fundamental forces, making quantum gravitational effects nearly impossible to measure. The math of general relativity (smooth spacetime) and quantum mechanics (discrete particles) are fundamentally incompatible at the Planck scale.",
+      },
+    ],
+    component: () =>
+      import("@/components/explainers/gravity/ExplainerApp"),
+  },
+
+  // ── Batch 4: New /learn explainers ──
+
+  "electoral-college-explainer": {
+    slug: "electoral-college-explainer",
+    section: "learn",
+    title: "How the Electoral College Works",
+    description:
+      "An interactive, scroll-driven exploration of the Electoral College — from 538 electors and winner-take-all rules to swing states, faithless electors, and the popular vote debate. Built with Scrolly.",
+    ogDescription:
+      "538 electors, winner-take-all rules, swing states, and the popular vote debate — how the Electoral College actually works.",
+    keywords: [
+      "Electoral College",
+      "US elections",
+      "presidential election",
+      "538 electors",
+      "swing states",
+      "interactive explainer",
+      "scrollytelling",
+    ],
+    category: "Civics",
+    scopeName: "explainer-electoral",
+    themeKey: "electoral-theme",
+    defaultTheme: "dark",
+    datePublished: "2025-10-15",
+    fonts: "education",
+    faqs: [
+      {
+        question: "Why does the US use the Electoral College?",
+        answer:
+          "The Electoral College was a compromise at the 1787 Constitutional Convention between electing the president by Congress and by popular vote. It balanced power between large and small states and between federal and state authority.",
+      },
+      {
+        question: "What is a faithless elector?",
+        answer:
+          "A faithless elector is a member of the Electoral College who doesn't vote for the candidate they were pledged to support. While rare, it has happened 165 times in US history. The Supreme Court ruled in 2020 that states can penalize or replace faithless electors.",
+      },
+    ],
+    component: () =>
+      import("@/components/explainers/electoral/ExplainerApp"),
+  },
+
+  "gps-explainer": {
+    slug: "gps-explainer",
+    section: "learn",
+    title: "How GPS Knows Where You Are",
+    description:
+      "An interactive exploration of how 24 satellites 20,200 km above Earth pinpoint your location to within a few meters. From atomic clocks to trilateration. Built with Scrolly.",
+    ogDescription:
+      "24 satellites, atomic clocks, and the speed of light — how GPS pinpoints your location to within a few meters.",
+    keywords: [
+      "GPS",
+      "satellite positioning",
+      "trilateration",
+      "atomic clocks",
+      "navigation",
+      "interactive explainer",
+    ],
+    category: "Technology",
+    scopeName: "explainer-gps",
+    themeKey: "gps-theme",
+    defaultTheme: "light",
+    datePublished: "2025-10-01",
+    fonts: "education",
+    faqs: [
+      {
+        question: "How many satellites does GPS need to find your location?",
+        answer:
+          "GPS needs signals from at least 4 satellites. Three satellites determine your position through trilateration (intersection of three spheres), and the fourth corrects for clock errors in your receiver.",
+      },
+      {
+        question: "Why does GPS need atomic clocks?",
+        answer:
+          "GPS measures distance by timing how long radio signals take to travel from satellite to receiver. Light travels about 30 cm per nanosecond, so even tiny clock errors cause large position errors. A 1-microsecond error means 300 meters of position error.",
+      },
+    ],
+    component: () =>
+      import("@/components/explainers/gps/ExplainerApp"),
+  },
+
+  // ── Batch 5: /explore explainers ──
+
+  "claude-code-skills-explainer": {
+    slug: "claude-code-skills-explainer",
+    section: "explore",
+    title: "How Claude Code Skills Work",
+    description:
+      "An interactive, scroll-driven exploration of how Claude Code skills turn simple slash commands into powerful AI workflows — from SKILL.md anatomy to custom skill creation. Built with Scrolly.",
+    ogDescription:
+      "How Claude Code skills turn simple slash commands into powerful AI workflows.",
+    keywords: [
+      "Claude Code",
+      "skills",
+      "slash commands",
+      "AI coding assistant",
+      "interactive explainer",
+      "SKILL.md",
+      "Claude CLI",
+    ],
+    category: "Developer Tools",
+    scopeName: "explainer-claude-skills",
+    themeKey: "claude-skills-theme",
+    defaultTheme: "light",
+    datePublished: "2025-11-01",
+    fonts: "default",
+    component: () =>
+      import("@/components/explainers/claude-skills/ExplainerApp"),
+  },
+
+  "git-worktrees-explainer": {
+    slug: "git-worktrees-explainer",
+    section: "explore",
+    title: "Git Worktrees",
+    description:
+      "An interactive, scroll-driven exploration of git worktrees — how to work on multiple branches simultaneously without stashing or cloning. Built with Scrolly.",
+    ogDescription:
+      "Work on multiple branches simultaneously without stashing or cloning — git worktrees explained.",
+    keywords: [
+      "git worktrees",
+      "git worktree tutorial",
+      "parallel branch development",
+      "git workflow",
+      "git commands",
+      "software development",
+      "version control",
+    ],
+    category: "Developer Tools",
+    scopeName: "explainer-worktrees",
+    themeKey: "worktrees-theme",
+    defaultTheme: "light",
+    datePublished: "2025-10-20",
+    fonts: "education",
+    component: () =>
+      import("@/components/explainers/worktrees/ExplainerApp"),
+  },
+
+  "microgpt-explainer": {
+    slug: "microgpt-explainer",
+    section: "explore",
+    title: "MicroGPT — The Complete Algorithm",
+    description:
+      "An interactive visual explainer of Andrej Karpathy's MicroGPT — walk through tokenization, embeddings, attention, backpropagation, and generation step by step. Built with Scrolly.",
+    ogDescription:
+      "Walk through tokenization, embeddings, attention, backpropagation, and generation step by step.",
+    keywords: [
+      "MicroGPT",
+      "GPT explainer",
+      "transformer explained",
+      "attention mechanism",
+      "backpropagation",
+      "tokenization",
+      "Andrej Karpathy",
+      "neural network",
+      "machine learning",
+      "interactive tutorial",
+    ],
+    category: "Machine Learning",
+    scopeName: "explainer-microgpt",
+    themeKey: "microgpt-theme",
+    defaultTheme: "light",
+    datePublished: "2025-09-15",
+    fonts: "dispatch",
+    component: () =>
+      import("@/components/explainers/microgpt/ExplainerApp"),
+  },
+
+  "oauth2-explainer": {
+    slug: "oauth2-explainer",
+    section: "explore",
+    title: "How OAuth 2.0 Actually Works",
+    description:
+      "An interactive, scroll-driven exploration of OAuth 2.0 — from the password-sharing problem to authorization codes, tokens, PKCE, and real-world flows. Built with Scrolly.",
+    ogDescription:
+      "From the password-sharing problem to authorization codes, tokens, PKCE, and real-world flows.",
+    keywords: [
+      "OAuth 2.0",
+      "authorization",
+      "PKCE",
+      "access tokens",
+      "interactive explainer",
+      "scrollytelling",
+      "authentication",
+    ],
+    category: "Security",
+    scopeName: "explainer-oauth2",
+    themeKey: "oauth2-theme",
+    defaultTheme: "dark",
+    datePublished: "2025-10-10",
+    fonts: "education",
+    component: () =>
+      import("@/components/explainers/oauth2/ExplainerApp"),
+  },
+
+  "openclaw-explainer": {
+    slug: "openclaw-explainer",
+    section: "explore",
+    title: "How OpenClaw Works",
+    description:
+      "An interactive, scroll-driven exploration of how OpenClaw turns your chat apps into an AI command center — from message to gateway to LLM to action. Built with Scrolly.",
+    ogDescription:
+      "How OpenClaw turns your chat apps into an AI command center.",
+    keywords: [
+      "OpenClaw",
+      "ClawdBot",
+      "AI agent",
+      "personal AI assistant",
+      "interactive explainer",
+      "scrollytelling",
+      "self-hosted AI",
+    ],
+    category: "AI Infrastructure",
+    scopeName: "explainer-openclaw",
+    themeKey: "openclaw-theme",
+    defaultTheme: "dark",
+    datePublished: "2025-09-20",
+    fonts: "dispatch",
+    component: () =>
+      import("@/components/explainers/openclaw/ExplainerApp"),
+  },
+
+  "precision-recall-explainer": {
+    slug: "precision-recall-explainer",
+    section: "explore",
+    title: "Precision vs Recall",
+    description:
+      "Learn the precision-recall tradeoff through interactive examples: spam filters, cancer screening, self-driving cars, fraud detection, and more. Includes confusion matrix visualizer and quiz. Built with Scrolly.",
+    ogDescription:
+      "The precision-recall tradeoff through interactive examples — spam filters, cancer screening, self-driving cars, and more.",
+    keywords: [
+      "precision recall",
+      "machine learning",
+      "classification metrics",
+      "confusion matrix",
+      "F1 score",
+      "data science",
+      "interactive tutorial",
+      "ML fundamentals",
+    ],
+    category: "Machine Learning",
+    scopeName: "explainer-precision-recall",
+    themeKey: "precision-recall-theme",
+    defaultTheme: "light",
+    datePublished: "2025-09-01",
+    fonts: "default",
+    component: () =>
+      import("@/components/explainers/precision-recall/ExplainerApp"),
+  },
+
+  "seed2-explainer": {
+    slug: "seed2-explainer",
+    section: "explore",
+    title: "Seed2.0 — ByteDance's Frontier LLM",
+    description:
+      "Explore how ByteDance's Seed2.0 matches GPT-5.2, Claude Opus, and Gemini-3-Pro at a fraction of the cost. Interactive benchmarks, pricing calculators, and capability breakdowns. Built with Scrolly.",
+    ogDescription:
+      "ByteDance's Seed2.0 matches frontier models at 1/10th the cost. Interactive benchmarks and pricing comparisons.",
+    keywords: [
+      "Seed2.0",
+      "ByteDance",
+      "LLM",
+      "AI model comparison",
+      "GPT-5.2 alternative",
+      "Claude Opus comparison",
+      "frontier model",
+      "AI pricing",
+      "interactive explainer",
+    ],
+    category: "AI Industry",
+    scopeName: "explainer-seed2",
+    themeKey: "seed2-theme",
+    defaultTheme: "dark",
+    datePublished: "2026-02-10",
+    fonts: "dispatch",
+    component: () =>
+      import("@/components/explainers/seed2/ExplainerApp"),
+  },
+
+  "stripe-payments-explainer": {
+    slug: "stripe-payments-explainer",
+    section: "explore",
+    title: "How Stripe Processes a Payment",
+    description:
+      "An interactive deep-dive into what happens in the ~2 seconds between clicking 'Pay' and seeing 'Payment Confirmed.' From card tokenization to bank settlement. Built with Scrolly.",
+    ogDescription:
+      "What happens in the ~2 seconds between clicking 'Pay' and seeing 'Payment Confirmed.'",
+    keywords: [
+      "Stripe",
+      "payment processing",
+      "card tokenization",
+      "bank settlement",
+      "PCI DSS",
+      "interactive explainer",
+      "fintech",
+    ],
+    category: "Fintech",
+    scopeName: "explainer-stripe",
+    themeKey: "stripe-theme",
+    defaultTheme: "light",
+    datePublished: "2025-08-15",
+    fonts: "dispatch",
+    component: () =>
+      import("@/components/explainers/stripe/ExplainerApp"),
+  },
+
+  "tiktok-algorithm-explainer": {
+    slug: "tiktok-algorithm-explainer",
+    section: "explore",
+    title: "How TikTok's Algorithm Works",
+    description:
+      "Explore how TikTok's recommendation algorithm learns your preferences in minutes. Interactive visualizations of signal weights, interest graphs, cold start mechanics, and filter bubble dynamics. Built with Scrolly.",
+    ogDescription:
+      "How TikTok's recommendation algorithm learns your preferences in minutes.",
+    keywords: [
+      "TikTok algorithm",
+      "recommendation system",
+      "For You page",
+      "interest graph",
+      "social media algorithm",
+      "content recommendation",
+      "machine learning",
+      "filter bubble",
+      "interactive explainer",
+    ],
+    category: "Algorithms",
+    scopeName: "explainer-tiktok",
+    themeKey: "tiktok-theme",
+    defaultTheme: "dark",
+    datePublished: "2025-09-10",
+    fonts: "dispatch",
+    component: () =>
+      import("@/components/explainers/tiktok/ExplainerApp"),
+  },
+
+  "tortoise-hare-explainer": {
+    slug: "tortoise-hare-explainer",
+    section: "explore",
+    title: "The Tortoise and the Hare",
+    description:
+      "An editorial, data-driven exploration of Aesop's classic fable. Interactive visualizations reveal what a 2,500-year-old story teaches about compounding, consistency, and the myth of talent. Built with Scrolly.",
+    ogDescription:
+      "What a 2,500-year-old fable teaches about compounding, consistency, and the myth of talent.",
+    keywords: [
+      "tortoise and hare",
+      "consistency",
+      "compounding",
+      "interactive fable",
+      "data visualization",
+      "atomic habits",
+      "kaizen",
+    ],
+    category: "Strategy",
+    scopeName: "explainer-tortoise-hare",
+    themeKey: "tortoise-hare-theme",
+    defaultTheme: "light",
+    datePublished: "2025-08-20",
+    fonts: "dispatch",
+    component: () =>
+      import("@/components/explainers/tortoise-hare/ExplainerApp"),
+  },
 };
 
 // ── Helpers ──

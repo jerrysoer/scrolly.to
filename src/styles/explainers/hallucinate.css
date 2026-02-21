@@ -1,0 +1,150 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Hallucinate Explainer styles (scoped to data-scope="explainer-hallucinate")
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Light theme (default) ── */
+[data-scope="explainer-hallucinate"] {
+  --bg-primary: #F5F7FA;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #EBF0F7;
+  --text-primary: #1A1A2E;
+  --text-secondary: #4A4A6A;
+  --text-tertiary: #8A8AA0;
+  --border: #D8DCE6;
+  --forward-blue: #4A90D9;
+  --accent-purple: #7C5CBF;
+  --hallucination-red: #EF4444;
+  --verified-green: #22C55E;
+  --accent-amber: #F59E0B;
+
+  /* Shared component tokens */
+  --accent-blue: #4A90D9;
+  --accent-red: #EF4444;
+  --accent-green: #22C55E;
+
+  /* Map to Tailwind tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-forward-blue: var(--forward-blue);
+  --color-accent-purple: var(--accent-purple);
+  --color-hallucination-red: var(--hallucination-red);
+  --color-verified-green: var(--verified-green);
+  --color-accent-amber: var(--accent-amber);
+}
+
+/* ── Dark theme ── */
+[data-theme="dark"] [data-scope="explainer-hallucinate"],
+[data-scope="explainer-hallucinate"][data-theme="dark"] {
+  --bg-primary: #0D0D1A;
+  --bg-card: #1A1A2E;
+  --bg-secondary: #252540;
+  --text-primary: #E8E8F0;
+  --text-secondary: #A8A8C0;
+  --text-tertiary: #6A6A82;
+  --border: #333350;
+  --forward-blue: #5B9FE8;
+  --accent-purple: #9B7FD4;
+  --hallucination-red: #F87171;
+  --verified-green: #4ADE80;
+  --accent-amber: #FFB84D;
+
+  --accent-blue: #5B9FE8;
+  --accent-red: #F87171;
+  --accent-green: #4ADE80;
+}
+
+/* ── Base ── */
+[data-scope="explainer-hallucinate"] {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Scrollbar Styling ── */
+[data-scope="explainer-hallucinate"] ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+[data-scope="explainer-hallucinate"] ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+[data-scope="explainer-hallucinate"] ::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+[data-scope="explainer-hallucinate"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ── Selection Styling ── */
+[data-scope="explainer-hallucinate"] ::selection {
+  background: var(--accent-purple);
+  color: #ffffff;
+}
+
+/* ── Animations ── */
+@keyframes hallucinate-fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hallucinate-rise-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hallucinate-pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74, 144, 217, 0); }
+  50% { box-shadow: 0 0 20px 4px rgba(74, 144, 217, 0.3); }
+}
+
+@keyframes hallucinate-slide-up {
+  from { opacity: 0; transform: translateY(60px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ── Section Fade-In ── */
+[data-scope="explainer-hallucinate"] .section-fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+[data-scope="explainer-hallucinate"] .section-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Stagger Items ── */
+[data-scope="explainer-hallucinate"] .stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+[data-scope="explainer-hallucinate"] .stagger-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-scope="explainer-hallucinate"] .stagger-item:nth-child(1) { transition-delay: 0ms; }
+[data-scope="explainer-hallucinate"] .stagger-item:nth-child(2) { transition-delay: 80ms; }
+[data-scope="explainer-hallucinate"] .stagger-item:nth-child(3) { transition-delay: 160ms; }
+[data-scope="explainer-hallucinate"] .stagger-item:nth-child(4) { transition-delay: 240ms; }
+[data-scope="explainer-hallucinate"] .stagger-item:nth-child(5) { transition-delay: 320ms; }
+[data-scope="explainer-hallucinate"] .stagger-item:nth-child(6) { transition-delay: 400ms; }
+[data-scope="explainer-hallucinate"] .stagger-item:nth-child(7) { transition-delay: 480ms; }
+[data-scope="explainer-hallucinate"] .stagger-item:nth-child(8) { transition-delay: 560ms; }

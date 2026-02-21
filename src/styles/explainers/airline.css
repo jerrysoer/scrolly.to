@@ -1,0 +1,186 @@
+/* ===================================================================
+   Airline Credit Card Money Explainer styles
+   (scoped to data-scope="explainer-airline")
+   Light-first: light theme is default, dark under [data-theme="dark"]
+   =================================================================== */
+
+/* ── Light theme (default) ── */
+[data-scope="explainer-airline"] {
+  --bg-primary: #FFF5E6;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #FDE8D0;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #8A8A82;
+  --border: #E0DED8;
+  --airline-blue: #2563EB;
+  --mile-gold: #D97706;
+  --revenue-green: #059669;
+  --danger-red: #DC2626;
+  --deep-navy: #1e3a5f;
+  --muted-slate: #94a3b8;
+
+  /* Map to Tailwind tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-airline-blue: var(--airline-blue);
+  --color-mile-gold: var(--mile-gold);
+  --color-revenue-green: var(--revenue-green);
+  --color-danger-red: var(--danger-red);
+  --color-deep-navy: var(--deep-navy);
+  --color-muted-slate: var(--muted-slate);
+}
+
+/* ── Dark theme override ── */
+[data-scope="explainer-airline"][data-theme="dark"] {
+  --bg-primary: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --bg-secondary: #252525;
+  --text-primary: #E8E8E3;
+  --text-secondary: #A8A8A0;
+  --text-tertiary: #6A6A62;
+  --border: #333330;
+  --airline-blue: #5B9FE8;
+  --mile-gold: #FFB84D;
+  --revenue-green: #34D399;
+  --danger-red: #F87171;
+  --deep-navy: #1e3a5f;
+  --muted-slate: #64748b;
+}
+
+/* ── Selection ── */
+[data-scope="explainer-airline"] ::selection {
+  background-color: var(--airline-blue);
+  color: white;
+}
+
+/* ── Scrollbar ── */
+[data-scope="explainer-airline"] ::-webkit-scrollbar { width: 6px; }
+[data-scope="explainer-airline"] ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+[data-scope="explainer-airline"] ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+[data-scope="explainer-airline"] ::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+
+/* ── Reading Progress Bar ── */
+[data-scope="explainer-airline"] [data-progress-bar] {
+  background: linear-gradient(90deg, var(--airline-blue), var(--mile-gold));
+}
+
+/* ── Section number divider ── */
+[data-scope="explainer-airline"] .section-number-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+[data-scope="explainer-airline"] .section-number-divider::before,
+[data-scope="explainer-airline"] .section-number-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+[data-scope="explainer-airline"] .section-number-divider .number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  background: var(--bg-card);
+}
+
+/* ── Pull quote ── */
+[data-scope="explainer-airline"] .pull-quote {
+  position: relative;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-style: italic;
+  font-size: 1.35rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 32rem;
+  margin: 2rem auto;
+}
+
+/* ── Card glow interaction ── */
+[data-scope="explainer-airline"] .card-glow {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+[data-scope="explainer-airline"] .card-glow:hover {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--airline-blue) 20%, transparent);
+  border-color: color-mix(in srgb, var(--airline-blue) 40%, transparent);
+}
+
+/* ── Flow arrow animation ── */
+[data-scope="explainer-airline"] .flow-arrow {
+  animation: airline-flow-pulse 2s ease-in-out infinite;
+}
+[data-scope="explainer-airline"] .flow-arrow:nth-child(2) { animation-delay: 0.3s; }
+[data-scope="explainer-airline"] .flow-arrow:nth-child(3) { animation-delay: 0.6s; }
+[data-scope="explainer-airline"] .flow-arrow:nth-child(4) { animation-delay: 0.9s; }
+
+@keyframes airline-flow-pulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+/* ── Pulse glow for myth SVG ── */
+[data-scope="explainer-airline"] .airline-pulse-glow {
+  animation: airline-card-pulse 3s ease-in-out infinite;
+}
+
+@keyframes airline-card-pulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.25; }
+}
+
+/* ── Range slider thumb ── */
+[data-scope="explainer-airline"] .airline-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--airline-blue);
+  cursor: pointer;
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+[data-scope="explainer-airline"] .airline-range-slider::-moz-range-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--airline-blue);
+  cursor: pointer;
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Accordion animation ── */
+[data-scope="explainer-airline"] .accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease-out;
+}
+[data-scope="explainer-airline"] .accordion-content.open {
+  grid-template-rows: 1fr;
+}
+[data-scope="explainer-airline"] .accordion-content > div {
+  overflow: hidden;
+}

@@ -244,7 +244,7 @@ const CARDS: ExplainerCardData[] = [
     category: "Space",
     gradient: "from-[#020617] to-[#1e293b]",
     darkText: true,
-    url: "https://jerrysoer.github.io/fall-into-black-hole/",
+    url: "/learn/fall-into-black-hole",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         {[[12,15],[140,10],[25,100],[135,95],[70,8],[150,55]].map(([x,y],i)=>(
@@ -263,7 +263,7 @@ const CARDS: ExplainerCardData[] = [
     desc: "At the top of a loop you're upside down at 60 mph with nothing holding you in but physics.",
     category: "Physics",
     gradient: "from-[#fefce8] to-[#fef08a]",
-    url: "https://jerrysoer.github.io/roller-coaster-physics/",
+    url: "/learn/roller-coaster-physics",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         <path d="M10 95 L10 25 Q10 15 20 15 Q30 15 30 25 L30 55 Q30 75 45 75 Q55 75 60 60 Q65 45 75 45 Q85 45 85 55 L85 65 Q85 80 100 80 Q110 80 115 70 Q120 60 130 60 Q140 60 140 68 L140 95" stroke="rgba(59,130,246,0.35)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
@@ -281,7 +281,7 @@ const CARDS: ExplainerCardData[] = [
     desc: "Your router is a radio station. Your phone is a decoder. Here's how cat videos become invisible waves.",
     category: "Technology",
     gradient: "from-[#eff6ff] to-[#dbeafe]",
-    url: "https://jerrysoer.github.io/how-wifi-works/",
+    url: "/learn/how-wifi-works",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         <rect x="70" y="65" width="20" height="25" rx="3" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.3)" strokeWidth="1.5" />
@@ -302,7 +302,7 @@ const CARDS: ExplainerCardData[] = [
     desc: "From token prediction to the lawyer who cited six fake cases — why AI confidently states false information.",
     category: "AI",
     gradient: "from-[#eef2ff] to-[#e0e7ff]",
-    url: "https://jerrysoer.github.io/why-ai-hallucinate/",
+    url: "/learn/why-ai-hallucinate",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         {/* Brain outline */}
@@ -338,7 +338,7 @@ const CARDS: ExplainerCardData[] = [
     desc: "How airline loyalty programs became worth more than the airlines themselves — and why your miles are an interest-free loan.",
     category: "Business",
     gradient: "from-[#fef3c7] to-[#fde68a]",
-    url: "https://jerrysoer.github.io/airline-credit-card-money/",
+    url: "/learn/airline-credit-card-money",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         {/* Credit card */}
@@ -366,7 +366,7 @@ const CARDS: ExplainerCardData[] = [
     category: "Physics",
     gradient: "from-[#020617] to-[#1e293b]",
     darkText: true,
-    url: "https://jerrysoer.github.io/gravity-explainer",
+    url: "/learn/gravity-explainer",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         {[[15,12],[42,22],[130,15],[145,72],[22,95],[98,8],[62,108]].map(([x,y],i)=>(
@@ -419,6 +419,65 @@ const CARDS: ExplainerCardData[] = [
         <circle cx="142" cy="67" r="4" fill="rgba(239,68,68,0.15)" stroke="rgba(239,68,68,0.3)" strokeWidth="0.8" />
         {/* 6-3 vote label */}
         <text x="132" y="92" textAnchor="middle" fontSize="10" fill="rgba(226,232,240,0.45)" fontFamily="system-ui" fontWeight="700">6–3</text>
+      </svg>
+    ),
+  },
+  {
+    title: "How the Electoral College Works",
+    desc: "538 electors, winner-take-all rules, swing states, and the popular vote debate — how America actually picks a president.",
+    category: "Civics",
+    gradient: "from-[#1e293b] to-[#334155]",
+    darkText: true,
+    url: "/learn/electoral-college-explainer",
+    svg: (
+      <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
+        {/* US map outline hint */}
+        <path d="M25,50 L40,42 L60,38 L80,42 L100,38 L120,42 L135,48 L130,60 L120,65 L100,62 L80,68 L60,65 L40,60 Z" fill="rgba(96,165,250,0.08)" stroke="rgba(96,165,250,0.2)" strokeWidth="0.8" />
+        {/* Red and blue state dots */}
+        <circle cx="45" cy="52" r="4" fill="rgba(239,68,68,0.4)" />
+        <circle cx="70" cy="48" r="5" fill="rgba(59,130,246,0.4)" />
+        <circle cx="95" cy="50" r="3.5" fill="rgba(239,68,68,0.35)" />
+        <circle cx="115" cy="52" r="4.5" fill="rgba(59,130,246,0.35)" />
+        <circle cx="80" cy="58" r="6" fill="rgba(168,85,247,0.3)" stroke="rgba(168,85,247,0.4)" strokeWidth="1" />
+        {/* 538 label */}
+        <text x="80" y="90" textAnchor="middle" fontSize="14" fill="rgba(226,232,240,0.5)" fontFamily="system-ui" fontWeight="700">538</text>
+        <text x="80" y="102" textAnchor="middle" fontSize="7" fill="rgba(226,232,240,0.3)" fontFamily="system-ui">electors</text>
+      </svg>
+    ),
+  },
+  {
+    title: "How GPS Knows Where You Are",
+    desc: "24 satellites, atomic clocks, and the speed of light — how GPS pinpoints your location to within a few meters.",
+    category: "Technology",
+    gradient: "from-[#ecfdf5] to-[#d1fae5]",
+    url: "/learn/gps-explainer",
+    svg: (
+      <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
+        {/* Satellites */}
+        <g transform="translate(40,20)">
+          <rect x="-4" y="-2" width="8" height="4" rx="1" fill="rgba(34,197,94,0.4)" />
+          <line x1="-10" y1="0" x2="-4" y2="0" stroke="rgba(34,197,94,0.3)" strokeWidth="1" />
+          <line x1="4" y1="0" x2="10" y2="0" stroke="rgba(34,197,94,0.3)" strokeWidth="1" />
+        </g>
+        <g transform="translate(120,25)">
+          <rect x="-4" y="-2" width="8" height="4" rx="1" fill="rgba(34,197,94,0.35)" />
+          <line x1="-10" y1="0" x2="-4" y2="0" stroke="rgba(34,197,94,0.25)" strokeWidth="1" />
+          <line x1="4" y1="0" x2="10" y2="0" stroke="rgba(34,197,94,0.25)" strokeWidth="1" />
+        </g>
+        <g transform="translate(80,15)">
+          <rect x="-4" y="-2" width="8" height="4" rx="1" fill="rgba(34,197,94,0.3)" />
+          <line x1="-10" y1="0" x2="-4" y2="0" stroke="rgba(34,197,94,0.2)" strokeWidth="1" />
+          <line x1="4" y1="0" x2="10" y2="0" stroke="rgba(34,197,94,0.2)" strokeWidth="1" />
+        </g>
+        {/* Signal lines to ground */}
+        <line x1="40" y1="22" x2="80" y2="75" stroke="rgba(34,197,94,0.15)" strokeWidth="1" strokeDasharray="4 3" />
+        <line x1="120" y1="27" x2="80" y2="75" stroke="rgba(34,197,94,0.15)" strokeWidth="1" strokeDasharray="4 3" />
+        <line x1="80" y1="17" x2="80" y2="75" stroke="rgba(34,197,94,0.15)" strokeWidth="1" strokeDasharray="4 3" />
+        {/* Location pin */}
+        <path d="M80 75 Q80 65 74 62 A8 8 0 1 1 86 62 Q80 65 80 75 Z" fill="rgba(239,68,68,0.4)" />
+        <circle cx="80" cy="58" r="3" fill="rgba(239,68,68,0.6)" />
+        {/* Ground */}
+        <path d="M20 95 Q50 88 80 92 Q110 96 140 90" stroke="rgba(34,197,94,0.15)" strokeWidth="1" fill="none" />
       </svg>
     ),
   },

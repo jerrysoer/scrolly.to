@@ -1,0 +1,227 @@
+/* ===================================================================
+   How WiFi Works Explainer styles
+   (scoped to data-scope="explainer-wifi")
+   Light-first: light theme is default, dark under [data-theme="dark"]
+   =================================================================== */
+
+/* -- Light theme (default) -- */
+[data-scope="explainer-wifi"] {
+  --bg-primary: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #F1F5F9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+  --border: #e2e8f0;
+  --signal-blue: #3b82f6;
+  --amber: #f59e0b;
+  --success-green: #22c55e;
+
+  /* Shared component tokens */
+  --accent-blue: #3b82f6;
+  --accent-red: #ef4444;
+  --accent-amber: #f59e0b;
+  --accent-green: #22c55e;
+
+  /* Map to Tailwind tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-red: var(--accent-red);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-green: var(--accent-green);
+}
+
+/* -- Dark theme override -- */
+[data-scope="explainer-wifi"][data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-card: #1e293b;
+  --bg-secondary: #0f172a;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --border: #334155;
+  --signal-blue: #60a5fa;
+  --amber: #fbbf24;
+  --success-green: #4ade80;
+
+  /* Shared component tokens (dark) */
+  --accent-blue: #60a5fa;
+  --accent-red: #f87171;
+  --accent-amber: #fbbf24;
+  --accent-green: #4ade80;
+}
+
+/* -- Reading Progress Bar -- */
+[data-scope="explainer-wifi"] .progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--signal-blue), var(--amber));
+  z-index: 9998;
+  transition: width 0.1s linear;
+}
+
+/* -- Section alternating backgrounds -- */
+[data-scope="explainer-wifi"] .section-tinted {
+  background-color: var(--bg-secondary);
+}
+
+/* -- Section divider -- */
+[data-scope="explainer-wifi"] .section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border) 15%,
+    var(--signal-blue) 50%,
+    var(--border) 85%,
+    transparent 100%
+  );
+  opacity: 0.4;
+}
+
+/* -- Pull quote -- */
+[data-scope="explainer-wifi"] .pull-quote {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--signal-blue);
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+[data-scope="explainer-wifi"] .pull-quote::before {
+  content: "\201C";
+  position: absolute;
+  left: -0.2rem;
+  top: -0.6rem;
+  font-size: 3rem;
+  color: var(--signal-blue);
+  opacity: 0.3;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+/* -- Oversized stat number -- */
+[data-scope="explainer-wifi"] .stat-hero {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--signal-blue), var(--amber));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* -- Selection color -- */
+[data-scope="explainer-wifi"] ::selection {
+  background-color: var(--signal-blue);
+  color: white;
+}
+
+/* -- Scrollbar styling -- */
+[data-scope="explainer-wifi"] ::-webkit-scrollbar { width: 6px; }
+[data-scope="explainer-wifi"] ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+[data-scope="explainer-wifi"] ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+[data-scope="explainer-wifi"] ::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+
+/* -- Range input styling -- */
+[data-scope="explainer-wifi"] input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-secondary);
+  outline: none;
+}
+
+[data-scope="explainer-wifi"] input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--signal-blue);
+  cursor: pointer;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+[data-scope="explainer-wifi"] input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--signal-blue);
+  cursor: pointer;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* -- Scrollbar-none utility -- */
+[data-scope="explainer-wifi"] .scrollbar-none::-webkit-scrollbar { display: none; }
+[data-scope="explainer-wifi"] .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* -- Focus visible -- */
+[data-scope="explainer-wifi"] :focus-visible {
+  outline: 2px solid var(--signal-blue);
+  outline-offset: 2px;
+}
+
+/* -- Keyframes -- */
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rise-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+@keyframes signal-pulse {
+  0% { transform: scale(0.3); opacity: 0.8; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes wave-propagate {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0deg) scale(0); opacity: 0; }
+  15% { opacity: 1; transform: translateY(0) rotate(45deg) scale(1); }
+  100% { transform: translateY(130px) rotate(720deg) scale(0.3); opacity: 0; }
+}

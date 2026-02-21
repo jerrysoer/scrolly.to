@@ -1,0 +1,194 @@
+/* ===================================================================
+   Seed2.0 Explainer styles
+   (scoped to data-scope="explainer-seed2")
+   Light-first: light default, dark under [data-theme="dark"]
+   =================================================================== */
+
+/* -- Light theme (warm cream, default) -- */
+[data-scope="explainer-seed2"] {
+  --bg-primary: #FFF5E6;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #FDE8D0;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #8A8A82;
+  --border: #E0DED8;
+  --forward-blue: #4A90D9;
+  --backward-orange: #E8734A;
+  --accent-purple: #7C5CBF;
+  --correct-green: #4CAF50;
+  --accent-amber: #F5A623;
+
+  /* Shared component tokens */
+  --accent-blue: var(--forward-blue);
+  --accent-red: var(--backward-orange);
+  --accent-green: var(--correct-green);
+
+  /* Map to Tailwind tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-forward-blue: var(--forward-blue);
+  --color-backward-orange: var(--backward-orange);
+  --color-accent-purple: var(--accent-purple);
+  --color-correct-green: var(--correct-green);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-red: var(--accent-red);
+  --color-accent-green: var(--accent-green);
+
+  font-family: 'DM Sans', var(--font-inter), system-ui, sans-serif;
+}
+
+/* -- Dark theme override -- */
+[data-scope="explainer-seed2"][data-theme="dark"] {
+  --bg-primary: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --bg-secondary: #252525;
+  --text-primary: #E8E8E3;
+  --text-secondary: #A8A8A0;
+  --text-tertiary: #6A6A62;
+  --border: #333330;
+  --forward-blue: #5B9FE8;
+  --backward-orange: #FF8A5C;
+  --accent-purple: #9B7FD4;
+  --correct-green: #66BB6A;
+  --accent-amber: #FFB84D;
+  --accent-blue: var(--forward-blue);
+  --accent-red: var(--backward-orange);
+  --accent-green: var(--correct-green);
+}
+
+/* -- Keyframes -- */
+@keyframes seed2-fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes seed2-rise-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes seed2-pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes seed2-slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes seed2-flow-pulse {
+  0% { opacity: 0.3; transform: translateX(-4px); }
+  50% { opacity: 1; transform: translateX(4px); }
+  100% { opacity: 0.3; transform: translateX(-4px); }
+}
+
+@keyframes seed2-scroll-reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* -- Section entrance animation -- */
+[data-scope="explainer-seed2"] .section-fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+[data-scope="explainer-seed2"] .section-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* -- Animate utilities -- */
+[data-scope="explainer-seed2"] .animate-fade-in {
+  animation: seed2-fade-in 0.6s ease-out both;
+}
+
+[data-scope="explainer-seed2"] .animate-rise-up {
+  animation: seed2-rise-up 0.8s ease-out both;
+}
+
+/* -- Base styles -- */
+[data-scope="explainer-seed2"] {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* -- Atmospheric grain texture -- */
+[data-scope="explainer-seed2"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* -- Scrollbar styling -- */
+[data-scope="explainer-seed2"] ::-webkit-scrollbar { width: 6px; }
+[data-scope="explainer-seed2"] ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+[data-scope="explainer-seed2"] ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+[data-scope="explainer-seed2"] ::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+
+/* -- Range input styling -- */
+[data-scope="explainer-seed2"] input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-secondary);
+  outline: none;
+}
+
+[data-scope="explainer-seed2"] input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--forward-blue);
+  cursor: pointer;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+[data-scope="explainer-seed2"] input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--forward-blue);
+  cursor: pointer;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* -- Flow animation -- */
+[data-scope="explainer-seed2"] .flow-pulse {
+  animation: seed2-flow-pulse 2s ease-in-out infinite;
+}
+
+/* -- Selection color -- */
+[data-scope="explainer-seed2"] ::selection {
+  background-color: var(--forward-blue);
+  color: white;
+}
+
+/* -- Focus visible -- */
+[data-scope="explainer-seed2"] :focus-visible {
+  outline: 2px solid var(--forward-blue);
+  outline-offset: 2px;
+}

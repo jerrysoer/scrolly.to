@@ -1,0 +1,218 @@
+/* ═══════════════════════════════════════════════════════════════════
+   OpenClaw Explainer styles (scoped to data-scope="explainer-openclaw")
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Dark theme (default) ── */
+[data-scope="explainer-openclaw"] {
+  --bg-primary: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --bg-secondary: #252525;
+  --text-primary: #E8E8E3;
+  --text-secondary: #A8A8A0;
+  --text-tertiary: #6A6A62;
+  --border: #333330;
+  --forward-blue: #5B9FE8;
+  --backward-orange: #FF8A5C;
+  --accent-purple: #9B7FD4;
+  --correct-green: #66BB6A;
+  --accent-amber: #FFB84D;
+  --accent-red: #FC8181;
+  --accent-blue: #5B9FE8;
+
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-forward-blue: var(--forward-blue);
+  --color-backward-orange: var(--backward-orange);
+  --color-accent-purple: var(--accent-purple);
+  --color-correct-green: var(--correct-green);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-red: var(--accent-red);
+  --color-accent-blue: var(--accent-blue);
+}
+
+/* ── Light theme override ── */
+[data-scope="explainer-openclaw"][data-theme="light"] {
+  --bg-primary: #FFF8F0;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #FDE8D0;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #6B6B63;
+  --border: #C8C5BD;
+  --forward-blue: #4A90D9;
+  --backward-orange: #E8734A;
+  --accent-purple: #7C5CBF;
+  --correct-green: #4CAF50;
+  --accent-amber: #F5A623;
+  --accent-red: #E53E3E;
+  --accent-blue: #4A90D9;
+}
+
+/* ── Selection ── */
+[data-scope="explainer-openclaw"] ::selection {
+  background-color: var(--forward-blue);
+  color: white;
+}
+
+/* ── Subtle Background Texture ── */
+[data-scope="explainer-openclaw"] .bg-noise::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Scrollytelling Step Transitions ── */
+[data-scope="explainer-openclaw"] .scrolly-step {
+  opacity: 0.3;
+  transform: translateY(8px);
+  transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+              transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+[data-scope="explainer-openclaw"] .scrolly-step.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Diagram Element Transitions ── */
+[data-scope="explainer-openclaw"] .diagram-node {
+  transition: opacity 0.4s ease, transform 0.4s ease, fill 0.4s ease;
+}
+
+[data-scope="explainer-openclaw"] .diagram-connection {
+  transition: stroke-dashoffset 0.8s ease, opacity 0.4s ease;
+}
+
+[data-scope="explainer-openclaw"] .diagram-label {
+  transition: opacity 0.3s ease;
+}
+
+/* ── Progressive Highlight ── */
+[data-scope="explainer-openclaw"] .highlight-stagger > * {
+  opacity: 0.2;
+  transition: opacity 0.15s ease;
+}
+
+[data-scope="explainer-openclaw"] .highlight-stagger > *.highlighted {
+  opacity: 1;
+}
+
+/* ── Jargon Term ── */
+[data-scope="explainer-openclaw"] .jargon-term {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--text-tertiary);
+  text-underline-offset: 3px;
+  cursor: help;
+  position: relative;
+}
+
+/* ── Why Care Callout ── */
+[data-scope="explainer-openclaw"] .why-care {
+  border-left: 3px solid var(--forward-blue);
+  padding-left: 16px;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-top: 16px;
+}
+
+/* ── Timeline connector ── */
+[data-scope="explainer-openclaw"] .timeline-line {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--forward-blue), var(--accent-purple), var(--backward-orange));
+}
+
+/* ── Custom Slider Thumb ── */
+[data-scope="explainer-openclaw"] input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+  outline: none;
+}
+
+[data-scope="explainer-openclaw"] input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--forward-blue);
+  cursor: pointer;
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+[data-scope="explainer-openclaw"] input[type="range"]::-moz-range-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--forward-blue);
+  cursor: pointer;
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ── Keyframes ── */
+@keyframes openclaw-fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes openclaw-rise-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes openclaw-pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes openclaw-ping-slow {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes openclaw-bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+[data-scope="explainer-openclaw"] .animate-fade-in {
+  animation: openclaw-fade-in 0.6s ease-out both;
+}
+
+[data-scope="explainer-openclaw"] .animate-rise-up {
+  animation: openclaw-rise-up 0.8s ease-out both;
+}
+
+[data-scope="explainer-openclaw"] .animate-pulse-glow {
+  animation: openclaw-pulse-glow 2s ease-in-out infinite;
+}
+
+[data-scope="explainer-openclaw"] .animate-ping-slow {
+  animation: openclaw-ping-slow 3s ease-in-out infinite;
+}
+
+[data-scope="explainer-openclaw"] .animate-bounce-down {
+  animation: openclaw-bounce-down 2s ease-in-out infinite;
+}
