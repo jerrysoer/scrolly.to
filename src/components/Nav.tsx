@@ -20,12 +20,6 @@ export default function Nav() {
             Learn
           </a>
           <a
-            href="#open-source"
-            className="hidden text-sm text-text-muted transition-colors hover:text-text sm:block"
-          >
-            Open Source
-          </a>
-          <a
             href="https://github.com/jerrysoer/scrolly.to"
             target="_blank"
             rel="noopener noreferrer"

@@ -17,12 +17,6 @@ export default function Footer() {
             Explore
           </a>
           <a
-            href="#open-source"
-            className="text-sm text-text-muted transition-colors hover:text-text"
-          >
-            Open Source
-          </a>
-          <a
             href="https://github.com/jerrysoer/scrolly.to"
             target="_blank"
             rel="noopener noreferrer"
