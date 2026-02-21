@@ -9,6 +9,12 @@ import TimeHeatmap from "@/components/dashboard/analytics/TimeHeatmap";
 import ActivityFeed from "@/components/dashboard/analytics/ActivityFeed";
 import WaitlistCard from "@/components/dashboard/analytics/WaitlistCard";
 import AnalyticsDatePicker from "@/components/dashboard/analytics/AnalyticsDatePicker";
+import CompletionRate from "@/components/dashboard/analytics/CompletionRate";
+import ReturnVisitors from "@/components/dashboard/analytics/ReturnVisitors";
+import CampaignTable from "@/components/dashboard/analytics/CampaignTable";
+import ReadingQuality from "@/components/dashboard/analytics/ReadingQuality";
+import DayOfWeekBars from "@/components/dashboard/analytics/DayOfWeekBars";
+import ReferrerCategories from "@/components/dashboard/analytics/ReferrerCategories";
 
 export const revalidate = 300;
 
@@ -79,7 +85,7 @@ export default async function AnalyticsPage({
       </div>
 
       {/* Engagement row */}
-      <div className="grid grid-cols-3 gap-3 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
         <MetricCard
           label="Avg Duration"
           value={0}
@@ -96,6 +102,7 @@ export default async function AnalyticsPage({
           value={0}
           suffix={`${data.bounceRate}%`}
         />
+        <CompletionRate rate={data.completionRate} />
       </div>
 
       {/* Waitlist */}
@@ -119,7 +126,26 @@ export default async function AnalyticsPage({
         <ExplainerTable data={data.explainers} />
       </div>
 
-      {/* Two-column: traffic + devices */}
+      {/* Two-column: return visitors + reading quality */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+        <ReturnVisitors data={data.visitorBreakdown} />
+        <ReadingQuality data={data.readingQuality} />
+      </div>
+
+      {/* Two-column: referrer categories + day of week */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+        <ReferrerCategories data={data.referrers} />
+        <DayOfWeekBars data={data.dayOfWeekAvg} />
+      </div>
+
+      {/* Campaign table */}
+      {data.campaigns.length > 0 && (
+        <div className="mb-8">
+          <CampaignTable data={data.campaigns} />
+        </div>
+      )}
+
+      {/* Two-column: traffic sources + devices */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
         <ReferrerBreakdown data={data.referrers} />
         <AnalyticsDeviceBreakdown devices={data.devices} browsers={data.browsers} />

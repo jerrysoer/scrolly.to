@@ -398,7 +398,7 @@ const CARDS: ExplainerCardData[] = [
     category: "Economics",
     gradient: "from-[#0f1117] to-[#1e293b]",
     darkText: true,
-    url: "/how-tariffs-actually-work",
+    url: "/learn/how-tariffs-actually-work",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         {/* Simplified world map outlines */}

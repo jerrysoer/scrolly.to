@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { ExplainerStats } from "@/lib/types";
 import { formatNumber } from "@/lib/format";
+import EngagementScore from "./EngagementScore";
 
 interface ExplainerTableProps {
   data: ExplainerStats[];
 }
 
-type SortKey = "name" | "total" | "last7d" | "last30d";
+type SortKey = "name" | "total" | "last7d" | "last30d" | "engagementScore";
 
 export default function ExplainerTable({ data }: ExplainerTableProps) {
   const [sortBy, setSortBy] = useState<SortKey>("total");
@@ -61,6 +63,7 @@ export default function ExplainerTable({ data }: ExplainerTableProps) {
             <th className="pb-3 text-right">{header("total", "Total")}</th>
             <th className="pb-3 text-right">{header("last7d", "7d")}</th>
             <th className="pb-3 text-right">{header("last30d", "30d")}</th>
+            <th className="pb-3 text-right">{header("engagementScore", "Score")}</th>
           </tr>
         </thead>
         <tbody>
@@ -71,18 +74,12 @@ export default function ExplainerTable({ data }: ExplainerTableProps) {
               style={{ animationDelay: `${i * 30}ms` }}
             >
               <td className="py-3 text-text-secondary font-medium">
-                {row.url ? (
-                  <a
-                    href={row.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-accent transition-colors"
-                  >
-                    {row.name}
-                  </a>
-                ) : (
-                  row.name
-                )}
+                <Link
+                  href={`/dashboard/explainer/${row.id}`}
+                  className="hover:text-accent transition-colors"
+                >
+                  {row.name}
+                </Link>
               </td>
               <td className="py-3 text-right font-mono text-text-muted tabular-nums">
                 {formatNumber(row.total)}
@@ -92,6 +89,9 @@ export default function ExplainerTable({ data }: ExplainerTableProps) {
               </td>
               <td className="py-3 text-right font-mono text-text-muted tabular-nums">
                 {formatNumber(row.last30d)}
+              </td>
+              <td className="py-3 text-right">
+                <EngagementScore score={row.engagementScore} />
               </td>
             </tr>
           ))}

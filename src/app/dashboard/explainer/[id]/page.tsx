@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import MetricCard from "@/components/dashboard/analytics/MetricCard";
+import EngagementScore from "@/components/dashboard/analytics/EngagementScore";
 import DateRangePicker from "@/components/dashboard/DateRangePicker";
 import ViewsOverTime from "@/components/dashboard/analytics/ViewsOverTime";
 import ScrollFunnel from "@/components/dashboard/ScrollFunnel";
 import SectionHeatmap from "@/components/dashboard/SectionHeatmap";
+import SectionDwellTime from "@/components/dashboard/analytics/SectionDwellTime";
 import GeoTable from "@/components/dashboard/GeoTable";
 import ReferrerBreakdown from "@/components/dashboard/analytics/ReferrerBreakdown";
 import AnalyticsDeviceBreakdown from "@/components/dashboard/analytics/DeviceBreakdown";
@@ -20,6 +22,7 @@ interface ExplainerData {
   dailyViews: Array<{ day: string; views: number }>;
   scrollFunnel: Record<string, number>;
   sectionBreakdown: Record<string, number>;
+  sectionDurations?: Record<string, number>;
   geo: Array<{ country: string; region: string | null; city: string; views: number }>;
   referrers: Array<{ referrer_domain: string; views: number }>;
   devices: {
@@ -57,6 +60,7 @@ export default function ExplainerDetail() {
   const referrerGroups = data?.referrers?.map((r) => ({
     domain: r.referrer_domain,
     count: r.views,
+    category: "Other" as const,
   })) ?? [];
 
   // Map devices to DeviceStats shape for the new component
@@ -74,6 +78,14 @@ export default function ExplainerDetail() {
   })) ?? [];
 
   const explainerName = data?.explainer?.name ?? id;
+
+  // Compute engagement score from available data
+  const engagementScore = data
+    ? Math.round(
+        (Math.min(data.avgDuration, 60) / 60) * 50 +
+        (data.completionRate / 100) * 50
+      )
+    : 0;
 
   return (
     <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -93,9 +105,12 @@ export default function ExplainerDetail() {
         <>
           {/* Header */}
           <div className="mt-4 flex items-center justify-between">
-            <h1 className="font-display text-2xl font-medium tracking-tight text-text">
-              {explainerName}
-            </h1>
+            <div className="flex items-center gap-3">
+              <h1 className="font-display text-2xl font-medium tracking-tight text-text">
+                {explainerName}
+              </h1>
+              <EngagementScore score={engagementScore} />
+            </div>
             <DateRangePicker value={days} onChange={setDays} />
           </div>
 
@@ -127,6 +142,9 @@ export default function ExplainerDetail() {
                   total={data.totalViews}
                 />
                 <SectionHeatmap data={data.sectionBreakdown ?? {}} />
+                {data.sectionDurations && Object.keys(data.sectionDurations).length > 0 && (
+                  <SectionDwellTime data={data.sectionDurations} />
+                )}
                 <GeoTable data={data.geo} />
               </div>
 

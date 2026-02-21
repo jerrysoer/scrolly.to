@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Factory, Ship, Building2, ShoppingBag, ArrowRight } from "lucide-react";
-import DateStampedChapter from "../shared/DateStampedChapter";
+import DateStampedChapter from "@/components/explainers/shared/DateStampedChapter";
 import { tariffFlowSteps } from "@/lib/explainers/tariffs";
 
 const iconMap: Record<string, React.ElementType> = {

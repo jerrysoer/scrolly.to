@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import ProgressBar from "./shared/ProgressBar";
-import ThemeToggle from "./shared/ThemeToggle";
-import SectionNav from "./shared/SectionNav";
-import ShareButton from "./shared/ShareButton";
-import MobileNav from "./shared/MobileNav";
-import CompletionCard from "./shared/CompletionCard";
-import ScrollyFooter from "./shared/ScrollyFooter";
+import ProgressBar from "@/components/explainers/shared/ProgressBar";
+import ThemeToggle from "@/components/explainers/shared/ThemeToggle";
+import SectionNav from "@/components/explainers/shared/SectionNav";
+import ShareButton from "@/components/explainers/shared/ShareButton";
+import MobileNav from "@/components/explainers/shared/MobileNav";
+import CompletionCard from "@/components/explainers/shared/CompletionCard";
+import ScrollyFooter from "@/components/explainers/shared/ScrollyFooter";
 import HeroSection from "./sections/HeroSection";
 import WhatIsATariffSection from "./sections/WhatIsATariffSection";
 import SupplyChainSection from "./sections/SupplyChainSection";

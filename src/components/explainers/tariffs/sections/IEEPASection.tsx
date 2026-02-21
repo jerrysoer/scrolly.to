@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Check } from "lucide-react";
-import DateStampedChapter from "../shared/DateStampedChapter";
+import DateStampedChapter from "@/components/explainers/shared/DateStampedChapter";
 import { ieepaTimeline } from "@/lib/explainers/tariffs";
 
 export default function IEEPASection() {

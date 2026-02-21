@@ -12,6 +12,10 @@ import type {
   HeatmapCell,
   RecentEvent,
   WaitlistEntry,
+  CampaignStats,
+  VisitorTypeBreakdown,
+  ReadingQuality,
+  DayOfWeekAvg,
 } from "./types";
 
 function daysAgo(n: number): string {
@@ -28,6 +32,14 @@ function extractDomain(referrer: string | null): string {
   } catch {
     return "Direct";
   }
+}
+
+function categorizeReferrer(domain: string): string {
+  if (['google', 'bing', 'duckduckgo', 'baidu', 'yandex'].some(s => domain.includes(s))) return 'Search';
+  if (['t.co', 'twitter.com', 'x.com', 'linkedin', 'reddit', 'facebook', 'news.ycombinator'].some(s => domain.includes(s))) return 'Social';
+  if (domain === 'Direct') return 'Direct';
+  if (['substack', 'mailchimp', 'campaign-monitor', 'convertkit'].some(s => domain.includes(s))) return 'Newsletter';
+  return 'Other';
 }
 
 function computeTrend(current: number, previous: number): TrendIndicator | null {
@@ -68,6 +80,10 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
     waitlistPeriodRes,
     waitlistPrevRes,
     waitlistRecentRes,
+    // New queries
+    visitorTypeRes,
+    utmEventsRes,
+    perExplainerEngagementRes,
   ] = await Promise.all([
     // Total views (all time)
     supabase
@@ -162,6 +178,22 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
       .select("email, created_at")
       .order("created_at", { ascending: false })
       .limit(5),
+
+    // Visitor type breakdown via RPC
+    supabase.rpc("visitor_type_breakdown", { since }),
+
+    // UTM campaign data — pixel events with utm_source
+    supabase
+      .from("pixel_events")
+      .select("utm_source, utm_campaign, utm_medium, created_at")
+      .not("utm_source", "is", null)
+      .gte("created_at", since),
+
+    // Per-explainer engagement data
+    supabase
+      .from("engagement_events")
+      .select("explainer_id, duration_seconds, max_scroll_depth")
+      .gte("created_at", since),
   ]);
 
   // Fetch explainer names from Supabase
@@ -246,15 +278,41 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
     if (row.created_at >= since30d) stats.last30d++;
     if (row.created_at >= since7d) stats.last7d++;
   }
+  // Per-explainer engagement aggregation for engagementScore
+  const perExplainerEngagement = new Map<string, { totalDur: number; totalDepth: number; count: number }>();
+  for (const row of perExplainerEngagementRes.data ?? []) {
+    const id = row.explainer_id;
+    if (!perExplainerEngagement.has(id)) {
+      perExplainerEngagement.set(id, { totalDur: 0, totalDepth: 0, count: 0 });
+    }
+    const agg = perExplainerEngagement.get(id)!;
+    agg.totalDur += row.duration_seconds ?? 0;
+    agg.totalDepth += row.max_scroll_depth ?? 0;
+    agg.count++;
+  }
+
   const explainers: ExplainerStats[] = Array.from(explainerMap.entries())
-    .map(([id, s]) => ({
-      id,
-      name: getExplainerName(id, namesMap),
-      url: namesMap.get(id)?.url ?? null,
-      total: s.total,
-      last7d: s.last7d,
-      last30d: s.last30d,
-    }))
+    .map(([id, s]) => {
+      const eng = perExplainerEngagement.get(id);
+      let engagementScore = 0;
+      if (eng && eng.count > 0) {
+        const avgDur = eng.totalDur / eng.count;
+        const avgDepth = eng.totalDepth / eng.count;
+        // Score: weighted combination of duration (max 60s) and depth (0-100)
+        engagementScore = Math.round(
+          (Math.min(avgDur, 60) / 60) * 50 + (avgDepth / 100) * 50
+        );
+      }
+      return {
+        id,
+        name: getExplainerName(id, namesMap),
+        url: namesMap.get(id)?.url ?? null,
+        total: s.total,
+        last7d: s.last7d,
+        last30d: s.last30d,
+        engagementScore,
+      };
+    })
     .sort((a, b) => b.total - a.total);
 
   // Referrer, device, browser, heatmap from all events
@@ -284,7 +342,7 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
   }
 
   const referrers: ReferrerGroup[] = Array.from(referrerMap.entries())
-    .map(([domain, count]) => ({ domain, count }))
+    .map(([domain, count]) => ({ domain, count, category: categorizeReferrer(domain) }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 10);
 
@@ -348,6 +406,98 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
     })
   );
 
+  // Completion rate — percentage of engagements with max_scroll_depth >= 90
+  const completedCount = engagements.filter(e => (e.max_scroll_depth ?? 0) >= 90).length;
+  const completionRate = engagements.length > 0
+    ? Math.round((completedCount / engagements.length) * 100)
+    : 0;
+
+  // Reading quality quadrants
+  const readingQualityCounts = { 'deep-reader': 0, 'skimmer': 0, 'stuck': 0, 'bounced': 0 };
+  for (const e of engagements) {
+    const dur = e.duration_seconds ?? 0;
+    const depth = e.max_scroll_depth ?? 0;
+    if (dur >= 60 && depth >= 70) readingQualityCounts['deep-reader']++;
+    else if (dur < 30 && depth >= 50) readingQualityCounts['skimmer']++;
+    else if (dur >= 60 && depth < 30) readingQualityCounts['stuck']++;
+    else if (dur < 10) readingQualityCounts['bounced']++;
+  }
+  const readingQuality: ReadingQuality[] = (
+    Object.entries(readingQualityCounts) as [ReadingQuality['quadrant'], number][]
+  ).map(([quadrant, count]) => ({ quadrant, count }));
+
+  // Day of week averages from dailyViews
+  const dayTotals = new Map<number, { sum: number; count: number }>();
+  for (const dv of dailyViews) {
+    const dayOfWeek = new Date(dv.date).getUTCDay();
+    if (!dayTotals.has(dayOfWeek)) {
+      dayTotals.set(dayOfWeek, { sum: 0, count: 0 });
+    }
+    const entry = dayTotals.get(dayOfWeek)!;
+    entry.sum += dv.views;
+    entry.count++;
+  }
+  const dayOfWeekAvg: DayOfWeekAvg[] = [];
+  for (let day = 0; day < 7; day++) {
+    const entry = dayTotals.get(day);
+    dayOfWeekAvg.push({
+      day,
+      avgViews: entry ? Math.round(entry.sum / entry.count) : 0,
+    });
+  }
+
+  // Visitor type breakdown
+  const visitorBreakdown: VisitorTypeBreakdown[] = (visitorTypeRes.data ?? []).map(
+    (row: { visitor_type: string; visitor_count: number }) => ({
+      visitor_type: row.visitor_type,
+      visitor_count: Number(row.visitor_count),
+    })
+  );
+
+  // UTM campaign aggregation
+  const campaignMap = new Map<string, { views: number; sources: Set<string> }>();
+  for (const row of utmEventsRes.data ?? []) {
+    const key = `${row.utm_source}||${row.utm_campaign ?? ''}||${row.utm_medium ?? ''}`;
+    if (!campaignMap.has(key)) {
+      campaignMap.set(key, { views: 0, sources: new Set() });
+    }
+    campaignMap.get(key)!.views++;
+  }
+  // Join with engagement data for campaign-level metrics
+  const campaignEngagement = new Map<string, { totalDur: number; completions: number; total: number }>();
+  for (const row of perExplainerEngagementRes.data ?? []) {
+    // Aggregate all engagement for campaign avg_duration / completion_rate fallback
+    const key = '__all__';
+    if (!campaignEngagement.has(key)) {
+      campaignEngagement.set(key, { totalDur: 0, completions: 0, total: 0 });
+    }
+    const agg = campaignEngagement.get(key)!;
+    agg.totalDur += row.duration_seconds ?? 0;
+    agg.completions += (row.max_scroll_depth ?? 0) >= 90 ? 1 : 0;
+    agg.total++;
+  }
+  const globalEngagement = campaignEngagement.get('__all__');
+  const globalAvgDur = globalEngagement && globalEngagement.total > 0
+    ? Math.round(globalEngagement.totalDur / globalEngagement.total)
+    : 0;
+  const globalCompletionRate = globalEngagement && globalEngagement.total > 0
+    ? Math.round((globalEngagement.completions / globalEngagement.total) * 100)
+    : 0;
+
+  const campaigns: CampaignStats[] = Array.from(campaignMap.entries())
+    .map(([key, val]) => {
+      const [utm_source, utm_campaign, utm_medium] = key.split('||');
+      return {
+        utm_source,
+        utm_campaign: utm_campaign || null,
+        utm_medium: utm_medium || null,
+        views: val.views,
+        avg_duration: globalAvgDur,
+        completion_rate: globalCompletionRate,
+      };
+    })
+    .sort((a, b) => b.views - a.views);
+
   return {
     totalViews,
     views7d,
@@ -373,5 +523,10 @@ export async function fetchAnalyticsData(days: number = 30): Promise<AnalyticsDa
     waitlist7d: waitlistPeriod,
     waitlistTrend,
     recentWaitlistSignups,
+    completionRate,
+    visitorBreakdown,
+    campaigns,
+    readingQuality,
+    dayOfWeekAvg,
   };
 }

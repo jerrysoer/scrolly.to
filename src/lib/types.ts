@@ -51,11 +51,13 @@ export interface ExplainerStats {
   total: number;
   last7d: number;
   last30d: number;
+  engagementScore: number;
 }
 
 export interface ReferrerGroup {
   domain: string;
   count: number;
+  category: string;
 }
 
 export interface DeviceStats {
@@ -92,6 +94,36 @@ export interface TrendIndicator {
   label: string; // e.g. "vs prev 30d"
 }
 
+export interface CampaignStats {
+  utm_source: string;
+  utm_campaign: string | null;
+  utm_medium: string | null;
+  views: number;
+  avg_duration: number;
+  completion_rate: number;
+}
+
+export interface VisitorTypeBreakdown {
+  visitor_type: string;
+  visitor_count: number;
+}
+
+export interface SectionDropoff {
+  section_id: string;
+  view_count: number;
+  exit_count: number;
+}
+
+export interface ReadingQuality {
+  quadrant: 'deep-reader' | 'skimmer' | 'stuck' | 'bounced';
+  count: number;
+}
+
+export interface DayOfWeekAvg {
+  day: number;
+  avgViews: number;
+}
+
 export interface AnalyticsData {
   totalViews: number;
   views7d: number;
@@ -117,4 +149,9 @@ export interface AnalyticsData {
   waitlist7d: number;
   waitlistTrend: TrendIndicator | null;
   recentWaitlistSignups: WaitlistEntry[];
+  completionRate: number;
+  visitorBreakdown: VisitorTypeBreakdown[];
+  campaigns: CampaignStats[];
+  readingQuality: ReadingQuality[];
+  dayOfWeekAvg: DayOfWeekAvg[];
 }

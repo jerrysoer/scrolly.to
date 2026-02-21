@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { Shield, Scale, AlertTriangle } from "lucide-react";
-import DateStampedChapter from "../shared/DateStampedChapter";
-import ExpandableDeepDive from "../shared/ExpandableDeepDive";
+import DateStampedChapter from "@/components/explainers/shared/DateStampedChapter";
+import ExpandableDeepDive from "@/components/explainers/shared/ExpandableDeepDive";
 import { tariffLaws } from "@/lib/explainers/tariffs";
 
 const iconMap: Record<string, React.ElementType> = {

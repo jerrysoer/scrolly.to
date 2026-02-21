@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import DateStampedChapter from "../shared/DateStampedChapter";
+import DateStampedChapter from "@/components/explainers/shared/DateStampedChapter";
 
 export default function BiggerPictureSection() {
   const scalesRef = useRef<HTMLDivElement>(null);

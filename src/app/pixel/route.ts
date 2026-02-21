@@ -24,6 +24,12 @@ export async function GET(req: NextRequest) {
   const name = searchParams.get("n");
   const url = searchParams.get("u");
   const sessionId = searchParams.get("sid");
+  const hostname = searchParams.get("h");
+  const pagePath = searchParams.get("p");
+  const utmSource = searchParams.get("utm_source");
+  const utmMedium = searchParams.get("utm_medium");
+  const utmCampaign = searchParams.get("utm_campaign");
+  const utmContent = searchParams.get("utm_content");
 
   if (explainerId) {
     const referrer = req.headers.get("referer") ?? null;
@@ -32,6 +38,11 @@ export async function GET(req: NextRequest) {
       req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
       req.headers.get("x-real-ip") ??
       null;
+
+    // Filter localhost traffic
+    const refHost = referrer ? (() => { try { return new URL(referrer).hostname; } catch { return null; } })() : null;
+    const isLocal = refHost === "localhost" || refHost === "127.0.0.1" || ip === "127.0.0.1" || ip === "::1";
+    if (isLocal) return new Response(TRANSPARENT_GIF, { headers: RESPONSE_HEADERS });
 
     // Vercel geo headers (populated automatically on Vercel, null locally)
     const country = req.headers.get("x-vercel-ip-country") ?? null;
@@ -52,6 +63,12 @@ export async function GET(req: NextRequest) {
         region,
         city,
         session_id: sessionId,
+        hostname,
+        page_path: pagePath,
+        utm_source: utmSource,
+        utm_medium: utmMedium,
+        utm_campaign: utmCampaign,
+        utm_content: utmContent,
       });
       if (error) console.error("[pixel] insert failed:", error.message);
 

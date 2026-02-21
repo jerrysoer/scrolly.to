@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import DateStampedChapter from "../shared/DateStampedChapter";
-import MetricPanel from "../shared/MetricPanel";
+import DateStampedChapter from "@/components/explainers/shared/DateStampedChapter";
+import MetricPanel from "@/components/explainers/shared/MetricPanel";
 import { revenueFlows, yourMoneyMetrics } from "@/lib/explainers/tariffs";
 
 export default function YourMoneySection() {

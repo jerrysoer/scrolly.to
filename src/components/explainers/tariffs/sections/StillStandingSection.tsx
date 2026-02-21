@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { X, Check } from "lucide-react";
-import SectionWrapper from "../shared/SectionWrapper";
-import ExpandableDeepDive from "../shared/ExpandableDeepDive";
+import SectionWrapper from "@/components/explainers/shared/SectionWrapper";
+import ExpandableDeepDive from "@/components/explainers/shared/ExpandableDeepDive";
 import { struckDownTariffs, standingTariffs } from "@/lib/explainers/tariffs";
 
 export default function StillStandingSection() {
