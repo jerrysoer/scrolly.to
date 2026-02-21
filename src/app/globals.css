@@ -255,7 +255,6 @@ html {
    ═══════════════════════════════════════════════════════════════════ */
 @import "../styles/explainers/base.css";
 @import "../styles/explainers/tariffs.css";
-/* WIP: re-enable when explainer section files are complete */
-/* @import "../styles/explainers/butterfly.css"; */
-/* @import "../styles/explainers/eyes.css"; */
-/* @import "../styles/explainers/moon.css"; */
+@import "../styles/explainers/butterfly.css";
+@import "../styles/explainers/eyes.css";
+@import "../styles/explainers/moon.css";
