@@ -10,5 +10,6 @@ export const cookiePairs: CookiePair[] = [
   { littleBrownie: "Tagalongs", abcBakers: "Peanut Butter Patties", emoji: "🥜" },
   { littleBrownie: "Do-si-dos", abcBakers: "Peanut Butter Sandwich", emoji: "🥪" },
   { littleBrownie: "Trefoils", abcBakers: "Shortbread", emoji: "🍪" },
-  { littleBrownie: "Thin Mints", abcBakers: "Thin Mints", emoji: "🌿", note: "Same name!" }
+  { littleBrownie: "Thin Mints", abcBakers: "Thin Mints", emoji: "🌿", note: "Same name!" },
+  { littleBrownie: "Adventurefuls", abcBakers: "Adventurefuls", emoji: "🍫", note: "Same name!" }
 ];

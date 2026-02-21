@@ -1071,6 +1071,35 @@ export const explainers: Record<string, ExplainerConfig> = {
     component: () =>
       import("@/components/explainers/tortoise-hare/ExplainerApp"),
   },
+
+  "trader-joes": {
+    slug: "trader-joes",
+    section: "explore",
+    title: "The Trader Joe's Story",
+    description: "How a Stanford MBA turned LA convenience stores into America's most beloved grocery brand — a 3-part interactive series.",
+    category: "Business",
+    scopeName: "explainer-trader-joes",
+    themeKey: "trader-joes-theme",
+    defaultTheme: "light",
+    datePublished: "2026-02-21",
+    keywords: ["Trader Joe's", "Joe Coulombe", "retail", "grocery", "business strategy", "Acquired"],
+    fonts: "dispatch",
+    faqs: [
+      {
+        question: "Who founded Trader Joe's?",
+        answer: "Joe Coulombe, a Stanford MBA, founded Trader Joe's in 1967 in Pasadena, California."
+      },
+      {
+        question: "Why is Trader Joe's so popular?",
+        answer: "Trader Joe's built its cult following through private-label products, curated selection, competitive pricing, and a unique tiki-themed store culture."
+      },
+      {
+        question: "Who owns Trader Joe's?",
+        answer: "Trader Joe's has been owned by Aldi Nord since 1979, though it operates completely independently."
+      }
+    ],
+    component: () => import("@/components/explainers/trader-joes/ExplainerApp"),
+  },
 };
 
 // ── Helpers ──

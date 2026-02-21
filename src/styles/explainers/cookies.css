@@ -1,0 +1,69 @@
+/* ===================================================================
+   Girl Scout Cookies Explainer styles
+   (scoped to data-scope="explainer-cookies")
+   Light-first: light theme is default, dark under [data-theme="dark"]
+   =================================================================== */
+
+/* ── Light theme (default) ── */
+[data-scope="explainer-cookies"] {
+  --bg-primary: #FFF8F0;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #FFF0E0;
+  --text-primary: #2D1810;
+  --text-secondary: #5A3825;
+  --text-tertiary: #8B6F47;
+  --border: #E8D5C4;
+  --forward-blue: #4A7C59;
+  --backward-orange: #D4824A;
+  --accent-purple: #8B5A8E;
+  --correct-green: #4CAF50;
+  --accent-amber: #F5A623;
+
+  /* Map to Tailwind tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-forward-blue: var(--forward-blue);
+  --color-backward-orange: var(--backward-orange);
+  --color-accent-purple: var(--accent-purple);
+  --color-correct-green: var(--correct-green);
+  --color-accent-amber: var(--accent-amber);
+}
+
+/* ── Dark theme override ── */
+[data-scope="explainer-cookies"][data-theme="dark"] {
+  --bg-primary: #1a1410;
+  --bg-card: #2a2420;
+  --bg-secondary: #352f28;
+  --text-primary: #f5e6d3;
+  --text-secondary: #d4c5b2;
+  --text-tertiary: #a89880;
+  --border: #4a3f32;
+  --forward-blue: #5fa370;
+  --backward-orange: #e69a5f;
+  --accent-purple: #a376a6;
+  --correct-green: #66c96a;
+  --accent-amber: #f7b740;
+}
+
+/* ── 3D flip card animations ── */
+[data-scope="explainer-cookies"] .perspective-1000 {
+  perspective: 1000px;
+}
+
+[data-scope="explainer-cookies"] .transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+[data-scope="explainer-cookies"] .backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+[data-scope="explainer-cookies"] .rotate-y-180 {
+  transform: rotateY(180deg);
+}

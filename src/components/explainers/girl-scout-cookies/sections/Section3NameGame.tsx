@@ -24,11 +24,13 @@ function FlipCard({ emoji, frontName, backName, isSameName, delay }: FlipCardPro
         onClick={() => setIsFlipped(!isFlipped)}
         className="relative w-full h-48 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-purple)] focus:ring-offset-2 rounded-xl"
         aria-label={`Flip card to see alternate name for ${frontName}`}
+        style={{ transformStyle: 'preserve-3d' }}
       >
         <div
-          className={`relative w-full h-full transition-transform duration-500 transform-style-3d ${
+          className={`relative w-full h-full transition-transform duration-500 ${
             isFlipped ? "rotate-y-180" : ""
           }`}
+          style={{ transformStyle: 'preserve-3d' }}
         >
           {/* Front */}
           <div className="absolute inset-0 backface-hidden bg-[var(--color-bg-card)] border-2 border-[var(--color-border)] rounded-xl p-6 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
@@ -98,7 +100,7 @@ export default function Section3NameGame() {
           Fun Fact
         </p>
         <p className="text-xl text-[var(--color-text-secondary)]">
-          Thin Mints are the only cookie that has the{" "}
+          Only Thin Mints and Adventurefuls have the{" "}
           <span className="font-bold text-[var(--color-correct-green)]">
             SAME name
           </span>{" "}

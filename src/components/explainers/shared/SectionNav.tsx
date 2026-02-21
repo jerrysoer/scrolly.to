@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-interface NavSection {
+export interface NavSection {
   id: string;
   label: string;
 }

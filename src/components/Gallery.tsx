@@ -6,7 +6,7 @@ const CARDS: ExplainerCardData[] = [
     desc: "How a Stanford MBA turned LA convenience stores into America's most beloved grocery brand — 3-part interactive series.",
     category: "Business",
     gradient: "from-[#faf8f4] to-[#f5edd6]",
-    url: "https://trader-joes.scrolly.to",
+    url: "/explore/trader-joes",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         {/* Hawaiian shirt pattern dots */}
