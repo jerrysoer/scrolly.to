@@ -127,7 +127,7 @@ export default function ProblemSection() {
       >
         {/* Background photo at low opacity */}
         <img
-          src="https://images.unsplash.com/photo-1582139329536-e7284fece509?w=1600&q=80&auto=format"
+          src="/explainers/oauth2/generated/problem-breach.png"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover opacity-[0.12]"

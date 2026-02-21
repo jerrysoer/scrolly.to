@@ -120,6 +120,16 @@ export default function ThreatSection() {
           background: "linear-gradient(160deg, #0a0a12, #151520, #0d0d18)",
         }}
       >
+        {/* Subtle shield background image */}
+        <img
+          src="/explainers/oauth2/generated/threats-shield.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.08, borderRadius: 0 }}
+          loading="lazy"
+        />
+
         {/* Film grain overlay */}
         <div
           className="absolute inset-0 pointer-events-none mix-blend-overlay"

@@ -276,7 +276,7 @@ export default function TokensSection() {
         {/* Atmospheric photo */}
         <div className="relative w-full rounded-xl overflow-hidden" style={{ height: '200px' }}>
           <img
-            src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80&auto=format"
+            src="/explainers/oauth2/generated/tokens-keycard.png"
             alt="Hotel key cards arranged on a surface"
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"

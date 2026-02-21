@@ -28,17 +28,16 @@ export default function HeroSection() {
           muted
           loop
           playsInline
-          poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&q=80&auto=format"
+          poster="/explainers/oauth2/generated/hero-poster.png"
           className="absolute inset-0 w-full h-full object-cover scale-[1.02]"
           aria-hidden="true"
         >
           {/* Video sources — will gracefully fall back to poster if missing */}
-          <source src="/oauth2-explainer/hero/hero-bg.webm" type="video/webm" />
-          <source src="/oauth2-explainer/hero/hero-bg.mp4" type="video/mp4" />
+          <source src="/explainers/oauth2/generated/hero-bg.mp4" type="video/mp4" />
         </video>
       ) : (
         <img
-          src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&q=80&auto=format"
+          src="/explainers/oauth2/generated/hero-poster.png"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover scale-[1.02]"
