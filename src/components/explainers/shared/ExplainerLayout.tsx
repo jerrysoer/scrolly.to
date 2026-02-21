@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Inter, JetBrains_Mono, Fraunces } from "next/font/google";
 import { getExplainer, type Section } from "@/lib/explainers/registry";
 import { ExplainerContextProvider } from "./ExplainerContextProvider";
+import { ExplainerNav } from "./ExplainerNav";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -155,6 +156,7 @@ export function ExplainerLayout({
         themeKey={config.themeKey}
         section={section}
       >
+        <ExplainerNav section={section} />
         {children}
       </ExplainerContextProvider>
       {/* Scrolly engagement pixel */}
