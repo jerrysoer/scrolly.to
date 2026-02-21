@@ -742,6 +742,56 @@ export const explainers: Record<string, ExplainerConfig> = {
       import("@/components/explainers/gps/ExplainerApp"),
   },
 
+  "girl-scout-cookies": {
+    slug: "girl-scout-cookies",
+    section: "learn",
+    title: "Girl Scout Cookies: The Business Behind the Box",
+    description:
+      "An interactive explainer on the economics, strategy, and global business behind Girl Scout cookies — the most beloved fundraiser in America. Built with Scrolly.",
+    ogDescription:
+      "200 million boxes. Two secret bakers. One brilliant business model. How Girl Scout cookies became a $900M enterprise.",
+    keywords: [
+      "Girl Scout cookies",
+      "Little Brownie Bakers",
+      "ABC Bakers",
+      "fundraising",
+      "business model",
+      "cookie economics",
+      "Girl Scouts of America",
+      "interactive explainer",
+    ],
+    category: "Business",
+    scopeName: "explainer-cookies",
+    themeKey: "cookies-theme",
+    defaultTheme: "light",
+    datePublished: "2026-02-21",
+    fonts: "education",
+    faqs: [
+      {
+        question: "Where does the money from Girl Scout cookies go?",
+        answer:
+          "When you buy a box for $6, roughly $1 goes directly to the girl who sold it, $1.50 to her troop, $1 to the local council, and $2.50 to the baker. The remaining $0.50 covers regional logistics and troop activities.",
+      },
+      {
+        question: "Who makes Girl Scout cookies?",
+        answer:
+          "Only two companies make ALL Girl Scout cookies in America: Little Brownie Bakers (owned by Ferrero, serving the West and Midwest) and ABC Bakers (owned by Interbake, serving the East and South). Depending on where you live, your cookies taste slightly different.",
+      },
+      {
+        question: "Why do the same cookies have different names?",
+        answer:
+          "Because they're made by two different bakers with separate recipes. Little Brownie makes Samoas, Tagalongs, and Do-si-dos. ABC makes Caramel deLites, Peanut Butter Patties, and Peanut Butter Sandwiches. Same concept, different execution.",
+      },
+      {
+        question: "How many boxes of Girl Scout cookies are sold each year?",
+        answer:
+          "Approximately 200 million boxes are sold annually, generating roughly $900 million in revenue. If you lined them up, they'd circle the Earth twice.",
+      },
+    ],
+    component: () =>
+      import("@/components/explainers/girl-scout-cookies/ExplainerApp"),
+  },
+
   // ── Batch 5: /explore explainers ──
 
   "claude-code-skills-explainer": {

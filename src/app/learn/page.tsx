@@ -37,6 +37,44 @@ export const metadata: Metadata = {
 
 const CARDS: ExplainerCardData[] = [
   {
+    title: "Girl Scout Cookies: The Business Behind the Box",
+    desc: "200 million boxes. Two secret bakers. One brilliant business model.",
+    category: "Business",
+    gradient: "from-[#fef3c7] to-[#fcd34d]",
+    url: "/learn/girl-scout-cookies",
+    svg: (
+      <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
+        {/* Cookie 1 - chocolate chip style */}
+        <circle cx="45" cy="45" r="18" fill="rgba(217,119,6,0.3)" stroke="rgba(180,83,9,0.6)" strokeWidth="2" />
+        <circle cx="42" cy="42" r="3" fill="rgba(120,53,15,0.7)" />
+        <circle cx="50" cy="45" r="2.5" fill="rgba(120,53,15,0.7)" />
+        <circle cx="43" cy="50" r="2" fill="rgba(120,53,15,0.7)" />
+
+        {/* Cookie 2 - with crumbs */}
+        <circle cx="115" cy="45" r="18" fill="rgba(234,179,8,0.3)" stroke="rgba(202,138,4,0.6)" strokeWidth="2" />
+        <circle cx="112" cy="40" r="2.5" fill="rgba(120,53,15,0.6)" />
+        <circle cx="120" cy="47" r="3" fill="rgba(120,53,15,0.6)" />
+        <circle cx="113" cy="50" r="2" fill="rgba(120,53,15,0.6)" />
+
+        {/* Cookie 3 - bottom center */}
+        <circle cx="80" cy="75" r="20" fill="rgba(251,191,36,0.35)" stroke="rgba(217,119,6,0.6)" strokeWidth="2" />
+        <circle cx="75" cy="70" r="3" fill="rgba(120,53,15,0.7)" />
+        <circle cx="85" cy="72" r="2.5" fill="rgba(120,53,15,0.7)" />
+        <circle cx="78" cy="78" r="2" fill="rgba(120,53,15,0.7)" />
+        <circle cx="84" cy="80" r="2" fill="rgba(120,53,15,0.7)" />
+
+        {/* Crumbs scattered */}
+        <circle cx="55" cy="65" r="1.5" fill="rgba(180,83,9,0.4)" />
+        <circle cx="100" cy="65" r="1.5" fill="rgba(180,83,9,0.4)" />
+        <circle cx="70" cy="55" r="1" fill="rgba(180,83,9,0.3)" />
+        <circle cx="90" cy="58" r="1.2" fill="rgba(180,83,9,0.3)" />
+
+        {/* Dollar sign overlay */}
+        <text x="80" y="105" fontSize="16" fontWeight="bold" fill="rgba(120,53,15,0.5)" textAnchor="middle">$$$</text>
+      </svg>
+    ),
+  },
+  {
     title: "How Butterflies Transform",
     desc: "From caterpillar to chrysalis to flight — the four stages of metamorphosis explained.",
     category: "Biology",
