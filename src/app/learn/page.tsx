@@ -41,7 +41,7 @@ const CARDS: ExplainerCardData[] = [
     desc: "From caterpillar to chrysalis to flight — the four stages of metamorphosis explained.",
     category: "Biology",
     gradient: "from-[#fff7ed] to-[#fed7aa]",
-    url: "https://jerrysoer.github.io/butterfly-metamorphosis-explainer",
+    url: "/learn/butterfly-metamorphosis-explainer",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         <ellipse cx="80" cy="60" rx="3" ry="20" fill="rgba(180,83,9,0.5)" />
@@ -95,7 +95,7 @@ const CARDS: ExplainerCardData[] = [
     desc: "Cones, rods, and the spectrum — how light becomes the colors you perceive.",
     category: "Science",
     gradient: "from-[#ede9fe] to-[#e0f2fe]",
-    url: "https://jerrysoer.github.io/how-eyes-see-color",
+    url: "/learn/how-eyes-see-color",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         <circle cx="25" cy="60" r="10" fill="rgba(250,204,21,0.3)" />
@@ -153,7 +153,7 @@ const CARDS: ExplainerCardData[] = [
     category: "Space",
     gradient: "from-[#1e293b] to-[#334155]",
     darkText: true,
-    url: "https://jerrysoer.github.io/going-back-to-the-moon/",
+    url: "/learn/going-back-to-the-moon",
     svg: (
       <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
         {[[18,12],[42,28],[130,18],[145,70],[20,90],[95,8],[60,105]].map(([x,y],i)=>(

@@ -1,0 +1,201 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Eyes Explainer styles (scoped to data-scope="explainer-eyes")
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Light theme (default) — warm cream organic ── */
+[data-scope="explainer-eyes"] {
+  --bg-primary: #FFF5E6;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #FDE8D0;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #8A8A82;
+  --border: #E0DED8;
+  --forward-blue: #4A90D9;
+  --backward-orange: #E8734A;
+  --accent-purple: #7C5CBF;
+  --correct-green: #4CAF50;
+  --accent-amber: #F5A623;
+  --accent-blue: #4A90D9;
+  --accent-red: #E8734A;
+  --accent-green: #4CAF50;
+  --cone-red: #ef4444;
+  --cone-green: #22c55e;
+  --cone-blue: #3b82f6;
+
+  /* Map to Tailwind tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-forward-blue: var(--forward-blue);
+  --color-backward-orange: var(--backward-orange);
+  --color-accent-purple: var(--accent-purple);
+  --color-correct-green: var(--correct-green);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-red: var(--accent-red);
+  --color-accent-green: var(--accent-green);
+  --color-cone-red: var(--cone-red);
+  --color-cone-green: var(--cone-green);
+  --color-cone-blue: var(--cone-blue);
+}
+
+/* ── Dark theme override ── */
+[data-scope="explainer-eyes"][data-theme="dark"] {
+  --bg-primary: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --bg-secondary: #252525;
+  --text-primary: #E8E8E3;
+  --text-secondary: #A8A8A0;
+  --text-tertiary: #6A6A62;
+  --border: #333330;
+  --forward-blue: #5B9FE8;
+  --backward-orange: #FF8A5C;
+  --accent-purple: #9B7FD4;
+  --correct-green: #66BB6A;
+  --accent-amber: #FFB84D;
+  --accent-blue: #5B9FE8;
+  --accent-red: #FF8A5C;
+  --accent-green: #66BB6A;
+  --cone-red: #f87171;
+  --cone-green: #4ade80;
+  --cone-blue: #60a5fa;
+}
+
+/* ── Reading Progress Bar ── */
+[data-scope="explainer-eyes"] .progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--forward-blue);
+  z-index: 9998;
+  transition: width 0.1s linear;
+}
+
+/* ── Section entrance (IntersectionObserver-driven) ── */
+[data-scope="explainer-eyes"] .section-fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+[data-scope="explainer-eyes"] .section-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Stagger items ── */
+[data-scope="explainer-eyes"] .stagger-item {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+[data-scope="explainer-eyes"] .stagger-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Wave divider ── */
+[data-scope="explainer-eyes"] .wave-divider {
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+}
+[data-scope="explainer-eyes"] .wave-divider svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Range input styling ── */
+[data-scope="explainer-eyes"] input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-secondary);
+  outline: none;
+}
+[data-scope="explainer-eyes"] input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--forward-blue);
+  cursor: pointer;
+  border: 3px solid var(--bg-card);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+[data-scope="explainer-eyes"] input[type="range"]::-moz-range-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--forward-blue);
+  cursor: pointer;
+  border: 3px solid var(--bg-card);
+}
+
+/* ── Text selection ── */
+[data-scope="explainer-eyes"] ::selection {
+  background-color: var(--forward-blue);
+  color: white;
+}
+
+/* ── Scrollbar ── */
+[data-scope="explainer-eyes"] ::-webkit-scrollbar {
+  width: 6px;
+}
+[data-scope="explainer-eyes"] ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+[data-scope="explainer-eyes"] ::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+[data-scope="explainer-eyes"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ── Scrollbar-none utility ── */
+[data-scope="explainer-eyes"] .scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+[data-scope="explainer-eyes"] .scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Mobile nav ── */
+[data-scope="explainer-eyes"] .mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+
+/* ── Keyframe animations ── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes rise-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.7; }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

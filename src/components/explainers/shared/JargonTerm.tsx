@@ -5,7 +5,7 @@ import { useState, useRef } from "react";
 interface JargonTermProps {
   term: string;
   definition: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export default function JargonTerm({ term, definition, children }: JargonTermProps) {
@@ -28,7 +28,7 @@ export default function JargonTerm({ term, definition, children }: JargonTermPro
           color: "inherit",
         }}
       >
-        {children}
+        {children ?? term}
       </span>
 
       {open && (
