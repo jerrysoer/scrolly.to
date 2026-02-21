@@ -11,7 +11,7 @@ export default function Nav() {
             href="#gallery"
             className="hidden text-sm text-text-muted transition-colors hover:text-text sm:block"
           >
-            Gallery
+            Explore
           </a>
           <a
             href="/learn"

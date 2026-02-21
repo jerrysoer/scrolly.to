@@ -14,7 +14,7 @@ export default function Footer() {
             href="#gallery"
             className="text-sm text-text-muted transition-colors hover:text-text"
           >
-            Gallery
+            Explore
           </a>
           <a
             href="#open-source"
