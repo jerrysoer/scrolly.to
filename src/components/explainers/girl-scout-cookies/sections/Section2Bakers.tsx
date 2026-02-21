@@ -1,450 +1,1191 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { Outfit } from "next/font/google";
 import SectionWrapper from "@/components/explainers/shared/SectionWrapper";
 import { bakerInfo } from "../data/bakerRegions";
-import { Factory, MapPin } from "lucide-react";
+
+const outfit = Outfit({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export default function Section2Bakers() {
-  const [hoveredBaker, setHoveredBaker] = useState<string | null>(null);
+  const [clickedState, setClickedState] = useState<string | null>(null);
   const mapRef = useRef<SVGSVGElement>(null);
-  const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const el = mapRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const handleStateClick = (stateName: string) => {
+    setClickedState(stateName);
+    setTimeout(() => setClickedState(null), 1500);
+  };
 
   return (
-    <SectionWrapper id="secret-bakers" layout="split-left">
-      {/* LEFT column: Text content */}
-      <div className="flex flex-col justify-center">
-        <h2 className="mb-6 text-4xl font-bold leading-tight text-[var(--color-text-primary)] sm:text-5xl">
-          There are only 2 companies that make ALL Girl Scout cookies in America.
-        </h2>
+    <SectionWrapper id="secret-bakers" layout="full-bleed">
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translate(0, 0) scale(1);
+          }
+          50% {
+            transform: translate(30px, -30px) scale(1.1);
+          }
+        }
 
-        <p className="mb-6 text-lg leading-relaxed text-[var(--color-text-secondary)] sm:text-xl">
-          Two secret bakeries. Every Thin Mint, every Samoa, every Tagalong — comes from one of them.
-          And depending on where you live, your cookies taste slightly different than your cousin's.
-        </p>
+        @keyframes bounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+        }
 
-        <div className="mb-8 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-5 shadow-sm">
-          <div className="mb-2 flex items-center gap-2">
-            <span className="text-2xl">🍫</span>
-            <h3 className="text-base font-bold text-[var(--color-text-primary)] sm:text-lg">
-              Fun Fact
-            </h3>
+        @keyframes wiggle {
+          0%, 100% {
+            transform: rotate(0deg);
+          }
+          25% {
+            transform: rotate(5deg);
+          }
+          75% {
+            transform: rotate(-5deg);
+          }
+        }
+
+        @keyframes popIn {
+          from {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+          }
+          to {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+          }
+        }
+
+        @keyframes popOut {
+          from {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+          }
+          to {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+          }
+        }
+
+        .decoration-cookie {
+          animation: wiggle 3s ease-in-out infinite;
+        }
+
+        .decoration-cookie-1 {
+          animation-delay: 0s;
+        }
+
+        .decoration-cookie-2 {
+          animation-delay: 0.5s;
+        }
+
+        .decoration-cookie-3 {
+          animation-delay: 1s;
+        }
+
+        .info-card-icon {
+          animation: bounce 2s ease-in-out infinite;
+        }
+
+        .state-popup {
+          animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .state-popup-exit {
+          animation: popOut 0.4s cubic-bezier(0.6, -0.28, 0.74, 0.05) forwards;
+        }
+      `}</style>
+
+      <div
+        className={`relative overflow-hidden ${outfit.className}`}
+        style={{
+          background: 'linear-gradient(135deg, #FFF5E1 0%, #FFE5CC 50%, #FFD9B3 100%)',
+          minHeight: '100vh',
+          padding: '60px 20px',
+        }}
+      >
+        {/* Decorative background elements */}
+        <div
+          className="pointer-events-none absolute"
+          style={{
+            top: '-50%',
+            right: '-20%',
+            width: '600px',
+            height: '600px',
+            background: 'radial-gradient(circle, rgba(244, 114, 182, 0.15) 0%, transparent 70%)',
+            borderRadius: '50%',
+            animation: 'float 20s ease-in-out infinite',
+          }}
+        />
+        <div
+          className="pointer-events-none absolute"
+          style={{
+            bottom: '-30%',
+            left: '-10%',
+            width: '500px',
+            height: '500px',
+            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%)',
+            borderRadius: '50%',
+            animation: 'float 25s ease-in-out infinite reverse',
+          }}
+        />
+
+        <div className="relative z-10 mx-auto max-w-7xl">
+          {/* Header */}
+          <div className="mb-14 text-center">
+            <div
+              className="mb-5 inline-block rounded-[20px] px-5 py-2 text-[11px] font-bold uppercase tracking-wider text-white shadow-lg"
+              style={{
+                background: 'linear-gradient(135deg, #F59E0B 0%, #EF4444 100%)',
+                boxShadow: '0 4px 12px rgba(245, 158, 11, 0.3)',
+                letterSpacing: '1.2px',
+              }}
+            >
+              🍪 Girl Scout Cookies
+            </div>
+            <h1
+              className="mb-5 text-5xl font-extrabold leading-tight text-gray-800 md:text-6xl"
+              style={{ letterSpacing: '-0.03em' }}
+            >
+              Two Bakers,<br />One Mission
+            </h1>
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-600 md:text-xl">
+              Discover which manufacturer supplies your favorite cookies based on where you live
+            </p>
           </div>
-          <p className="text-sm leading-relaxed text-[var(--color-text-secondary)] sm:text-base">
-            If you live in LA, your Samoas are made by the same company that makes Nutella.
-          </p>
-        </div>
 
-        {/* Baker info cards */}
-        <div className="space-y-4">
-          <button
-            type="button"
-            className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-5 text-left shadow-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-md"
-            onMouseEnter={() => setHoveredBaker("littleBrownie")}
-            onMouseLeave={() => setHoveredBaker(null)}
+          {/* Map wrapper */}
+          <div
+            className="relative overflow-hidden rounded-[32px] bg-white shadow-2xl"
             style={{
-              transform: hoveredBaker === "littleBrownie" ? "scale(1.02)" : "scale(1)",
+              padding: '56px 48px',
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
             }}
           >
-            <div className="mb-3 flex items-start justify-between">
-              <div className="flex items-center gap-3">
-                <div className="rounded-full bg-[var(--color-forward-blue)] p-2">
-                  <Factory className="h-5 w-5 text-white" />
+            {/* Decorative cookies */}
+            <div className="decoration-cookie decoration-cookie-1 pointer-events-none absolute left-[8%] top-[15%] text-[32px] opacity-10">
+              🍪
+            </div>
+            <div className="decoration-cookie decoration-cookie-2 pointer-events-none absolute right-[10%] top-[25%] text-[28px] opacity-10">
+              🍪
+            </div>
+            <div className="decoration-cookie decoration-cookie-3 pointer-events-none absolute bottom-[20%] left-[12%] text-[36px] opacity-10">
+              🍪
+            </div>
+
+            {/* Map title */}
+            <div className="mb-10 text-center">
+              <h2 className="mb-2 text-2xl font-bold text-gray-800 md:text-3xl">
+                United States Cookie Territory
+              </h2>
+              <p className="text-sm text-gray-400 md:text-base">
+                Hover over states to explore the regions
+              </p>
+            </div>
+
+            {/* SVG Map */}
+            <div className="relative mx-auto w-full max-w-6xl">
+              <svg
+                ref={mapRef}
+                className="h-auto w-full"
+                viewBox="0 0 960 500"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="Map showing Little Brownie Bakers and ABC Bakers regions across the United States"
+                style={{ filter: 'drop-shadow(0 8px 24px rgba(0, 0, 0, 0.06))' }}
+              >
+                <title>Baker Regions Map</title>
+                <desc>
+                  A map of the United States showing the geographic distribution
+                  of the two Girl Scout cookie manufacturers
+                </desc>
+
+                {/* West Coast States (Little Brownie) */}
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Washington"
+                  d="M 75,55 L 140,50 L 150,70 L 135,95 L 120,100 L 90,88 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Washington")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Oregon"
+                  d="M 75,105 L 135,100 L 145,130 L 130,150 L 85,145 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Oregon")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="California"
+                  d="M 85,155 L 130,155 L 145,190 L 155,240 L 145,290 L 120,305 L 95,285 L 85,240 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("California")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Nevada"
+                  d="M 132,158 L 175,165 L 185,210 L 178,265 L 148,285 L 133,258 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Nevada")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Idaho"
+                  d="M 138,103 L 182,95 L 195,125 L 188,160 L 175,163 L 145,133 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Idaho")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Montana"
+                  d="M 185,50 L 305,45 L 310,95 L 195,100 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Montana")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Wyoming"
+                  d="M 195,105 L 310,100 L 315,155 L 200,160 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Wyoming")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Utah"
+                  d="M 180,168 L 245,165 L 250,225 L 185,230 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Utah")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Arizona"
+                  d="M 145,295 L 178,270 L 185,310 L 180,355 L 145,350 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Arizona")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="New Mexico"
+                  d="M 188,235 L 248,230 L 253,310 L 188,315 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("New Mexico")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+
+                {/* Midwest States (Little Brownie) */}
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="North Dakota"
+                  d="M 315,50 L 415,48 L 418,95 L 315,98 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("North Dakota")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="South Dakota"
+                  d="M 315,103 L 418,100 L 422,148 L 318,150 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("South Dakota")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Nebraska"
+                  d="M 318,155 L 422,152 L 425,200 L 320,203 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Nebraska")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Kansas"
+                  d="M 320,208 L 425,205 L 428,250 L 323,253 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Kansas")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Colorado"
+                  d="M 250,168 L 315,165 L 318,225 L 253,228 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Colorado")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Oklahoma"
+                  d="M 323,258 L 428,255 L 432,295 L 327,298 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Oklahoma")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+
+                {/* Texas (Little Brownie) */}
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Texas"
+                  d="M 255,315 L 327,303 L 365,330 L 385,370 L 375,420 L 340,445 L 290,440 L 255,410 L 240,370 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Texas")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+
+                {/* Minnesota/Wisconsin/Iowa (Little Brownie) */}
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Minnesota"
+                  d="M 425,53 L 485,50 L 490,105 L 425,108 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Minnesota")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Wisconsin"
+                  d="M 490,110 L 535,108 L 540,155 L 495,158 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Wisconsin")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Iowa"
+                  d="M 425,113 L 490,110 L 493,158 L 428,160 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Iowa")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+                <path
+                  className="state region-west cursor-pointer transition-all duration-500"
+                  data-name="Missouri"
+                  d="M 428,165 L 493,162 L 498,215 L 433,218 Z"
+                  fill="#DBEAFE"
+                  stroke="#3B82F6"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Missouri")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#BFDBFE');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#DBEAFE');
+                  }}
+                />
+
+                {/* East Coast States (ABC) */}
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Maine"
+                  d="M 870,65 L 895,60 L 900,90 L 885,98 L 870,88 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Maine")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="New York"
+                  d="M 780,95 L 860,88 L 865,128 L 785,135 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("New York")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Pennsylvania"
+                  d="M 750,140 L 850,135 L 853,172 L 755,178 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Pennsylvania")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="New Jersey"
+                  d="M 855,138 L 872,136 L 875,168 L 858,170 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("New Jersey")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Virginia"
+                  d="M 730,185 L 825,178 L 828,218 L 735,225 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Virginia")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="North Carolina"
+                  d="M 735,230 L 830,223 L 835,260 L 740,268 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("North Carolina")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="South Carolina"
+                  d="M 740,273 L 810,267 L 813,295 L 745,302 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("South Carolina")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Georgia"
+                  d="M 700,275 L 765,270 L 768,330 L 705,335 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Georgia")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Florida"
+                  d="M 710,340 L 765,335 L 775,380 L 785,425 L 770,460 L 745,465 L 730,440 L 720,395 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Florida")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Alabama"
+                  d="M 650,275 L 695,272 L 700,335 L 655,338 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Alabama")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Mississippi"
+                  d="M 600,270 L 645,268 L 650,335 L 605,338 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Mississippi")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Louisiana"
+                  d="M 555,305 L 605,300 L 610,355 L 565,360 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Louisiana")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Arkansas"
+                  d="M 500,220 L 555,218 L 560,275 L 505,278 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Arkansas")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Tennessee"
+                  d="M 610,225 L 725,220 L 728,258 L 615,263 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Tennessee")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Kentucky"
+                  d="M 620,185 L 720,180 L 723,218 L 625,223 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Kentucky")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Indiana"
+                  d="M 565,140 L 610,138 L 613,188 L 570,190 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Indiana")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Ohio"
+                  d="M 615,142 L 685,138 L 688,185 L 620,190 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Ohio")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Michigan"
+                  d="M 565,95 L 635,90 L 640,140 L 570,145 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Michigan")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+                <path
+                  className="state region-east cursor-pointer transition-all duration-500"
+                  data-name="Illinois"
+                  d="M 500,115 L 560,112 L 563,185 L 505,188 Z"
+                  fill="#FFEDD5"
+                  stroke="#F97316"
+                  strokeWidth="2.5"
+                  strokeLinejoin="round"
+                  onClick={() => handleStateClick("Illinois")}
+                  style={{ transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                    e.currentTarget.style.filter = 'brightness(1.1)';
+                    e.currentTarget.setAttribute('fill', '#FED7AA');
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = '';
+                    e.currentTarget.style.filter = '';
+                    e.currentTarget.setAttribute('fill', '#FFEDD5');
+                  }}
+                />
+
+                {/* Mississippi River Divider */}
+                <path
+                  className="divider"
+                  d="M 495 55 Q 498 100, 500 150 Q 502 200, 503 250 Q 504 300, 500 350"
+                  stroke="#9CA3AF"
+                  strokeWidth="3"
+                  strokeDasharray="12 8"
+                  opacity="0.25"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+
+                {/* State Labels */}
+                <text className="state-label" x="110" y="75" fill="#4B5563" opacity="0.5" fontSize="14" fontWeight="700" style={{ letterSpacing: '0.5px', pointerEvents: 'none' }}>WA</text>
+                <text className="state-label" x="105" y="125" fill="#4B5563" opacity="0.5" fontSize="14" fontWeight="700" style={{ letterSpacing: '0.5px', pointerEvents: 'none' }}>OR</text>
+                <text className="state-label" x="110" y="220" fill="#4B5563" opacity="0.5" fontSize="14" fontWeight="700" style={{ letterSpacing: '0.5px', pointerEvents: 'none' }}>CA</text>
+                <text className="state-label" x="290" y="370" fill="#4B5563" opacity="0.5" fontSize="14" fontWeight="700" style={{ letterSpacing: '0.5px', pointerEvents: 'none' }}>TX</text>
+                <text className="state-label" x="750" y="410" fill="#4B5563" opacity="0.5" fontSize="14" fontWeight="700" style={{ letterSpacing: '0.5px', pointerEvents: 'none' }}>FL</text>
+                <text className="state-label" x="815" y="115" fill="#4B5563" opacity="0.5" fontSize="14" fontWeight="700" style={{ letterSpacing: '0.5px', pointerEvents: 'none' }}>NY</text>
+              </svg>
+            </div>
+
+            {/* Info cards */}
+            <div className="mt-12 flex flex-wrap justify-center gap-8">
+              {/* Little Brownie Bakers card */}
+              <div
+                className="relative min-w-[320px] overflow-hidden rounded-[24px] border-2 border-transparent p-8 shadow-lg transition-all duration-[400ms]"
+                style={{
+                  background: 'linear-gradient(135deg, #FFFFFF 0%, #F9FAFB 100%)',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04)',
+                  transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px) rotate(-1deg)';
+                  e.currentTarget.style.boxShadow = '0 20px 48px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08)';
+                  e.currentTarget.style.borderColor = '#3B82F6';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = '';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04)';
+                  e.currentTarget.style.borderColor = 'transparent';
+                }}
+              >
+                <div
+                  className="absolute left-0 right-0 top-0 h-[6px] rounded-t-[24px]"
+                  style={{ background: 'linear-gradient(90deg, #3B82F6 0%, #60A5FA 100%)' }}
+                />
+                <div className="info-card-icon mb-4 inline-block text-5xl">🏭</div>
+                <div className="company mb-3 text-2xl font-bold text-gray-800">
+                  {bakerInfo.littleBrownie.name}
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[var(--color-text-primary)] sm:text-xl">
-                    {bakerInfo.littleBrownie.name}
-                  </h3>
-                  <p className="text-sm text-[var(--color-text-tertiary)]">
-                    Founded {bakerInfo.littleBrownie.founded}
-                  </p>
+                <div className="detail mb-2 flex items-center gap-2 text-sm text-gray-600">
+                  <span className="label font-semibold text-gray-700">Owned by:</span>
+                  <span>{bakerInfo.littleBrownie.owner}</span>
+                </div>
+                <div className="detail mb-2 flex items-center gap-2 text-sm text-gray-600">
+                  <span className="label font-semibold text-gray-700">Territory:</span>
+                  <span>West + Midwest</span>
+                </div>
+                <div className="detail mb-2 flex items-center gap-2 text-sm text-gray-600">
+                  <span className="label font-semibold text-gray-700">Coverage:</span>
+                  <span>23 states</span>
+                </div>
+                <div
+                  className="badge-tag mt-3 inline-block rounded-xl px-4 py-2 text-xs font-semibold"
+                  style={{ background: '#DBEAFE', color: '#1E40AF' }}
+                >
+                  Premium Chocolate Coating
+                </div>
+              </div>
+
+              {/* ABC Bakers card */}
+              <div
+                className="relative min-w-[320px] overflow-hidden rounded-[24px] border-2 border-transparent p-8 shadow-lg transition-all duration-[400ms]"
+                style={{
+                  background: 'linear-gradient(135deg, #FFFFFF 0%, #F9FAFB 100%)',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04)',
+                  transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px) rotate(-1deg)';
+                  e.currentTarget.style.boxShadow = '0 20px 48px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08)';
+                  e.currentTarget.style.borderColor = '#F97316';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = '';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04)';
+                  e.currentTarget.style.borderColor = 'transparent';
+                }}
+              >
+                <div
+                  className="absolute left-0 right-0 top-0 h-[6px] rounded-t-[24px]"
+                  style={{ background: 'linear-gradient(90deg, #F97316 0%, #FB923C 100%)' }}
+                />
+                <div className="info-card-icon mb-4 inline-block text-5xl">🏭</div>
+                <div className="company mb-3 text-2xl font-bold text-gray-800">
+                  {bakerInfo.abcBakers.name}
+                </div>
+                <div className="detail mb-2 flex items-center gap-2 text-sm text-gray-600">
+                  <span className="label font-semibold text-gray-700">Owned by:</span>
+                  <span>{bakerInfo.abcBakers.owner}</span>
+                </div>
+                <div className="detail mb-2 flex items-center gap-2 text-sm text-gray-600">
+                  <span className="label font-semibold text-gray-700">Territory:</span>
+                  <span>East + South</span>
+                </div>
+                <div className="detail mb-2 flex items-center gap-2 text-sm text-gray-600">
+                  <span className="label font-semibold text-gray-700">Coverage:</span>
+                  <span>27 states</span>
+                </div>
+                <div
+                  className="badge-tag mt-3 inline-block rounded-xl px-4 py-2 text-xs font-semibold"
+                  style={{ background: '#FFEDD5', color: '#C2410C' }}
+                >
+                  Regional Specialty Recipes
                 </div>
               </div>
             </div>
-            <div className="mb-3 rounded-md bg-[var(--color-bg-secondary)] px-3 py-2">
-              <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-tertiary)]">
-                Owned by
-              </p>
-              <p className="text-sm font-bold text-[var(--color-text-primary)]">
-                {bakerInfo.littleBrownie.owner}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {bakerInfo.littleBrownie.regions.map((region) => (
-                <span
-                  key={region}
-                  className="inline-flex items-center gap-1 rounded-full bg-[var(--color-forward-blue)] bg-opacity-10 px-3 py-1 text-xs font-medium text-[var(--color-forward-blue)]"
-                >
-                  <MapPin className="h-3 w-3" />
-                  {region}
-                </span>
-              ))}
-            </div>
-          </button>
+          </div>
+        </div>
 
-          <button
-            type="button"
-            className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] p-5 text-left shadow-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-md"
-            onMouseEnter={() => setHoveredBaker("abcBakers")}
-            onMouseLeave={() => setHoveredBaker(null)}
+        {/* State click popup */}
+        {clickedState && (
+          <div
+            className="state-popup fixed left-1/2 top-1/2 z-[1000] -translate-x-1/2 -translate-y-1/2 rounded-[20px] bg-white px-10 py-6 text-3xl font-bold shadow-2xl"
             style={{
-              transform: hoveredBaker === "abcBakers" ? "scale(1.02)" : "scale(1)",
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2)',
             }}
           >
-            <div className="mb-3 flex items-start justify-between">
-              <div className="flex items-center gap-3">
-                <div className="rounded-full bg-[var(--color-backward-orange)] p-2">
-                  <Factory className="h-5 w-5 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[var(--color-text-primary)] sm:text-xl">
-                    {bakerInfo.abcBakers.name}
-                  </h3>
-                  <p className="text-sm text-[var(--color-text-tertiary)]">
-                    Founded {bakerInfo.abcBakers.founded}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="mb-3 rounded-md bg-[var(--color-bg-secondary)] px-3 py-2">
-              <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-text-tertiary)]">
-                Owned by
-              </p>
-              <p className="text-sm font-bold text-[var(--color-text-primary)]">
-                {bakerInfo.abcBakers.owner}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {bakerInfo.abcBakers.regions.map((region) => (
-                <span
-                  key={region}
-                  className="inline-flex items-center gap-1 rounded-full bg-[var(--color-backward-orange)] bg-opacity-10 px-3 py-1 text-xs font-medium text-[var(--color-backward-orange)]"
-                >
-                  <MapPin className="h-3 w-3" />
-                  {region}
-                </span>
-              ))}
-            </div>
-          </button>
-        </div>
-      </div>
-
-      {/* RIGHT column: SVG Map */}
-      <div className="flex items-center justify-center">
-        <figure className="w-full">
-          <svg
-            ref={mapRef}
-            viewBox="0 0 960 600"
-            className="h-auto w-full drop-shadow-lg"
-            xmlns="http://www.w3.org/2000/svg"
-            role="img"
-            aria-label="Map showing Little Brownie Bakers and ABC Bakers regions across the United States"
-          >
-            <title>Baker Regions Map</title>
-            <desc>
-              A simplified map of the United States showing the geographic distribution
-              of the two Girl Scout cookie manufacturers
-            </desc>
-
-            {/* Background */}
-            <rect width="960" height="600" fill="var(--color-bg-secondary)" rx="12" />
-
-            {/* Accurate Continental USA outline */}
-            <defs>
-              {/* Simplified but accurate USA continental outline */}
-              <path
-                id="usaOutline"
-                d="M 120 80 L 140 85 L 160 95 L 180 100 L 200 110 L 220 115 L 245 120 L 270 118 L 295 120 L 320 125 L 345 132 L 370 138 L 395 145 L 418 152 L 438 158 L 458 165 L 478 172 L 498 178 L 518 185 L 538 192 L 558 198 L 578 203 L 598 207 L 618 210 L 638 212 L 658 215 L 678 220 L 698 228 L 718 238 L 738 248 L 758 258 L 775 268 L 790 278 L 803 288 L 815 298 L 825 308 L 833 318 L 840 328 L 845 338 L 848 348 L 850 358 L 851 368 L 851 378 L 850 388 L 848 398 L 845 408 L 841 418 L 836 428 L 830 438 L 823 448 L 815 458 L 806 467 L 796 475 L 785 482 L 773 488 L 760 493 L 746 497 L 731 500 L 715 502 L 698 503 L 680 503 L 662 502 L 644 500 L 626 497 L 608 493 L 590 488 L 572 482 L 554 475 L 536 467 L 518 458 L 500 448 L 482 437 L 464 425 L 446 412 L 428 398 L 410 383 L 392 367 L 374 350 L 356 332 L 338 313 L 320 293 L 302 272 L 284 250 L 266 227 L 248 203 L 230 178 L 212 152 L 194 125 L 176 97 L 158 68 L 140 60 L 130 70 Z"
-              />
-
-              {/* Great Lakes notches for realism */}
-              <g id="greatLakes">
-                <ellipse cx="640" cy="180" rx="35" ry="20" fill="var(--color-bg-secondary)" opacity="0.8" />
-                <ellipse cx="590" cy="165" rx="25" ry="15" fill="var(--color-bg-secondary)" opacity="0.8" />
-                <ellipse cx="680" cy="190" rx="28" ry="18" fill="var(--color-bg-secondary)" opacity="0.8" />
-              </g>
-            </defs>
-
-            {/* West/Midwest region (Little Brownie) - left side of map */}
-            <g
-              className={`transition-all duration-300 ${
-                hoveredBaker === "littleBrownie" ? "opacity-100" : "opacity-75"
-              }`}
-            >
-              {/* West coast - WA, OR, CA, NV, ID, MT, WY, UT, CO */}
-              <path
-                d="M 120 80 L 140 85 L 160 95 L 180 100 L 200 110 L 215 125 L 220 145 L 218 170 L 212 195 L 205 220 L 198 245 L 192 270 L 188 295 L 185 320 L 183 345 L 182 370 L 183 395 L 186 420 L 192 445 L 200 468 L 212 487 L 228 500 L 248 508 L 270 512 L 294 514 L 318 515 L 342 514 L 366 512 L 390 508 L 414 502 L 435 492 L 450 478 L 460 460 L 465 440 L 468 420 L 468 400 L 465 380 L 460 360 L 453 340 L 445 320 L 435 300 L 423 280 L 410 260 L 395 240 L 378 220 L 360 200 L 340 180 L 318 160 L 295 142 L 270 126 L 245 112 L 220 100 L 195 90 L 170 83 L 145 78 Z"
-                fill="var(--color-forward-blue)"
-                fillOpacity="0.4"
-                stroke="var(--color-forward-blue)"
-                strokeWidth="3"
-                strokeDasharray={hoveredBaker === "littleBrownie" ? "0" : "6,4"}
-                strokeLinejoin="round"
-              />
-
-              {/* Midwest extension - SD, ND, NE, KS, MN, IA, MO, WI, IL */}
-              <path
-                d="M 450 478 L 470 485 L 490 490 L 510 493 L 530 495 L 550 496 L 570 496 L 585 494 L 595 488 L 600 478 L 602 465 L 600 450 L 595 435 L 588 420 L 578 405 L 565 390 L 550 375 L 533 360 L 515 345 L 495 330 L 475 315 L 455 300 L 438 285 L 425 270 L 415 255 L 408 240 L 405 225 L 405 210 L 408 195 L 415 180 L 425 168 L 438 160 L 453 156 L 468 156 L 483 160 L 495 168 L 505 180 L 512 195 L 517 210 L 520 225 L 522 240 L 523 255 L 523 270 L 522 285 L 520 300 L 517 315 L 513 330 L 508 345 L 502 360 L 495 375 L 487 390 L 478 405 L 468 420 L 460 435 L 453 450 L 448 465 Z"
-                fill="var(--color-forward-blue)"
-                fillOpacity="0.35"
-                stroke="var(--color-forward-blue)"
-                strokeWidth="2.5"
-                strokeDasharray={hoveredBaker === "littleBrownie" ? "0" : "6,4"}
-                strokeLinejoin="round"
-              />
-            </g>
-
-            {/* East/South region (ABC Bakers) - right side of map */}
-            <g
-              className={`transition-all duration-300 ${
-                hoveredBaker === "abcBakers" ? "opacity-100" : "opacity-75"
-              }`}
-            >
-              {/* East coast + South */}
-              <path
-                d="M 600 478 L 620 485 L 640 490 L 660 493 L 680 495 L 700 496 L 720 496 L 740 494 L 758 490 L 775 484 L 790 477 L 803 468 L 815 458 L 825 448 L 833 438 L 840 428 L 845 418 L 848 408 L 850 398 L 851 388 L 851 378 L 850 368 L 848 358 L 845 348 L 841 338 L 836 328 L 830 318 L 823 308 L 815 298 L 806 288 L 796 278 L 785 268 L 773 258 L 760 248 L 746 238 L 731 228 L 715 220 L 698 215 L 680 212 L 662 210 L 644 207 L 626 203 L 610 198 L 598 192 L 590 185 L 585 178 L 583 170 L 583 162 L 585 155 L 590 150 L 598 148 L 608 150 L 618 156 L 626 165 L 632 175 L 636 186 L 638 197 L 638 208 L 636 219 L 632 230 L 626 241 L 618 252 L 608 263 L 598 274 L 590 285 L 585 296 L 583 307 L 583 318 L 585 329 L 590 340 L 598 351 L 608 362 L 618 373 L 626 384 L 632 395 L 636 406 L 638 417 L 638 428 L 636 439 L 632 450 L 626 461 L 618 472 Z"
-                fill="var(--color-backward-orange)"
-                fillOpacity="0.4"
-                stroke="var(--color-backward-orange)"
-                strokeWidth="3"
-                strokeDasharray={hoveredBaker === "abcBakers" ? "0" : "6,4"}
-                strokeLinejoin="round"
-              />
-
-              {/* Florida peninsula - highly recognizable */}
-              <path
-                d="M 680 490 L 690 505 L 695 520 L 698 535 L 700 550 L 700 565 L 698 578 L 694 588 L 688 595 L 680 599 L 670 600 L 660 598 L 652 592 L 646 583 L 642 572 L 640 560 L 640 548 L 642 536 L 646 524 L 652 512 L 660 501 L 670 492 Z"
-                fill="var(--color-backward-orange)"
-                fillOpacity="0.5"
-                stroke="var(--color-backward-orange)"
-                strokeWidth="3"
-                strokeLinejoin="round"
-              />
-
-              {/* Texas - distinctive southwestern extension */}
-              <path
-                d="M 450 478 L 460 495 L 465 510 L 468 525 L 470 540 L 472 553 L 475 565 L 480 575 L 488 583 L 498 588 L 510 590 L 523 589 L 535 585 L 545 578 L 553 568 L 558 556 L 560 543 L 559 530 L 556 517 L 550 505 L 542 494 L 532 485 L 520 478 L 507 473 L 493 470 L 478 470 L 463 472 Z"
-                fill="var(--color-backward-orange)"
-                fillOpacity="0.45"
-                stroke="var(--color-backward-orange)"
-                strokeWidth="2.5"
-                strokeLinejoin="round"
-              />
-            </g>
-
-            {/* Great Lakes for geographic reference */}
-            <use href="#greatLakes" />
-
-            {/* Mississippi River divider - prominent geographical feature */}
-            <path
-              d="M 520 150 Q 518 200, 515 250 Q 512 300, 510 350 Q 508 400, 505 450 Q 503 475, 500 495"
-              stroke="var(--color-text-primary)"
-              strokeWidth="2"
-              strokeDasharray="10,6"
-              fill="none"
-              opacity="0.25"
-            />
-
-            {/* Label for Mississippi */}
-            <text
-              x="465"
-              y="320"
-              transform="rotate(-5 465 320)"
-              className="fill-[var(--color-text-tertiary)]"
-              style={{ fontSize: "11px", fontStyle: "italic", opacity: 0.5 }}
-            >
-              Mississippi River
-            </text>
-
-            {/* Labels */}
-            <g className={visible ? "fade-in" : ""}>
-              {/* Little Brownie label - positioned over Western region */}
-              <g
-                className={`transition-opacity duration-300 ${
-                  hoveredBaker === "abcBakers" ? "opacity-40" : "opacity-100"
-                }`}
-              >
-                <rect
-                  x="200"
-                  y="280"
-                  width="250"
-                  height="80"
-                  fill="var(--color-bg-card)"
-                  stroke="var(--color-forward-blue)"
-                  strokeWidth="3"
-                  rx="10"
-                  className="drop-shadow-xl"
-                  opacity="0.98"
-                />
-                <text
-                  x="325"
-                  y="310"
-                  textAnchor="middle"
-                  className="fill-[var(--color-text-primary)] text-sm font-bold sm:text-base"
-                  style={{ fontSize: "18px", fontWeight: "700" }}
-                >
-                  Little Brownie Bakers
-                </text>
-                <text
-                  x="325"
-                  y="335"
-                  textAnchor="middle"
-                  className="fill-[var(--color-text-secondary)] text-xs sm:text-sm"
-                  style={{ fontSize: "14px" }}
-                >
-                  Owned by Ferrero
-                </text>
-                <text
-                  x="325"
-                  y="353"
-                  textAnchor="middle"
-                  className="fill-[var(--color-text-tertiary)] text-xs"
-                  style={{ fontSize: "12px", fontWeight: "500" }}
-                >
-                  West + Midwest
-                </text>
-              </g>
-
-              {/* ABC Bakers label - positioned over Eastern region */}
-              <g
-                className={`transition-opacity duration-300 ${
-                  hoveredBaker === "littleBrownie" ? "opacity-40" : "opacity-100"
-                }`}
-              >
-                <rect
-                  x="620"
-                  y="300"
-                  width="230"
-                  height="80"
-                  fill="var(--color-bg-card)"
-                  stroke="var(--color-backward-orange)"
-                  strokeWidth="3"
-                  rx="10"
-                  className="drop-shadow-xl"
-                  opacity="0.98"
-                />
-                <text
-                  x="735"
-                  y="330"
-                  textAnchor="middle"
-                  className="fill-[var(--color-text-primary)] text-sm font-bold sm:text-base"
-                  style={{ fontSize: "18px", fontWeight: "700" }}
-                >
-                  ABC Bakers
-                </text>
-                <text
-                  x="735"
-                  y="355"
-                  textAnchor="middle"
-                  className="fill-[var(--color-text-secondary)] text-xs sm:text-sm"
-                  style={{ fontSize: "14px" }}
-                >
-                  Owned by Interbake
-                </text>
-                <text
-                  x="735"
-                  y="373"
-                  textAnchor="middle"
-                  className="fill-[var(--color-text-tertiary)] text-xs"
-                  style={{ fontSize: "12px", fontWeight: "500" }}
-                >
-                  East + South
-                </text>
-              </g>
-            </g>
-
-            {/* State labels for geographic context */}
-            <g className={visible ? "fade-in" : ""} opacity="0.4">
-              <text x="200" y="260" className="fill-[var(--color-text-tertiary)]" style={{ fontSize: "10px", fontWeight: "600" }}>CA</text>
-              <text x="670" y="545" className="fill-[var(--color-text-tertiary)]" style={{ fontSize: "10px", fontWeight: "600" }}>FL</text>
-              <text x="490" y="535" className="fill-[var(--color-text-tertiary)]" style={{ fontSize: "10px", fontWeight: "600" }}>TX</text>
-              <text x="780" y="310" className="fill-[var(--color-text-tertiary)]" style={{ fontSize: "10px", fontWeight: "600" }}>NY</text>
-              <text x="160" y="140" className="fill-[var(--color-text-tertiary)]" style={{ fontSize: "10px", fontWeight: "600" }}>WA</text>
-            </g>
-
-            {/* Factory icons */}
-            <g className={visible ? "fade-in" : ""}>
-              {/* Little Brownie factory pin - positioned in western US */}
-              <circle
-                cx="280"
-                cy="380"
-                r="15"
-                fill="var(--color-forward-blue)"
-                stroke="white"
-                strokeWidth="3"
-                className="drop-shadow-lg"
-              />
-              <circle cx="280" cy="380" r="8" fill="white" opacity="0.95" />
-              <text
-                x="280"
-                y="415"
-                textAnchor="middle"
-                className="fill-[var(--color-text-primary)]"
-                style={{ fontSize: "10px", fontWeight: "700" }}
-              >
-                🏭
-              </text>
-
-              {/* ABC Bakers factory pin - positioned in eastern US */}
-              <circle
-                cx="720"
-                cy="400"
-                r="15"
-                fill="var(--color-backward-orange)"
-                stroke="white"
-                strokeWidth="3"
-                className="drop-shadow-lg"
-              />
-              <circle cx="720" cy="400" r="8" fill="white" opacity="0.95" />
-              <text
-                x="720"
-                y="435"
-                textAnchor="middle"
-                className="fill-[var(--color-text-primary)]"
-                style={{ fontSize: "10px", fontWeight: "700" }}
-              >
-                🏭
-              </text>
-            </g>
-
-            {/* "USA" label to make it completely explicit */}
-            <g opacity="0.5">
-              <text
-                x="480"
-                y="45"
-                textAnchor="middle"
-                className="fill-[var(--color-text-primary)]"
-                style={{ fontSize: "16px", fontWeight: "700", letterSpacing: "3px" }}
-              >
-                UNITED STATES
-              </text>
-              <line x1="380" y1="50" x2="580" y2="50" stroke="var(--color-text-tertiary)" strokeWidth="1" opacity="0.4" />
-            </g>
-          </svg>
-
-          <figcaption className="mt-4 text-center text-sm text-[var(--color-text-tertiary)]">
-            Geographic distribution of the two Girl Scout cookie manufacturers.
-            Your local council determines which baker supplies your cookies.
-          </figcaption>
-        </figure>
+            {clickedState}
+          </div>
+        )}
       </div>
     </SectionWrapper>
   );
