@@ -15,19 +15,38 @@ import ShareButton from "@/components/explainers/shared/ShareButton";
 import CompletionCard from "@/components/explainers/shared/CompletionCard";
 import ScrollyFooter from "@/components/explainers/shared/ScrollyFooter";
 
-// Part-specific section components (to be added by section-porter agents)
 // Part 1 sections
-// import HeroSection from "./sections/part-1/HeroSection";
-// import OriginSection from "./sections/part-1/OriginSection";
-// ... (10 sections total)
+import P1HeroSection from "./sections/part-1/HeroSection";
+import OriginSection from "./sections/part-1/OriginSection";
+import SevenElevenSection from "./sections/part-1/SevenElevenSection";
+import CloneMissionSection from "./sections/part-1/CloneMissionSection";
+import BuyoutSection from "./sections/part-1/BuyoutSection";
+import MalibuSection from "./sections/part-1/MalibuSection";
+import EpiphanySection from "./sections/part-1/EpiphanySection";
+import LightningSection from "./sections/part-1/LightningSection";
+import LiquorSection from "./sections/part-1/LiquorSection";
+import FirstStoreSection from "./sections/part-1/FirstStoreSection";
+import FAQSection from "./sections/part-1/FAQSection";
 
 // Part 2 sections
-// import Part2HeroSection from "./sections/part-2/HeroSection";
-// ... (7 sections total)
+import P2HeroSection from "./sections/part-2/HeroSection";
+import AlbrechtSection from "./sections/part-2/AlbrechtSection";
+import SaleSection from "./sections/part-2/SaleSection";
+import PrivateLabelSection from "./sections/part-2/PrivateLabelSection";
+import FearlessFlyerSection from "./sections/part-2/FearlessFlyerSection";
+import IntentionalStoreSection from "./sections/part-2/IntentionalStoreSection";
+import LessIsMoreSection from "./sections/part-2/LessIsMoreSection";
+import PayPeopleWellSection from "./sections/part-2/PayPeopleWellSection";
 
 // Part 3 sections
-// import Part3HeroSection from "./sections/part-3/HeroSection";
-// ... (8 sections total)
+import P3HeroSection from "./sections/part-3/HeroSection";
+import TreasureHuntSection from "./sections/part-3/TreasureHuntSection";
+import TwoBuckChuckSection from "./sections/part-3/TwoBuckChuckSection";
+import AntiGrocerSection from "./sections/part-3/AntiGrocerSection";
+import FanEconomySection from "./sections/part-3/FanEconomySection";
+import ReckoningSection from "./sections/part-3/ReckoningSection";
+import JoesFarewellSection from "./sections/part-3/JoesFarewellSection";
+import MachineTodaySection from "./sections/part-3/MachineTodaySection";
 
 // Custom shared components
 import PartNav from "./shared/PartNav";
@@ -121,106 +140,43 @@ export default function ExplainerApp() {
       <main>
         {currentPart === 1 && (
           <article>
-            {/* Part 1 sections will be added by section-porter agent */}
-            <div className="flex min-h-screen items-center justify-center bg-[var(--bg-primary)] px-4">
-              <div className="max-w-2xl text-center">
-                <h1
-                  className="mb-4 text-4xl font-bold"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  Part 1: {currentPartData?.title}
-                </h1>
-                <p
-                  className="mb-2 text-lg"
-                  style={{ color: "var(--text-secondary)" }}
-                >
-                  {currentPartData?.subtitle}
-                </p>
-                <p
-                  className="text-sm"
-                  style={{ color: "var(--text-tertiary)" }}
-                >
-                  {currentPartData?.sectionCount} sections •{" "}
-                  {currentPartData?.readingTime}
-                </p>
-                <p
-                  className="mt-8 text-sm"
-                  style={{ color: "var(--text-tertiary)" }}
-                >
-                  Section components will be added by the section-porter agent.
-                </p>
-              </div>
-            </div>
+            <P1HeroSection />
+            <OriginSection />
+            <SevenElevenSection />
+            <CloneMissionSection />
+            <BuyoutSection />
+            <MalibuSection />
+            <EpiphanySection />
+            <LightningSection />
+            <LiquorSection />
+            <FirstStoreSection />
+            <FAQSection />
           </article>
         )}
 
         {currentPart === 2 && (
           <article>
-            {/* Part 2 sections will be added by section-porter agent */}
-            <div className="flex min-h-screen items-center justify-center bg-[var(--bg-primary)] px-4">
-              <div className="max-w-2xl text-center">
-                <h1
-                  className="mb-4 text-4xl font-bold"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  Part 2: {currentPartData?.title}
-                </h1>
-                <p
-                  className="mb-2 text-lg"
-                  style={{ color: "var(--text-secondary)" }}
-                >
-                  {currentPartData?.subtitle}
-                </p>
-                <p
-                  className="text-sm"
-                  style={{ color: "var(--text-tertiary)" }}
-                >
-                  {currentPartData?.sectionCount} sections •{" "}
-                  {currentPartData?.readingTime}
-                </p>
-                <p
-                  className="mt-8 text-sm"
-                  style={{ color: "var(--text-tertiary)" }}
-                >
-                  Section components will be added by the section-porter agent.
-                </p>
-              </div>
-            </div>
+            <P2HeroSection />
+            <AlbrechtSection />
+            <SaleSection />
+            <PrivateLabelSection />
+            <FearlessFlyerSection />
+            <IntentionalStoreSection />
+            <LessIsMoreSection />
+            <PayPeopleWellSection />
           </article>
         )}
 
         {currentPart === 3 && (
           <article>
-            {/* Part 3 sections will be added by section-porter agent */}
-            <div className="flex min-h-screen items-center justify-center bg-[var(--bg-primary)] px-4">
-              <div className="max-w-2xl text-center">
-                <h1
-                  className="mb-4 text-4xl font-bold"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  Part 3: {currentPartData?.title}
-                </h1>
-                <p
-                  className="mb-2 text-lg"
-                  style={{ color: "var(--text-secondary)" }}
-                >
-                  {currentPartData?.subtitle}
-                </p>
-                <p
-                  className="text-sm"
-                  style={{ color: "var(--text-tertiary)" }}
-                >
-                  {currentPartData?.sectionCount} sections •{" "}
-                  {currentPartData?.readingTime}
-                </p>
-                <p
-                  className="mt-8 text-sm"
-                  style={{ color: "var(--text-tertiary)" }}
-                >
-                  Section components will be added by the section-porter agent.
-                </p>
-              </div>
-            </div>
+            <P3HeroSection />
+            <TreasureHuntSection />
+            <TwoBuckChuckSection />
+            <AntiGrocerSection />
+            <FanEconomySection />
+            <ReckoningSection />
+            <JoesFarewellSection />
+            <MachineTodaySection />
           </article>
         )}
       </main>
