@@ -1,6 +1,6 @@
 import Script from "next/script";
 import { notFound } from "next/navigation";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Fraunces } from "next/font/google";
 import { getExplainer, type Section } from "@/lib/explainers/registry";
 import { ExplainerContextProvider } from "./ExplainerContextProvider";
 
@@ -16,6 +16,13 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
+});
+
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 interface ExplainerLayoutProps {
@@ -37,10 +44,16 @@ export function ExplainerLayout({
   const canonical = `${sectionUrl}/${slug}`;
 
   // Font classes based on config
-  const fontClasses =
-    config.fonts === "dispatch"
-      ? `${inter.variable} ${jetbrainsMono.variable}`
-      : "";
+  const fontClasses = (() => {
+    switch (config.fonts) {
+      case "dispatch":
+        return `${inter.variable} ${jetbrainsMono.variable}`;
+      case "education":
+        return `${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`;
+      default:
+        return `${inter.variable}`;
+    }
+  })();
 
   // JSON-LD structured data
   const jsonLd = {
@@ -128,7 +141,9 @@ export function ExplainerLayout({
     >
       <script
         dangerouslySetInnerHTML={{
-          __html: `(function(){try{var t=localStorage.getItem('${config.themeKey}');if(t==='light')document.querySelector('[data-scope="${config.scopeName}"]')?.setAttribute('data-theme','light')}catch(e){}})()`,
+          __html: config.defaultTheme === "dark"
+            ? `(function(){try{var t=localStorage.getItem('${config.themeKey}');if(t==='light')document.querySelector('[data-scope="${config.scopeName}"]')?.setAttribute('data-theme','light')}catch(e){}})()`
+            : `(function(){try{var t=localStorage.getItem('${config.themeKey}');if(t==='dark')document.querySelector('[data-scope="${config.scopeName}"]')?.setAttribute('data-theme','dark')}catch(e){}})()`,
         }}
       />
       <script

@@ -17,6 +17,7 @@ export interface ExplainerConfig {
   category: string;
   scopeName: string;
   themeKey: string;
+  defaultTheme: "light" | "dark";
   datePublished: string;
   fonts: "dispatch" | "education" | "default";
   faqs?: ExplainerFaq[];
@@ -48,6 +49,7 @@ export const explainers: Record<string, ExplainerConfig> = {
     category: "Economics",
     scopeName: "explainer-tariffs",
     themeKey: "tariffs-theme",
+    defaultTheme: "dark",
     datePublished: "2026-02-20",
     fonts: "dispatch",
     faqs: [
@@ -81,6 +83,11 @@ export const explainers: Record<string, ExplainerConfig> = {
     component: () =>
       import("@/components/explainers/tariffs/ExplainerApp"),
   },
+
+  // WIP: Butterfly, Eyes, Moon explainers — re-enable when section files are complete
+  // "butterfly-metamorphosis-explainer": { ... },
+  // "how-eyes-see-color": { ... },
+  // "going-back-to-the-moon": { ... },
 };
 
 // ── Helpers ──

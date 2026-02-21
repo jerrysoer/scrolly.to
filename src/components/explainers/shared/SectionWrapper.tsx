@@ -8,7 +8,8 @@ interface SectionWrapperProps {
   className?: string;
   tinted?: boolean;
   stagger?: boolean;
-  layout?: "centered" | "split-left" | "split-right" | "full-bleed";
+  layout?: "centered" | "centered-card" | "split-left" | "split-right" | "full-bleed";
+  room?: "normal" | "compact" | "spacious";
 }
 
 export default function SectionWrapper({
@@ -18,6 +19,7 @@ export default function SectionWrapper({
   tinted = false,
   stagger = false,
   layout = "centered",
+  room = "normal",
 }: SectionWrapperProps) {
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
@@ -40,17 +42,20 @@ export default function SectionWrapper({
     return () => observer.disconnect();
   }, []);
 
+  const paddingY = room === "compact" ? "py-12 sm:py-16" : room === "spacious" ? "py-24 sm:py-36" : "py-20 sm:py-28";
+
   const innerClass = (() => {
     switch (layout) {
       case "split-left":
-        return "grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28";
+        return `grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 mx-auto max-w-6xl px-4 ${paddingY} sm:px-6`;
       case "split-right":
-        return "grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28";
+        return `grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 mx-auto max-w-6xl px-4 ${paddingY} sm:px-6`;
       case "full-bleed":
-        return "mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28";
+        return `mx-auto max-w-5xl px-4 ${paddingY} sm:px-6`;
+      case "centered-card":
       case "centered":
       default:
-        return "mx-auto max-w-4xl px-4 py-20 sm:px-6 sm:py-28";
+        return `mx-auto max-w-4xl px-4 ${paddingY} sm:px-6`;
     }
   })();
 
