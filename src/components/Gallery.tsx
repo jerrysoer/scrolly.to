@@ -2,6 +2,54 @@ import ExplainerCard, { ExplainerCardData } from "./ExplainerCard";
 
 const CARDS: ExplainerCardData[] = [
   {
+    title: "The Trader Joe's Story",
+    desc: "How a Stanford MBA turned LA convenience stores into America's most beloved grocery brand — 3-part interactive series.",
+    category: "Business",
+    gradient: "from-[#faf8f4] to-[#f5edd6]",
+    url: "https://trader-joes.scrolly.to",
+    svg: (
+      <svg viewBox="0 0 160 120" fill="none" className="h-full w-full">
+        {/* Hawaiian shirt pattern dots */}
+        {[
+          [25, 20], [45, 25], [65, 18], [85, 30], [105, 22], [125, 28],
+          [30, 45], [50, 50], [70, 42], [90, 55], [110, 48], [130, 52],
+          [20, 70], [40, 75], [60, 68], [80, 78], [100, 72], [120, 80],
+          [35, 95], [55, 100], [75, 92], [95, 102], [115, 98]
+        ].map(([x, y], i) => (
+          <circle key={i} cx={x} cy={y} r="2.5" fill={`rgba(184,134,11,${0.15 + (i % 3) * 0.08})`} />
+        ))}
+        {/* Shopping bag */}
+        <path
+          d="M55 50 L50 90 L90 90 L85 50 Z"
+          fill="rgba(184,134,11,0.08)"
+          stroke="rgba(184,134,11,0.4)"
+          strokeWidth="1.5"
+        />
+        {/* Bag handles */}
+        <path
+          d="M60 50 Q60 40 70 40 Q80 40 80 50"
+          fill="none"
+          stroke="rgba(184,134,11,0.4)"
+          strokeWidth="1.5"
+        />
+        {/* $0 price tag floating above */}
+        <rect
+          x="50"
+          y="15"
+          width="40"
+          height="22"
+          rx="4"
+          fill="rgba(250,248,244,0.95)"
+          stroke="rgba(184,134,11,0.5)"
+          strokeWidth="1.5"
+        />
+        <text x="70" y="31" textAnchor="middle" fontSize="14" fill="rgba(184,134,11,0.8)" fontFamily="system-ui" fontWeight="700">$0</text>
+        {/* "Ad Spend" label */}
+        <text x="70" y="105" textAnchor="middle" fontSize="7" fill="rgba(184,134,11,0.6)" fontFamily="system-ui">Ad Spend</text>
+      </svg>
+    ),
+  },
+  {
     title: "Seed2.0 LLM",
     desc: "How ByteDance's frontier model hits GPT-5 benchmarks at 1/10th the cost.",
     category: "AI Models",
