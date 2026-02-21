@@ -84,9 +84,9 @@ export const explainers: Record<string, ExplainerConfig> = {
       import("@/components/explainers/tariffs/ExplainerApp"),
   },
 
-  // WIP: Butterfly, Eyes, Moon explainers — re-enable when section files are complete
-  // "butterfly-metamorphosis-explainer": { ... },
+  // WIP: Eyes, Butterfly, Moon explainers — re-enable when section files are complete
   // "how-eyes-see-color": { ... },
+  // "butterfly-metamorphosis-explainer": { ... },
   // "going-back-to-the-moon": { ... },
 };
 
