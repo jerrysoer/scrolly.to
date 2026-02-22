@@ -41,7 +41,7 @@ export default function StickyDiagram({
   }, [steps.length]);
 
   const visual = (
-    <div className="sticky-diagram-visual lg:min-h-[40vh]">
+    <div className="sticky top-24 lg:min-h-[40vh]">
       {renderVisual(activeStep)}
     </div>
   );
