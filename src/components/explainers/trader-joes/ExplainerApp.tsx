@@ -183,33 +183,69 @@ export default function ExplainerApp() {
 
       {/* Completion card - different for each part */}
       {currentPart === 1 && (
-        <CompletionCard
-          variant="dashboard"
-          title="The Origin Story Begins"
-          subtitle="Joe Coulombe didn't just open a store — he identified a gap in American culture that nobody else could see."
-          highlights={[
-            { value: "1930", label: "Joe born" },
-            { value: "$25K", label: "Buyout cost" },
-            { value: "1967", label: "First store" },
-            { value: "3", label: "Key insights" },
-          ]}
-          sharePrompt="Part 2 continues the story. Share Part 1 with someone who loves Trader Joe's."
-        />
+        <>
+          <CompletionCard
+            variant="dashboard"
+            title="The Origin Story Begins"
+            subtitle="Joe Coulombe didn't just open a store — he identified a gap in American culture that nobody else could see."
+            highlights={[
+              { value: "1930", label: "Joe born" },
+              { value: "$25K", label: "Buyout cost" },
+              { value: "1967", label: "First store" },
+              { value: "3", label: "Key insights" },
+            ]}
+            sharePrompt="Share Part 1 with someone who loves Trader Joe's."
+          />
+          <div className="mx-auto max-w-3xl px-4 pb-20 text-center">
+            <button
+              onClick={() => setCurrentPart(2)}
+              className="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-medium transition-all hover:scale-105 hover:shadow-lg"
+              style={{
+                backgroundColor: "var(--accent-navy)",
+                color: "white",
+                fontFamily: "inherit",
+              }}
+            >
+              Continue to Part 2: The Aldi Paradox
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+        </>
       )}
 
       {currentPart === 2 && (
-        <CompletionCard
-          variant="dashboard"
-          title="The Aldi Connection Revealed"
-          subtitle="The most surprising chapter in American retail history involved a secretive German family that almost nobody knew about."
-          highlights={[
-            { value: "1979", label: "Aldi enters" },
-            { value: "1988", label: "Full sale" },
-            { value: "70+", label: "Countries" },
-            { value: "Private", label: "Still today" },
-          ]}
-          sharePrompt="Part 3 reveals how TJ's became a cult brand. Share Part 2 →"
-        />
+        <>
+          <CompletionCard
+            variant="dashboard"
+            title="The Aldi Connection Revealed"
+            subtitle="The most surprising chapter in American retail history involved a secretive German family that almost nobody knew about."
+            highlights={[
+              { value: "1979", label: "Aldi enters" },
+              { value: "1988", label: "Full sale" },
+              { value: "70+", label: "Countries" },
+              { value: "Private", label: "Still today" },
+            ]}
+            sharePrompt="Share Part 2 with someone who loves Trader Joe's."
+          />
+          <div className="mx-auto max-w-3xl px-4 pb-20 text-center">
+            <button
+              onClick={() => setCurrentPart(3)}
+              className="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-medium transition-all hover:scale-105 hover:shadow-lg"
+              style={{
+                backgroundColor: "var(--accent-navy)",
+                color: "white",
+                fontFamily: "inherit",
+              }}
+            >
+              Continue to Part 3: The Cult Machine
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+        </>
       )}
 
       {currentPart === 3 && (
