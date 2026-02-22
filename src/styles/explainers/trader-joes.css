@@ -1,0 +1,202 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Trader Joe's Explainer Styles
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Section divider: circled number on thin rule */
+.section-divider-numbered {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 1rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .section-divider-numbered {
+    padding: 0 2rem;
+  }
+}
+
+.section-divider-numbered::before,
+.section-divider-numbered::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border) 30%,
+    var(--border) 70%,
+    transparent 100%
+  );
+}
+
+.section-divider-numbered .number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  background: var(--bg-primary);
+  flex-shrink: 0;
+  margin: 0 1rem;
+}
+
+/* Section fade-in animation */
+.section-fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
+    transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.section-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered reveal children */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s cubic-bezier(0.25, 0.1, 0.25, 1),
+    transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.stagger-children.visible > *:nth-child(1) {
+  transition-delay: 0s;
+}
+.stagger-children.visible > *:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.stagger-children.visible > *:nth-child(3) {
+  transition-delay: 0.15s;
+}
+.stagger-children.visible > *:nth-child(4) {
+  transition-delay: 0.2s;
+}
+.stagger-children.visible > *:nth-child(5) {
+  transition-delay: 0.25s;
+}
+.stagger-children.visible > *:nth-child(6) {
+  transition-delay: 0.3s;
+}
+.stagger-children.visible > *:nth-child(7) {
+  transition-delay: 0.35s;
+}
+.stagger-children.visible > *:nth-child(8) {
+  transition-delay: 0.4s;
+}
+
+.stagger-children.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Section tinted background */
+.section-tinted {
+  background-color: var(--bg-secondary);
+}
+
+/* Sticky diagram layout */
+.sticky-diagram-visual {
+  position: sticky;
+  top: 20vh;
+  height: fit-content;
+}
+
+@media (max-width: 1023px) {
+  .sticky-diagram-visual {
+    position: relative;
+    top: auto;
+  }
+}
+
+/* Pull quote */
+.pull-quote {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--accent-gold);
+  font-style: italic;
+  font-size: 1.35rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.pull-quote::before {
+  content: "\201C";
+  position: absolute;
+  left: -0.2rem;
+  top: -0.6rem;
+  font-size: 3.5rem;
+  color: var(--accent-gold);
+  opacity: 0.3;
+  line-height: 1;
+}
+
+/* Intel callout box */
+.intel-callout {
+  border: 1px solid var(--accent-gold);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  background: color-mix(in srgb, var(--accent-gold) 5%, var(--bg-card));
+}
+
+[data-theme="dark"] .intel-callout {
+  background: color-mix(in srgb, var(--accent-gold) 8%, var(--bg-card));
+}
+
+/* Card lift micro-interaction */
+.card-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .card-lift:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Slow zoom for cinematic images */
+@keyframes slow-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.slow-zoom {
+  animation: slow-zoom 20s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* Oversized stat number */
+.stat-hero {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--accent-navy), var(--accent-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="dark"] .stat-hero {
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-red));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
