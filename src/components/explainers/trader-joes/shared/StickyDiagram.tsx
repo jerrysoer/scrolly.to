@@ -47,7 +47,7 @@ export default function StickyDiagram({
   );
 
   const narrative = (
-    <div className="flex flex-col gap-[40vh] py-[20vh] first:pt-0 last:pb-0 lg:py-[30vh]">
+    <div className="flex flex-col gap-[25vh] py-[15vh] first:pt-0 last:pb-0 lg:py-[20vh]">
       {steps.map((step, i) => (
         <div
           key={step.id}
