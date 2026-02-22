@@ -11,7 +11,7 @@ export default function EpiphanySection() {
         <span className="number">07</span>
       </div>
 
-      <SectionWrapper id="epiphany" layout="full-bleed" className="py-32 sm:py-44">
+      <SectionWrapper id="epiphany" layout="full-bleed" className="py-12 sm:py-16">
         <div className="slow-zoom">
           <div className="overflow-hidden rounded-xl">
             <img

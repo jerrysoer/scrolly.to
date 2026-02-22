@@ -11,7 +11,7 @@ export default function FearlessFlyerSection() {
         <span className="number">05</span>
       </div>
 
-      <SectionWrapper id="fearless-flyer" layout="full-bleed" className="py-32 sm:py-44">
+      <SectionWrapper id="fearless-flyer" layout="full-bleed" className="py-12 sm:py-16">
         <div className="slow-zoom">
           <div className="overflow-hidden rounded-xl">
             <img
