@@ -1,0 +1,139 @@
+/* ── Oscars explainer design tokens ── */
+[data-scope="explainer-oscars"] {
+  --bg-primary: #0f1117;
+  --bg-card: #1a1d27;
+  --bg-secondary: #242837;
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
+  --text-tertiary: #6b7280;
+  --border: rgba(255, 255, 255, 0.08);
+  --forward-blue: #3b82f6;
+  --accent-amber: #f59e0b;
+  --success-green: #22c55e;
+  --accent-blue: #3b82f6;
+  --accent-red: #ef4444;
+
+  /* Tailwind color-token overrides */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-amber: var(--accent-amber);
+}
+
+[data-scope="explainer-oscars"][data-theme="light"] {
+  --bg-primary: #f8f9fa;
+  --bg-card: #ffffff;
+  --bg-secondary: #edf0f4;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary: #9ca3af;
+  --border: rgba(0, 0, 0, 0.08);
+  --forward-blue: #2563eb;
+  --accent-amber: #d97706;
+  --success-green: #16a34a;
+  --accent-blue: #2563eb;
+}
+
+/* Body color */
+[data-scope="explainer-oscars"] {
+  color: var(--text-primary);
+  background: var(--bg-primary);
+}
+
+/* ── Oscars-scoped utility classes ── */
+
+[data-scope="explainer-oscars"] .section-tinted {
+  background-color: var(--bg-secondary);
+}
+
+[data-scope="explainer-oscars"] .scrollbar-none::-webkit-scrollbar { display: none; }
+[data-scope="explainer-oscars"] .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+[data-scope="explainer-oscars"] .section-number-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0 1rem;
+}
+[data-scope="explainer-oscars"] .section-number-divider::before,
+[data-scope="explainer-oscars"] .section-number-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+[data-scope="explainer-oscars"] .section-number-badge {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--forward-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--forward-blue);
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+[data-scope="explainer-oscars"] .stat-box {
+  background: color-mix(in srgb, var(--forward-blue) 8%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, var(--forward-blue) 20%, var(--border));
+  border-radius: 0.75rem;
+  padding: 1rem 1.5rem;
+}
+[data-scope="explainer-oscars"] .stat-hero {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--forward-blue), var(--accent-amber));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-scope="explainer-oscars"] .card-glow {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+[data-scope="explainer-oscars"] .card-glow:hover {
+  box-shadow: 0 0 0 2px var(--forward-blue), 0 8px 24px color-mix(in srgb, var(--forward-blue) 15%, transparent);
+  transform: translateY(-2px);
+}
+[data-scope="explainer-oscars"] .horizontal-scroll {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+[data-scope="explainer-oscars"] .horizontal-scroll > * {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+[data-scope="explainer-oscars"] .sticky-diagram-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  [data-scope="explainer-oscars"] .sticky-diagram-layout {
+    grid-template-columns: 1fr;
+  }
+}
+[data-scope="explainer-oscars"] .sticky-diagram-left {
+  position: sticky;
+  top: 5rem;
+}
+[data-scope="explainer-oscars"] .animate-bounce-down {
+  animation: oscars-bounce-down 1.5s ease-in-out infinite;
+}
+@keyframes oscars-bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}

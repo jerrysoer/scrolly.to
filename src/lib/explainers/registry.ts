@@ -13,6 +13,8 @@ export interface ExplainerConfig {
   title: string;
   description: string;
   ogDescription?: string;
+  ogAccent?: string;
+  ogHighlight?: { main: string; sub?: string };
   keywords: string[];
   category: string;
   scopeName: string;
@@ -82,6 +84,75 @@ export const explainers: Record<string, ExplainerConfig> = {
     ],
     component: () =>
       import("@/components/explainers/tariffs/ExplainerApp"),
+  },
+
+  "how-the-oscars-work": {
+    slug: "how-the-oscars-work",
+    section: "learn",
+    title: "How the Oscars Actually Work",
+    description:
+      "An interactive explainer on how Oscar nominations, voting, guild awards, and campaign season actually work — including why your favorite film can lose even if it gets the most votes. Built with Scrolly.",
+    ogDescription:
+      "Most people think the best film wins the Oscar. The math says otherwise. Here's how the Oscars actually work.",
+    ogAccent: "#3b82f6",
+    ogHighlight: {
+      main: "16 nominations",
+      sub: "Sinners — all-time record",
+    },
+    keywords: [
+      "Oscars",
+      "Academy Awards",
+      "how Oscars work",
+      "Oscar voting",
+      "preferential ballot",
+      "STV voting",
+      "guild awards",
+      "Best Picture",
+      "98th Academy Awards",
+      "Sinners nominations",
+      "Oscar campaign season",
+      "interactive explainer",
+    ],
+    category: "Entertainment",
+    scopeName: "explainer-oscars",
+    themeKey: "oscars-theme",
+    defaultTheme: "dark",
+    datePublished: "2026-02-22",
+    fonts: "dispatch",
+    faqs: [
+      {
+        question: "How do Oscar nominations work?",
+        answer:
+          "Oscar nominations are voted on by the Academy's 17 branches, each made up of industry professionals. Each branch nominates only in their own category — cinematographers vote for Best Cinematography, directors for Best Director, and so on. Best Picture is the exception: all ~10,820 members vote. Nominations use a ranked-choice ballot (STV), so you rank your top five choices.",
+      },
+      {
+        question: "What is the preferential ballot (STV) for Best Picture?",
+        answer:
+          "The Academy uses Single Transferable Vote (STV) for Best Picture. Voters rank their choices. If no film exceeds 50% of first-choice votes, the film with the fewest votes is eliminated and those ballots redistribute to the voters' next choice. This continues until one film passes the threshold. The result: a film that's broadly acceptable beats one passionately loved by only half the room.",
+      },
+      {
+        question: "Who are the Academy members?",
+        answer:
+          "The Academy of Motion Picture Arts and Sciences has approximately 10,820 members organized into 17 branches — from actors (1,302 members) to visual effects artists (298 members). Membership is by invitation only, typically granted to working professionals with significant credits in their field.",
+      },
+      {
+        question: "How does campaign season influence Oscar outcomes?",
+        answer:
+          "Studios spend millions on For Your Consideration (FYC) campaigns between nominations (January 19) and final voting (February 28 – March 8). Tactics include private screenings for Academy members, FYC billboards on Sunset Boulevard, streaming screeners, press tours, and targeted outreach to specific branches. Many analysts argue campaign execution matters as much as the films themselves.",
+      },
+      {
+        question: "What guild awards best predict the Oscars?",
+        answer:
+          "The Directors Guild of America (DGA) Award has historically correlated with the Best Director Oscar about 84% of the time. The American Society of Cinematographers (ASC) correlates at ~73%. The Writers Guild (WGA) and Screen Actors Guild (SAG) ensemble award are lower predictors, partly because guild eligibility rules differ from Academy eligibility.",
+      },
+      {
+        question: "What records did Sinners set at the 98th Academy Awards?",
+        answer:
+          "Ryan Coogler's Sinners received 16 Oscar nominations at the 98th Academy Awards (2026), the most of any film in a single year — surpassing the previous record of 14 held by All About Eve (1950), Titanic (1997), and La La Land (2016). The film also ties the record for most Black individuals nominated for a single film (10), matching Judas and the Black Messiah (2021). Coogler became only the second Black filmmaker (after Jordan Peele) to be nominated for producing, directing, and writing the same film in a single year.",
+      },
+    ],
+    component: () =>
+      import("@/components/explainers/oscars/ExplainerApp"),
   },
 
   "butterfly-metamorphosis-explainer": {
@@ -1077,6 +1148,9 @@ export const explainers: Record<string, ExplainerConfig> = {
     section: "explore",
     title: "The Trader Joe's Story",
     description: "How a Stanford MBA turned LA convenience stores into America's most beloved grocery brand — a 3-part interactive series.",
+    ogDescription: "How a Stanford MBA turned six failing convenience stores into a $16B grocery empire — told in 3 interactive parts.",
+    ogAccent: "#c0392b",
+    ogHighlight: { main: "1967", sub: "PASADENA, CALIFORNIA" },
     category: "Business",
     scopeName: "explainer-trader-joes",
     themeKey: "trader-joes-theme",
