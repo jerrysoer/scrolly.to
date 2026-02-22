@@ -16,11 +16,11 @@ function TensionTimeline({ activeStepIndex }: { activeStepIndex: number }) {
   const barX = 55;
 
   return (
-    <div className="sticky top-24">
+    <div className="sticky top-24 w-full" style={{ height: "min(500px, 60vh)" }}>
       <svg
         viewBox="0 0 220 200"
         className="w-full rounded-xl"
-        style={{ backgroundColor: "var(--bg-secondary)" }}
+        style={{ backgroundColor: "var(--bg-secondary)", height: "100%", aspectRatio: "220/200" }}
         aria-label="Tension timeline showing escalating controversies from 2020 to 2023"
       >
         {/* Header */}

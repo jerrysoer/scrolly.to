@@ -5,11 +5,11 @@ import { storeSteps, storeSpecs } from "@/components/explainers/trader-joes/data
 
 function StoreFloorPlan({ activeStepIndex }: { activeStepIndex: number }) {
   return (
-    <div className="sticky top-24">
+    <div className="sticky top-24 w-full" style={{ height: "min(500px, 60vh)" }}>
       <svg
         viewBox="0 0 200 160"
         className="w-full rounded-xl"
-        style={{ backgroundColor: "var(--bg-secondary)" }}
+        style={{ backgroundColor: "var(--bg-secondary)", height: "100%", aspectRatio: "200/160" }}
         aria-label="Floor plan comparing Trader Joe's store size to an average supermarket"
       >
         {/* Supermarket ghost outline — ~50K sqft footprint */}

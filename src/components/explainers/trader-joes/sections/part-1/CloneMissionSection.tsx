@@ -5,11 +5,11 @@ import { prontoLocations, cloneMissionSteps } from "@/components/explainers/trad
 
 function LAMap({ activeStepIndex }: { activeStepIndex: number }) {
   return (
-    <div className="sticky top-24">
+    <div className="sticky top-24 w-full" style={{ height: "min(500px, 60vh)" }}>
       <svg
         viewBox="0 0 100 100"
         className="w-full rounded-xl"
-        style={{ backgroundColor: "var(--bg-secondary)" }}
+        style={{ backgroundColor: "var(--bg-secondary)", height: "100%", aspectRatio: "1" }}
         aria-label="Stylized map of Los Angeles showing Pronto Market locations"
       >
         {/* Faint road-like texture lines */}

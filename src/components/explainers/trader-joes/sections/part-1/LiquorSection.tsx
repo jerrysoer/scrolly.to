@@ -63,6 +63,7 @@ export default function LiquorSection() {
             ref={svgRef}
             viewBox="0 0 500 320"
             className="w-full max-w-xl"
+            style={{ aspectRatio: "500/320", height: "auto" }}
             aria-label="Venn diagram: Gourmet Taste, Discount Prices, and Trader Joe's overlap"
             role="img"
           >
