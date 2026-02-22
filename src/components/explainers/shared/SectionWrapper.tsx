@@ -42,7 +42,7 @@ export default function SectionWrapper({
     return () => observer.disconnect();
   }, []);
 
-  const paddingY = room === "compact" ? "py-12 sm:py-16" : room === "spacious" ? "py-24 sm:py-36" : "py-20 sm:py-28";
+  const paddingY = room === "compact" ? "py-8 sm:py-12 lg:py-16" : room === "spacious" ? "py-16 sm:py-24 lg:py-36" : "py-12 sm:py-20 lg:py-28";
 
   const innerClass = (() => {
     switch (layout) {

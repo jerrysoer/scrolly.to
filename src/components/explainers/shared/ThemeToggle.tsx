@@ -35,8 +35,9 @@ export default function ThemeToggle({ scopeName: propScope, themeKey: propKey }:
   return (
     <button
       onClick={toggle}
-      className="fixed top-4 right-4 z-50 flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-200 hover:scale-105"
+      className="fixed right-4 z-50 flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-200 hover:scale-105"
       style={{
+        top: "60px", // Position below PartNav on mobile
         backgroundColor: "var(--bg-card)",
         borderColor: "var(--border)",
         color: "var(--text-primary)",

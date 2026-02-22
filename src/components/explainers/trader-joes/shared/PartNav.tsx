@@ -44,7 +44,7 @@ export default function PartNav({ currentPart, onPartChange }: PartNavProps) {
           borderColor: "var(--border)",
         }}
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 pr-16 sm:pr-4">
           <div className="flex items-center gap-3">
             {prev ? (
               <button
