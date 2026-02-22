@@ -83,7 +83,7 @@ export default function FirstStoreSection() {
           </p>
           <div className="mt-8 text-center">
             <Link
-              href="/part-2"
+              href="#part-2"
               className="inline-block text-lg font-medium transition-opacity duration-300 hover:opacity-80"
               style={{
                 fontFamily: "var(--font-dm-mono), monospace",

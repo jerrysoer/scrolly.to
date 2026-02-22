@@ -104,7 +104,7 @@ export default function PayPeopleWellSection() {
           </p>
           <div className="mt-8 text-center">
             <Link
-              href="/part-3"
+              href="#part-3"
               className="inline-block text-lg font-medium transition-opacity duration-300 hover:opacity-80"
               style={{
                 fontFamily: "var(--font-dm-mono), monospace",
